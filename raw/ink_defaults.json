@@ -1,0 +1,7567 @@
+{
+ "inkWidgetLibraryResource": {
+  "animationLibraryResRef": {
+   "DepotPath": {
+    "$t": "ResourcePath",
+    "$v": "0",
+    "$s": "uint64"
+   },
+   "Flags": "Soft"
+  },
+  "cookingPlatform": "PLATFORM_PC",
+  "rootDefinitionIndex": 0,
+  "rootResolution": "UltraHD_3840_2160",
+  "sequences": [],
+  "version": "Default"
+ },
+ "inkWidgetLibraryItemInstance": {
+  "gameController": null,
+  "rootResolution": "UltraHD_3840_2160"
+ },
+ "inkanimPlaybackOptions": {
+  "applyCustomTimeDilation": 0,
+  "customTimeDilation": 1,
+  "dependsOnTimeDilation": 0,
+  "executionDelay": 0,
+  "fromMarker": "None",
+  "loopCounter": 0,
+  "loopInfinite": 0,
+  "loopType": "None",
+  "oneSegment": 0,
+  "playReversed": 0,
+  "toMarker": "None"
+ },
+ "entEntityID": {
+  "hash": "0"
+ },
+ "inkCanvasWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "canSupportFocus": 0,
+  "childMargin": {
+   "$type": "inkMargin",
+   "bottom": 0,
+   "left": 0,
+   "right": 0,
+   "top": 0
+  },
+  "childOrder": "Backward",
+  "fitToContent": 0,
+  "isInteractive": 0,
+  "opacity": 1,
+  "proxyWidget": null,
+  "renderTransform": {
+   "$type": "inkUITransform",
+   "rotation": 0,
+   "scale": {
+    "$type": "Vector2",
+    "X": 1,
+    "Y": 1
+   },
+   "shear": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   },
+   "translation": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   }
+  },
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "state": "Default",
+  "tintColor": {
+   "$type": "HDRColor",
+   "Alpha": 1,
+   "Blue": 1,
+   "Green": 1,
+   "Red": 1
+  },
+  "visible": 1
+ },
+ "inkWidgetLayout": {
+  "HAlign": "Fill",
+  "VAlign": "Fill",
+  "anchor": "TopLeft",
+  "anchorPoint": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  },
+  "padding": {
+   "$type": "inkMargin",
+   "bottom": 0,
+   "left": 0,
+   "right": 0,
+   "top": 0
+  },
+  "sizeCoefficient": 1,
+  "sizeRule": "Fixed"
+ },
+ "inkUITransform": {
+  "rotation": 0,
+  "shear": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  }
+ },
+ "inkImageWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "canSupportFocus": 0,
+  "contentHAlign": "Fill",
+  "contentVAlign": "Fill",
+  "externalDynamicTexture": "None",
+  "fitToContent": 1,
+  "horizontalTileCrop": 0,
+  "isInteractive": 0,
+  "logicController": null,
+  "mirrorType": "NoMirror",
+  "nineSliceScale": {
+   "$type": "inkMargin",
+   "bottom": 0,
+   "left": 0,
+   "right": 0,
+   "top": 0
+  },
+  "opacity": 1,
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "secondaryControllers": [],
+  "state": "Default",
+  "tileHAlign": "Left",
+  "tileType": "NoTile",
+  "tileVAlign": "Top",
+  "useExternalDynamicTexture": 0,
+  "useNineSliceScale": 0,
+  "userData": [],
+  "verticalTileCrop": 0,
+  "visible": 1
+ },
+ "inkColorCorrectionEffect": {
+  "contrast": 1,
+  "effectName": "ColorCorrection_0",
+  "isEnabled": 1,
+  "saturation": 1
+ },
+ "inkBlackwallEffect": {
+  "effectName": "Blackwall_A",
+  "isEnabled": 1,
+  "layerVisibility": 1,
+  "offsetX": 0,
+  "offsetY": 0,
+  "scaleX": 0.400000006
+ },
+ "inkRectangleWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "canSupportFocus": 0,
+  "fitToContent": 0,
+  "isInteractive": 0,
+  "opacity": 1,
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "secondaryControllers": [],
+  "state": "Default",
+  "style": null,
+  "userData": [],
+  "visible": 1
+ },
+ "inkHorizontalPanelWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "canSupportFocus": 0,
+  "childMargin": {
+   "$type": "inkMargin",
+   "bottom": 0,
+   "left": 0,
+   "right": 0,
+   "top": 0
+  },
+  "childOrder": "Forward",
+  "effects": [],
+  "fitToContent": 1,
+  "isInteractive": 0,
+  "opacity": 1,
+  "propertyManager": null,
+  "renderTransform": {
+   "$type": "inkUITransform",
+   "rotation": 0,
+   "scale": {
+    "$type": "Vector2",
+    "X": 1,
+    "Y": 1
+   },
+   "shear": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   },
+   "translation": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   }
+  },
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "secondaryControllers": [],
+  "size": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  },
+  "state": "Default",
+  "style": null,
+  "tintColor": {
+   "$type": "HDRColor",
+   "Alpha": 1,
+   "Blue": 1,
+   "Green": 1,
+   "Red": 1
+  },
+  "visible": 1
+ },
+ "inkTextWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "aligmentConverted": 0,
+  "canSupportFocus": 0,
+  "contentHAlign": "Fill",
+  "contentVAlign": "Fill",
+  "effects": [],
+  "fitToContent": 1,
+  "font": null,
+  "isInteractive": 0,
+  "justification": "Left",
+  "letterCase": "OriginalCase",
+  "lineHeightPercentage": 1,
+  "lockFontInGame": 0,
+  "opacity": 1,
+  "renderTransform": {
+   "$type": "inkUITransform",
+   "rotation": 0,
+   "scale": {
+    "$type": "Vector2",
+    "X": 1,
+    "Y": 1
+   },
+   "shear": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   },
+   "translation": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   }
+  },
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "scrollDelay": 30,
+  "scrollTextSpeed": 0.200000003,
+  "secondaryControllers": [],
+  "size": {
+   "$type": "Vector2",
+   "X": 100,
+   "Y": 32
+  },
+  "state": "Default",
+  "style": null,
+  "textHorizontalAlignment": "Left",
+  "textIdKey": "None",
+  "textOverflowPolicy": "None",
+  "textVerticalAlignment": "Top",
+  "tracking": 0,
+  "visible": 1,
+  "wrappingInfo": {
+   "$type": "textWrappingInfo",
+   "autoWrappingEnabled": 0,
+   "forceMinimumWidthToWrappingAtPosition": 0,
+   "wrappingAtPosition": 0,
+   "wrappingPolicy": "Default"
+  }
+ },
+ "textWrappingInfo": {
+  "autoWrappingEnabled": 0,
+  "forceMinimumWidthToWrappingAtPosition": 0,
+  "wrappingAtPosition": 0,
+  "wrappingPolicy": "Default"
+ },
+ "inkPropertyBinding": {
+  "propertyName": "tintColor"
+ },
+ "inkRichTextBoxWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "aligmentConverted": 1,
+  "canSupportFocus": 0,
+  "contentHAlign": "Fill",
+  "contentVAlign": "Fill",
+  "effects": [],
+  "fitToContent": 1,
+  "font": null,
+  "fontStyle": "Medium",
+  "isInteractive": 0,
+  "justification": "Left",
+  "letterCase": "OriginalCase",
+  "lineHeightPercentage": 1,
+  "lockFontInGame": 0,
+  "logicController": null,
+  "opacity": 1,
+  "renderTransform": {
+   "$type": "inkUITransform",
+   "rotation": 0,
+   "scale": {
+    "$type": "Vector2",
+    "X": 1,
+    "Y": 1
+   },
+   "shear": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   },
+   "translation": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   }
+  },
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "scrollDelay": 30,
+  "scrollTextSpeed": 0.200000003,
+  "secondaryControllers": [],
+  "size": {
+   "$type": "Vector2",
+   "X": 100,
+   "Y": 32
+  },
+  "state": "Default",
+  "style": null,
+  "textHorizontalAlignment": "Left",
+  "textIdKey": "None",
+  "textOverflowPolicy": "None",
+  "textVerticalAlignment": "Top",
+  "tracking": 0,
+  "userData": [],
+  "visible": 1
+ },
+ "animationPlayer": {
+  "anim": null,
+  "animTarget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "audioMetadataName": "None",
+  "autoPlay": 1,
+  "delay": 0,
+  "dependsOnTimeDilation": 0,
+  "loopType": "Cycle",
+  "loopsAmount": 1,
+  "playInfinite": 1,
+  "playReversed": 0
+ },
+ "inkMaskWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "canSupportFocus": 0,
+  "dataSource": "TextureAtlas",
+  "dynamicTextureMask": "None",
+  "effects": [],
+  "fitToContent": 0,
+  "invertMask": 0,
+  "isInteractive": 0,
+  "logicController": null,
+  "maskTransparency": 0,
+  "opacity": 0.00999999978,
+  "propertyManager": null,
+  "renderTransform": {
+   "$type": "inkUITransform",
+   "rotation": 0,
+   "scale": {
+    "$type": "Vector2",
+    "X": 1,
+    "Y": 1
+   },
+   "shear": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   },
+   "translation": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   }
+  },
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "secondaryControllers": [],
+  "state": "Default",
+  "style": null,
+  "tintColor": {
+   "$type": "HDRColor",
+   "Alpha": 1,
+   "Blue": 1,
+   "Green": 1,
+   "Red": 1
+  },
+  "userData": [],
+  "visible": 1
+ },
+ "SWidgetAnimationData": {
+  "animProxy": null,
+  "lockWhenActive": 0,
+  "onEndLoop": "None",
+  "onFinish": "None",
+  "onPasue": "None",
+  "onResume": "None",
+  "onStart": "None",
+  "onStartLoop": "None",
+  "playbackOptions": {
+   "$type": "inkanimPlaybackOptions",
+   "applyCustomTimeDilation": 0,
+   "customTimeDilation": 1,
+   "dependsOnTimeDilation": 0,
+   "executionDelay": 0,
+   "fromMarker": "None",
+   "loopCounter": 0,
+   "loopInfinite": 0,
+   "loopType": "None",
+   "oneSegment": 0,
+   "playReversed": 0,
+   "toMarker": "None"
+  }
+ },
+ "inkWidgetBackendData": {
+  "boundLibraryItemName": "None",
+  "isHiddenInEditor": 0,
+  "isLocked": 0
+ },
+ "inkFlexWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "canSupportFocus": 0,
+  "childMargin": {
+   "$type": "inkMargin",
+   "bottom": 0,
+   "left": 0,
+   "right": 0,
+   "top": 0
+  },
+  "childOrder": "Forward",
+  "effects": [],
+  "fitToContent": 0,
+  "isInteractive": 0,
+  "opacity": 1,
+  "propertyManager": null,
+  "renderTransform": {
+   "$type": "inkUITransform",
+   "rotation": 0,
+   "scale": {
+    "$type": "Vector2",
+    "X": 1,
+    "Y": 1
+   },
+   "shear": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   },
+   "translation": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   }
+  },
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "secondaryControllers": [],
+  "size": {
+   "$type": "Vector2",
+   "X": 100,
+   "Y": 100
+  },
+  "state": "Default",
+  "tintColor": {
+   "$type": "HDRColor",
+   "Alpha": 1,
+   "Blue": 1,
+   "Green": 1,
+   "Red": 1
+  },
+  "visible": 1
+ },
+ "inkGlitchEffect": {
+  "effectName": "Glitch_0",
+  "intensity": 0,
+  "isEnabled": 1,
+  "offsetX": 0,
+  "offsetY": 0
+ },
+ "inkBorderWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "canSupportFocus": 0,
+  "effects": [],
+  "fitToContent": 0,
+  "isInteractive": 0,
+  "logicController": null,
+  "opacity": 1,
+  "renderTransform": {
+   "$type": "inkUITransform",
+   "rotation": 0,
+   "scale": {
+    "$type": "Vector2",
+    "X": 1,
+    "Y": 1
+   },
+   "shear": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   },
+   "translation": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   }
+  },
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "secondaryControllers": [],
+  "state": "Default",
+  "style": null,
+  "userData": [],
+  "visible": 1
+ },
+ "inkGridWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "backendData": null,
+  "canSupportFocus": 0,
+  "childMargin": {
+   "$type": "inkMargin",
+   "bottom": 0,
+   "left": 0,
+   "right": 0,
+   "top": 0
+  },
+  "childOrder": "Forward",
+  "childSizeStep": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  },
+  "effects": [],
+  "fitToContent": 0,
+  "isInteractive": 0,
+  "logicController": null,
+  "opacity": 1,
+  "orientation": "Vertical",
+  "propertyManager": null,
+  "renderTransform": {
+   "$type": "inkUITransform",
+   "rotation": 0,
+   "scale": {
+    "$type": "Vector2",
+    "X": 1,
+    "Y": 1
+   },
+   "shear": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   },
+   "translation": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   }
+  },
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "secondaryControllers": [],
+  "state": "Default",
+  "style": null,
+  "tintColor": {
+   "$type": "HDRColor",
+   "Alpha": 1,
+   "Blue": 1,
+   "Green": 1,
+   "Red": 1
+  },
+  "userData": [],
+  "visible": 1
+ },
+ "PaginationArrowController": {
+  "audioMetadataName": "None"
+ },
+ "inkInputDisplayController": {
+  "audioMetadataName": "None",
+  "fixedIconHeight": 64,
+  "gamepadHoldIndicatorLibraryRef": {
+   "$type": "inkWidgetLibraryReference",
+   "widgetItem": "None",
+   "widgetLibrary": {
+    "$type": "inkWidgetLibraryResourceWrapper",
+    "library": {
+     "DepotPath": {
+      "$t": "ResourcePath",
+      "$v": "0",
+      "$s": "uint64"
+     },
+     "Flags": "Soft"
+    }
+   }
+  },
+  "holdIndicationType": "Press",
+  "holdIndicatorContainerRef": {
+   "$type": "inkCompoundWidgetReference",
+   "widget": null
+  },
+  "iconAND": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "keyboardHoldIndicatorLibraryRef": {
+   "$type": "inkWidgetLibraryReference",
+   "widgetItem": "None",
+   "widgetLibrary": {
+    "$type": "inkWidgetLibraryResourceWrapper",
+    "library": {
+     "DepotPath": {
+      "$t": "ResourcePath",
+      "$v": "0",
+      "$s": "uint64"
+     },
+     "Flags": "Soft"
+    }
+   }
+  },
+  "nameRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  }
+ },
+ "inkWidgetLibraryReference": {
+  "widgetItem": "None",
+  "widgetLibrary": {
+   "$type": "inkWidgetLibraryResourceWrapper",
+   "library": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "0",
+     "$s": "uint64"
+    },
+    "Flags": "Soft"
+   }
+  }
+ },
+ "inkWidgetLibraryResourceWrapper": {
+  "library": {
+   "DepotPath": {
+    "$t": "ResourcePath",
+    "$v": "0",
+    "$s": "uint64"
+   },
+   "Flags": "Soft"
+  }
+ },
+ "inkVerticalPanelWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "canSupportFocus": 0,
+  "childMargin": {
+   "$type": "inkMargin",
+   "bottom": 0,
+   "left": 0,
+   "right": 0,
+   "top": 0
+  },
+  "childOrder": "Forward",
+  "effects": [],
+  "fitToContent": 1,
+  "isInteractive": 0,
+  "logicController": null,
+  "opacity": 1,
+  "propertyManager": null,
+  "proxyWidget": null,
+  "renderTransform": {
+   "$type": "inkUITransform",
+   "rotation": 0,
+   "scale": {
+    "$type": "Vector2",
+    "X": 1,
+    "Y": 1
+   },
+   "shear": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   },
+   "translation": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   }
+  },
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "secondaryControllers": [],
+  "size": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  },
+  "state": "Default",
+  "style": null,
+  "tintColor": {
+   "$type": "HDRColor",
+   "Alpha": 1,
+   "Blue": 1,
+   "Green": 1,
+   "Red": 1
+  },
+  "userData": [],
+  "visible": 1
+ },
+ "GalleryPopup": {
+  "audioMetadataName": "None"
+ },
+ "inkContainerNavigationController": {
+  "audioMetadataName": "None",
+  "isNavigalbe": 1,
+  "shouldUpdateScrollController": 0,
+  "supportsHoldInput": 1,
+  "useGlobalInput": 1
+ },
+ "gameuiTooltipsManager": {
+  "HudTooltipStylePath": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "base\\gameplay\\gui\\common\\tooltip\\tooltip_hud.inkstyle",
+     "$s": "string"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "IndexedTooltips": [],
+  "MenuTooltipStylePath": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "base\\gameplay\\gui\\common\\tooltip\\tooltip_menu.inkstyle",
+     "$s": "string"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "NamedTooltips": [],
+  "TooltipLibrariesStyledReferences": [],
+  "TooltipRequesters": [],
+  "TooltipStylePath": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "0",
+     "$s": "uint64"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "TooltipsLibrary": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "base\\gameplay\\gui\\common\\tooltip\\tooltipslibrary_4k.inkwidget",
+     "$s": "string"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "audioMetadataName": "None",
+  "axisDataThreshold": 0.5,
+  "enableTransitionAnimation": 1,
+  "flipVerticalAttachment": 0,
+  "flipX": 1,
+  "flipY": 0,
+  "isHidden": 0,
+  "mouseDataThreshold": 7,
+  "prespawnLazyModules": 0,
+  "rootMargin": {
+   "$type": "inkMargin",
+   "bottom": 0,
+   "left": 0,
+   "right": 0,
+   "top": 0
+  },
+  "screenMargin": {
+   "$type": "inkMargin",
+   "bottom": 125,
+   "left": 0,
+   "right": 10,
+   "top": 0
+  },
+  "tooltipAnimHide": null,
+  "tooltipAnimHideDef": null,
+  "tooltipDelayedShow": null,
+  "tooltipDelayedShowDef": null,
+  "tooltipShowAnimProxy": null
+ },
+ "redResourceReferenceScriptToken": {
+  "resource": {
+   "DepotPath": {
+    "$t": "ResourcePath",
+    "$v": "0",
+    "$s": "uint64"
+   },
+   "Flags": "Soft"
+  }
+ },
+ "inkDiscreteNavigationController": {
+  "audioMetadataName": "None",
+  "isNavigalbe": 1,
+  "shouldUpdateScrollController": 0,
+  "supportsHoldInput": 1
+ },
+ "ButtonHintListItem": {
+  "actionName": "None",
+  "audioMetadataName": "None",
+  "buttonHint": null
+ },
+ "LabelInputDisplayController": {
+  "audioMetadataName": "None",
+  "canvasRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "fixedIconHeight": 64,
+  "gamepadHoldIndicatorLibraryRef": {
+   "$type": "inkWidgetLibraryReference",
+   "widgetItem": "None",
+   "widgetLibrary": {
+    "$type": "inkWidgetLibraryResourceWrapper",
+    "library": {
+     "DepotPath": {
+      "$t": "ResourcePath",
+      "$v": "0",
+      "$s": "uint64"
+     },
+     "Flags": "Soft"
+    }
+   }
+  },
+  "holdIndicationType": "Press",
+  "holdIndicatorContainerRef": {
+   "$type": "inkCompoundWidgetReference",
+   "widget": null
+  },
+  "iconAND": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "inputLabel": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "keyboardHoldIndicatorLibraryRef": {
+   "$type": "inkWidgetLibraryReference",
+   "widgetItem": "None",
+   "widgetLibrary": {
+    "$type": "inkWidgetLibraryResourceWrapper",
+    "library": {
+     "DepotPath": {
+      "$t": "ResourcePath",
+      "$v": "0",
+      "$s": "uint64"
+     },
+     "Flags": "Soft"
+    }
+   }
+  },
+  "nameRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  }
+ },
+ "inkEmptyCallback": {
+  "callbackName": "None",
+  "listeners": []
+ },
+ "gameuiHoldIndicatorProgressCallback": {
+  "callbackName": "None",
+  "listeners": []
+ },
+ "inkScanlineWipeEffect": {
+  "effectName": "ScanlineWipe_0",
+  "isEnabled": 1
+ },
+ "ItemDisplayVirtualController": {
+  "Added": {
+   "$type": "inkVirtualCompoundItemControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonClick": {
+   "$type": "inkButtonClickCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldComplete": {
+   "$type": "inkButtonHoldCompleteCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldProgressChanged": {
+   "$type": "inkButtonProgressChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonSelectionChanged": {
+   "$type": "inkButtonSelectionCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonStateChanged": {
+   "$type": "inkButtonStateChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "Deselected": {
+   "$type": "inkVirtualCompoundItemControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "Selected": {
+   "$type": "inkVirtualCompoundItemSelectControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ToggledOff": {
+   "$type": "inkVirtualCompoundItemControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ToggledOn": {
+   "$type": "inkVirtualCompoundItemControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "audioMetadataName": "None",
+  "autoUpdateWidgetState": 0,
+  "canHold": 0,
+  "immediateNotificationListener": null,
+  "isNavigalbe": 0,
+  "itemDisplayWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "notificationListenerID": 0,
+  "selectable": 0,
+  "selected": 0,
+  "shouldUpdateScrollController": 0,
+  "spawnedWidget": null,
+  "supportsHoldInput": 0,
+  "wrappedData": null
+ },
+ "inkVirtualCompoundItemControllerCallback": {
+  "callbackName": "None",
+  "listeners": []
+ },
+ "inkButtonClickCallback": {
+  "callbackName": "None",
+  "listeners": []
+ },
+ "inkButtonHoldCompleteCallback": {
+  "callbackName": "None",
+  "listeners": []
+ },
+ "inkButtonProgressChangedCallback": {
+  "callbackName": "None",
+  "listeners": []
+ },
+ "inkButtonSelectionCallback": {
+  "callbackName": "None",
+  "listeners": []
+ },
+ "inkButtonStateChangeCallback": {
+  "callbackName": "None",
+  "listeners": []
+ },
+ "inkVirtualCompoundItemSelectControllerCallback": {
+  "callbackName": "None",
+  "listeners": []
+ },
+ "gameInventoryItemData": {
+  "Abilities": [],
+  "AdditionalDescription": "",
+  "Ammo": 0,
+  "Attachments": [],
+  "BuyPrice": 0,
+  "CategoryName": "",
+  "ComparedQuality": "Invalid",
+  "DamageType": "Invalid",
+  "Description": "",
+  "Empty": 1,
+  "EquipRequirement": {
+   "$type": "gameSItemStackRequirementData",
+   "requiredValue": 0,
+   "statType": "Invalid"
+  },
+  "EquipRequirements": [],
+  "EquipmentArea": "Invalid",
+  "GameItemData": null,
+  "GameplayDescription": "",
+  "HasPlayerSmartGunLink": 0,
+  "ID": {
+   "$type": "gameItemID",
+   "flags": 0,
+   "id": "0",
+   "rngSeed": 0,
+   "uniqueCounter": 0
+  },
+  "IconGender": "Female",
+  "IconPath": "",
+  "IsAvailable": 1,
+  "IsBroken": 0,
+  "IsCrafted": 0,
+  "IsCraftingMaterial": 0,
+  "IsEquippable": 1,
+  "IsEquipped": 0,
+  "IsIconic": 0,
+  "IsNew": 0,
+  "IsPart": 0,
+  "IsPerkRequired": 0,
+  "IsRequirementMet": 1,
+  "IsVendorItem": 0,
+  "IsVisualsEquipped": 0,
+  "ItemLevel": 0,
+  "ItemShape": "SingleSlot",
+  "ItemType": "Clo_Face",
+  "LocalizedItemType": "",
+  "LootItemType": "Default",
+  "Name": "",
+  "PerkRequiredName": "",
+  "PlacementSlots": [],
+  "PlayerLevel": 0,
+  "PlayerReflexes": 0,
+  "PlayerStreetCred": 0,
+  "PlayerStrength": 0,
+  "PositionInBackpack": 4294967295,
+  "Price": 0,
+  "PrimaryStats": [],
+  "Quality": "None",
+  "QualityF": 0,
+  "Quantity": 0,
+  "RequiredLevel": 0,
+  "Requirement": {
+   "$type": "gameSItemStackRequirementData",
+   "requiredValue": 0,
+   "statType": "Invalid"
+  },
+  "SecondaryStats": [],
+  "Shape": "SingleSlot",
+  "SlotID": "0",
+  "SlotIndex": 0,
+  "SortData": {
+   "$type": "gameInventoryItemSortData",
+   "ChimeraMod": 0,
+   "DLCAddedItem": 0,
+   "DPS": 0,
+   "IsPlayerFavourite": 0,
+   "ItemType": 0,
+   "Name": "",
+   "NewItem": 0,
+   "Price": 0,
+   "Quality": 0,
+   "QuestItem": 0,
+   "Weight": 0
+  },
+  "UnlockProgress": 0
+ },
+ "gameSItemStackRequirementData": {
+  "requiredValue": 0,
+  "statType": "Invalid"
+ },
+ "gameItemID": {
+  "flags": 0,
+  "id": "0",
+  "rngSeed": 0,
+  "uniqueCounter": 0
+ },
+ "gameInventoryItemSortData": {
+  "ChimeraMod": 0,
+  "DLCAddedItem": 0,
+  "DPS": 0,
+  "IsPlayerFavourite": 0,
+  "ItemType": 0,
+  "Name": "",
+  "NewItem": 0,
+  "Price": 0,
+  "Quality": 0,
+  "QuestItem": 0,
+  "Weight": 0
+ },
+ "inkUniformGridWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "backendData": null,
+  "canSupportFocus": 0,
+  "childOrder": "Forward",
+  "effects": [],
+  "fitToContent": 1,
+  "isInteractive": 0,
+  "logicController": null,
+  "opacity": 1,
+  "orientation": "Horizontal",
+  "propertyManager": null,
+  "renderTransform": {
+   "$type": "inkUITransform",
+   "rotation": 0,
+   "scale": {
+    "$type": "Vector2",
+    "X": 1,
+    "Y": 1
+   },
+   "shear": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   },
+   "translation": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   }
+  },
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "secondaryControllers": [],
+  "size": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  },
+  "state": "Default",
+  "style": null,
+  "tintColor": {
+   "$type": "HDRColor",
+   "Alpha": 1,
+   "Blue": 1,
+   "Green": 1,
+   "Red": 1
+  },
+  "userData": [],
+  "visible": 1
+ },
+ "ItemLabelContainerController": {
+  "audioMetadataName": "None",
+  "items": []
+ },
+ "InventoryWeaponDisplayController": {
+  "ButtonController": null,
+  "DEBUG_iconErrorInfo": null,
+  "DEBUG_iconsNameResolverIsDebug": 0,
+  "DEBUG_innerItemName": "",
+  "DEBUG_isIconError": 0,
+  "DEBUG_isIconManuallySet": 0,
+  "DEBUG_recordItemName": "",
+  "DEBUG_resolvedIconName": "",
+  "additionalData": null,
+  "ammoIcon": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "attachmentsDisplay": [],
+  "audioMetadataName": "None",
+  "backgroundBlueprint": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "backgroundFrames": [],
+  "comparisionArrow": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "cyberwareEmptyImage": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "defaultEmptyImage": "icon_add",
+  "defaultEmptyImageAtlas": "base\\gameplay\\gui\\fullscreen\\inventory\\inventory4_atlas.inkatlas",
+  "defaultFallbackImage": "undefined",
+  "delayAnimation": null,
+  "delayProxy": null,
+  "disableItemCounter": 0,
+  "displayContextData": null,
+  "emptyImage": "None",
+  "emptyImageAtlas": "",
+  "emptySlotImage": "None",
+  "equipmentArea": "Invalid",
+  "equippedMarker": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "fluffBlueprint": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "hasAvailableItems": 1,
+  "hideWhenCyberwareInInventory": [],
+  "hoverTarget": null,
+  "iconBlueprint": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "iconErrorIndicator": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "iconTransmog": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "iconWardrobeDisabled": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "inventoryDataManager": null,
+  "inventoryScriptableSystem": null,
+  "isBound": 0,
+  "isBuybackStack": 0,
+  "isCyberwarePreviewInInventory": 0,
+  "isDLCNewItem": 0,
+  "isEnoughMoney": 0,
+  "isLocked": 0,
+  "isNavigalbe": 1,
+  "isNew": 0,
+  "isNewOverriden": 0,
+  "isPerkRequiredCyberware": 0,
+  "isPlayerFavourite": 0,
+  "isQuestBought": 0,
+  "isSlotTransmogged": 0,
+  "isTransmoged": 0,
+  "isUpgradable": 0,
+  "isWardrobeDisabled": 0,
+  "itemDisplayContext": "None",
+  "itemEmptyIcon": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "itemID": {
+   "$type": "gameItemID",
+   "flags": 0,
+   "id": "0",
+   "rngSeed": 0,
+   "uniqueCounter": 0
+  },
+  "itemName": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "itemPrice": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "itemSelectedArrow": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "itemType": "Invalid",
+  "labelsContainerController": null,
+  "lockIcon": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "lootitemflufficon": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "lootitemtypeicon": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "newItemsCounter": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "newItemsFetched": 0,
+  "newItemsIDs": [],
+  "overrideQuantity": 0,
+  "owned": 0,
+  "parentItemData": null,
+  "parrentWrappedDataObject": null,
+  "perkIcon": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "perkWrapper": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "playerFavouriteWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "rarityCommonWrapper": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "rarityWrapper": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "recipeData": null,
+  "requirementsMet": 0,
+  "scopeIcon": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "selectedCWProxy": null,
+  "shouldUpdateScrollController": 1,
+  "showWhenCyberwareInInventory": [],
+  "silencerIcon": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "slotID": "0",
+  "slotIndex": 0,
+  "slotName": "",
+  "supportsHoldInput": 0,
+  "tooltipData": null,
+  "transmogContainer": {
+   "$type": "inkCompoundWidgetReference",
+   "widget": null
+  },
+  "transmogItem": {
+   "$type": "gameItemID",
+   "flags": 0,
+   "id": "0",
+   "rngSeed": 0,
+   "uniqueCounter": 0
+  },
+  "transmogedIcon": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "uiInventoryItem": null,
+  "uiScriptableSystem": null,
+  "upgradeProxy": null,
+  "visibleWhenLocked": 1,
+  "wardrobeInfoContainer": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "wardrobeInfoText": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "wardrobeOutfitIndex": -1,
+  "weaponAttachmentsDisplay": [],
+  "weaponSpecyficModsRoot": {
+   "$type": "inkCompoundWidgetReference",
+   "widget": null
+  },
+  "weaponType": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "weaponTypeImage": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  }
+ },
+ "ItemLabelController": {
+  "audioMetadataName": "None",
+  "label": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "moneyIcon": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "type": "New"
+ },
+ "inkButtonController": {
+  "ButtonClick": {
+   "$type": "inkButtonClickCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldComplete": {
+   "$type": "inkButtonHoldCompleteCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldProgressChanged": {
+   "$type": "inkButtonProgressChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonSelectionChanged": {
+   "$type": "inkButtonSelectionCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonStateChanged": {
+   "$type": "inkButtonStateChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "audioMetadataName": "None",
+  "autoUpdateWidgetState": 0,
+  "canHold": 0,
+  "isNavigalbe": 1,
+  "selectable": 0,
+  "selected": 0,
+  "shouldUpdateScrollController": 0,
+  "supportsHoldInput": 1
+ },
+ "TransparencyAnimationButtonView": {
+  "AnimationProxies": [],
+  "ButtonController": null,
+  "DisabledTransparency": 0,
+  "PressTransparency": 0.400000006,
+  "audioMetadataName": "None",
+  "isNavigalbe": 1,
+  "shouldUpdateScrollController": 0,
+  "supportsHoldInput": 1
+ },
+ "InventoryItemDisplayController": {
+  "ButtonController": null,
+  "DEBUG_iconErrorInfo": null,
+  "DEBUG_iconsNameResolverIsDebug": 0,
+  "DEBUG_innerItemName": "",
+  "DEBUG_isIconError": 0,
+  "DEBUG_isIconManuallySet": 0,
+  "DEBUG_recordItemName": "",
+  "DEBUG_resolvedIconName": "",
+  "additionalData": null,
+  "attachmentsDisplay": [],
+  "audioMetadataName": "None",
+  "backgroundBlueprint": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "backgroundFrames": [],
+  "commonModsRoot": {
+   "$type": "inkCompoundWidgetReference",
+   "widget": null
+  },
+  "comparisionArrow": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "cyberwareEmptyImage": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "defaultEmptyImage": "icon_add",
+  "defaultEmptyImageAtlas": "base\\gameplay\\gui\\fullscreen\\inventory\\inventory4_atlas.inkatlas",
+  "defaultFallbackImage": "undefined",
+  "delayAnimation": null,
+  "delayProxy": null,
+  "disableItemCounter": 0,
+  "displayContextData": null,
+  "emptyImage": "None",
+  "emptyImageAtlas": "",
+  "emptySlotImage": "None",
+  "equipmentArea": "Invalid",
+  "equippedMarker": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "equippedWidgets": [],
+  "fluffBlueprint": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "hasAvailableItems": 1,
+  "hideInEmptyWidgets": [],
+  "hideWhenCyberwareInInventory": [],
+  "hideWhenEquippedWidgets": [],
+  "hoverTarget": null,
+  "iconBlueprint": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "iconErrorIndicator": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "iconTransmog": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "iconWardrobeDisabled": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "iconicTint": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "inventoryDataManager": null,
+  "inventoryScriptableSystem": null,
+  "isBound": 0,
+  "isBuybackStack": 0,
+  "isCyberwarePreviewInInventory": 0,
+  "isDLCNewItem": 0,
+  "isEnoughMoney": 0,
+  "isLocked": 0,
+  "isNavigalbe": 1,
+  "isNew": 0,
+  "isNewOverriden": 0,
+  "isPerkRequiredCyberware": 0,
+  "isPlayerFavourite": 0,
+  "isQuestBought": 0,
+  "isSlotTransmogged": 0,
+  "isTransmoged": 0,
+  "isUpgradable": 0,
+  "isWardrobeDisabled": 0,
+  "itemDisplayContext": "None",
+  "itemEmptyIcon": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "itemID": {
+   "$type": "gameItemID",
+   "flags": 0,
+   "id": "0",
+   "rngSeed": 0,
+   "uniqueCounter": 0
+  },
+  "itemName": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "itemPrice": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "itemSelectedArrow": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "itemType": "Invalid",
+  "labelsContainer": {
+   "$type": "inkCompoundWidgetReference",
+   "widget": null
+  },
+  "labelsContainerController": null,
+  "lockIcon": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "lootitemflufficon": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "lootitemtypeicon": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "newItemsCounter": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "newItemsFetched": 0,
+  "newItemsIDs": [],
+  "newItemsWrapper": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "overrideQuantity": 0,
+  "owned": 0,
+  "parentItemData": null,
+  "parrentWrappedDataObject": null,
+  "perkIcon": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "perkWrapper": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "playerFavouriteWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "quantintyAmmoIcon": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "quantityText": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "quantityWrapper": {
+   "$type": "inkCompoundWidgetReference",
+   "widget": null
+  },
+  "questItemMaker": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "rarityCommonWrapper": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "rarityWrapper": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "recipeData": null,
+  "requirementsMet": 0,
+  "requirementsWrapper": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "selectedCWProxy": null,
+  "shouldUpdateScrollController": 0,
+  "showInEmptyWidgets": [],
+  "showWhenCyberwareInInventory": [],
+  "slotID": "0",
+  "slotIndex": 0,
+  "slotItemsCount": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "slotItemsCountWrapper": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "slotName": "",
+  "supportsHoldInput": 1,
+  "tooltipData": null,
+  "transmogContainer": {
+   "$type": "inkCompoundWidgetReference",
+   "widget": null
+  },
+  "transmogItem": {
+   "$type": "gameItemID",
+   "flags": 0,
+   "id": "0",
+   "rngSeed": 0,
+   "uniqueCounter": 0
+  },
+  "transmogedIcon": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "uiInventoryItem": null,
+  "uiScriptableSystem": null,
+  "upgradeProxy": null,
+  "visibleWhenLocked": 1,
+  "wardrobeInfoContainer": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "wardrobeInfoText": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "wardrobeOutfitIndex": -1,
+  "weaponType": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "weaponTypeImage": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  }
+ },
+ "ProgressBarButton": {
+  "ButtonController": null,
+  "animProxy": null,
+  "audioMetadataName": "None",
+  "available": 0,
+  "isLocked": 0,
+  "justFinished": 0,
+  "progress": 0,
+  "progressController": null
+ },
+ "inkToggleChangedCallback": {
+  "callbackName": "None",
+  "listeners": []
+ },
+ "inkShapeWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "backendData": null,
+  "borderColor": {
+   "$type": "HDRColor",
+   "Alpha": 1,
+   "Blue": 1,
+   "Green": 1,
+   "Red": 1
+  },
+  "borderOpacity": 1,
+  "canSupportFocus": 0,
+  "contentHAlign": "Fill",
+  "contentVAlign": "Fill",
+  "effects": [],
+  "endCapStyle": "BUTT",
+  "fillOpacity": 1,
+  "fitToContent": 0,
+  "isInteractive": 0,
+  "jointStyle": "MITER",
+  "keepInBounds": 0,
+  "logicController": null,
+  "nineSliceScale": {
+   "$type": "inkMargin",
+   "bottom": 0,
+   "left": 0,
+   "right": 0,
+   "top": 0
+  },
+  "renderTransform": {
+   "$type": "inkUITransform",
+   "rotation": 0,
+   "scale": {
+    "$type": "Vector2",
+    "X": 1,
+    "Y": 1
+   },
+   "shear": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   },
+   "translation": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   }
+  },
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "secondaryControllers": [],
+  "shapeVariant": "Fill",
+  "state": "Default",
+  "style": null,
+  "useNineSlice": 0,
+  "userData": [],
+  "visible": 1
+ },
+ "inkCircleWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "backendData": null,
+  "canSupportFocus": 0,
+  "effects": [],
+  "fitToContent": 0,
+  "isInteractive": 0,
+  "logicController": null,
+  "opacity": 1,
+  "propertyManager": null,
+  "renderTransform": {
+   "$type": "inkUITransform",
+   "rotation": 0,
+   "scale": {
+    "$type": "Vector2",
+    "X": 1,
+    "Y": 1
+   },
+   "shear": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   },
+   "translation": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   }
+  },
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "secondaryControllers": [],
+  "segmentsNumber": 20,
+  "state": "Default",
+  "style": null,
+  "userData": [],
+  "visible": 1
+ },
+ "ProficiencyTabButtonController": {
+  "ButtonClick": {
+   "$type": "inkButtonClickCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldComplete": {
+   "$type": "inkButtonHoldCompleteCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldProgressChanged": {
+   "$type": "inkButtonProgressChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonSelectionChanged": {
+   "$type": "inkButtonSelectionCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonStateChanged": {
+   "$type": "inkButtonStateChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ToggleChanged": {
+   "$type": "inkToggleChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "audioMetadataName": "None",
+  "autoToggleOnInput": 1,
+  "autoUpdateWidgetState": 0,
+  "canHold": 0,
+  "data": 0,
+  "icon": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "iconSet": "",
+  "isNavigalbe": 1,
+  "isToggled": 0,
+  "isToggledState": 0,
+  "labelSet": "",
+  "proxy": null,
+  "selectable": 1,
+  "selected": 0,
+  "shouldUpdateScrollController": 0,
+  "supportsHoldInput": 1
+ },
+ "DisassemblePopupLogicController": {
+  "AnimOptions": {
+   "$type": "inkanimPlaybackOptions",
+   "applyCustomTimeDilation": 0,
+   "customTimeDilation": 1,
+   "dependsOnTimeDilation": 0,
+   "executionDelay": 0,
+   "fromMarker": "None",
+   "loopCounter": 0,
+   "loopInfinite": 0,
+   "loopType": "None",
+   "oneSegment": 0,
+   "playReversed": 0,
+   "toMarker": "None"
+  },
+  "alpha_fadein": null,
+  "animProxy": null,
+  "audioMetadataName": "None",
+  "duration": 3
+ },
+ "LoopAnimationLogicController": {
+  "audioMetadataName": "None",
+  "selectionRule": "Single"
+ },
+ "inkLanguageOverrideProvider": {
+  "languageId": "EN"
+ },
+ "ItemTooltipModController": {
+  "audioMetadataName": "None",
+  "isCrafting": 0,
+  "partIndicatorController": null,
+  "rarityContainer": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "rarityWidget": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  }
+ },
+ "ItemTooltipModEntryController": {
+  "attunementContainer": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "attunementIcon": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "attunementLine": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "attunementText": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "audioMetadataName": "None",
+  "bigFontEnabled": 0,
+  "groupPath": "/accessibility/interface",
+  "isCrafting": 0,
+  "settings": null,
+  "settingsListener": null
+ },
+ "LevelBarsController": {
+  "audioMetadataName": "None",
+  "bars": {
+   "Elements": [
+    {
+     "$type": "inkWidgetReference",
+     "widget": null
+    },
+    {
+     "$type": "inkWidgetReference",
+     "widget": null
+    },
+    {
+     "$type": "inkWidgetReference",
+     "widget": null
+    },
+    {
+     "$type": "inkWidgetReference",
+     "widget": null
+    },
+    {
+     "$type": "inkWidgetReference",
+     "widget": null
+    }
+   ]
+  }
+ },
+ "ItemTooltipStatController": {
+  "audioMetadataName": "None",
+  "bigFontEnabled": 0,
+  "groupPath": "/accessibility/interface",
+  "inCrafting": 0,
+  "measurementUnit": "Millimeter",
+  "settings": null,
+  "settingsListener": null,
+  "statComparedContainer": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  }
+ },
+ "inkTextValueProgressAnimationController": {
+  "animationName": "None",
+  "audioMetadataName": "None",
+  "baseValue": 0,
+  "duration": 0,
+  "endValue": 1,
+  "numbersAfterDot": 0,
+  "playOnInitialize": 0,
+  "startDelay": 0,
+  "startValue": 0,
+  "stepValue": 0,
+  "suffix": "",
+  "targetValue": 100,
+  "useDefaultAnimation": 0
+ },
+ "inkLinearWipeEffect": {
+  "effectName": "LinearWipe_0",
+  "isEnabled": 1
+ },
+ "inkMaskEffect": {
+  "angle": 0,
+  "effectName": "Mask_0",
+  "invert": 0,
+  "isEnabled": 1,
+  "opacity": 1
+ },
+ "NewItemTooltipStatBarController": {
+  "audioMetadataName": "None",
+  "barAnimProxy": null,
+  "betterColor": {
+   "$type": "HDRColor",
+   "Alpha": 0,
+   "Blue": 0,
+   "Green": 0,
+   "Red": 0
+  },
+  "diffBarAnimProxy": null,
+  "overflow": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "separators": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "width": 0,
+  "worseColor": {
+   "$type": "HDRColor",
+   "Alpha": 0,
+   "Blue": 0,
+   "Green": 0,
+   "Red": 0
+  }
+ },
+ "inkVideoWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "backendData": null,
+  "canSupportFocus": 0,
+  "effects": [],
+  "fitToContent": 0,
+  "isInteractive": 0,
+  "isParallaxEnabled": 0,
+  "logicController": null,
+  "loop": 1,
+  "opacity": 1,
+  "overriddenPlayerName": "None",
+  "prefetchVideo": 0,
+  "propertyManager": null,
+  "renderTransform": {
+   "$type": "inkUITransform",
+   "rotation": 0,
+   "scale": {
+    "$type": "Vector2",
+    "X": 1,
+    "Y": 1
+   },
+   "shear": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   },
+   "translation": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   }
+  },
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "secondaryControllers": [],
+  "state": "Default",
+  "style": null,
+  "tintColor": {
+   "$type": "HDRColor",
+   "Alpha": 1,
+   "Blue": 1,
+   "Green": 1,
+   "Red": 1
+  },
+  "userData": [],
+  "visible": 1
+ },
+ "inkMultisamplingEffect": {
+  "effectName": "Multisampling_0",
+  "isEnabled": 1
+ },
+ "PerkMenuTooltipController": {
+  "Root": null,
+  "audioMetadataName": "None",
+  "data": null,
+  "maxProficiencyLevel": 20
+ },
+ "InventoryItemStatItem": {
+  "audioMetadataName": "None",
+  "differenceBar": null,
+  "differenceBarRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "diffrenceArrowIndicatorRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "negativeState": "worse",
+  "positiveState": "better",
+  "root": null
+ },
+ "InventoryItemStatList": {
+  "audioMetadataName": "None",
+  "container": null,
+  "data": [],
+  "itemsList": []
+ },
+ "InventoryItemAttachmentsList": {
+  "audioMetadataName": "None",
+  "data": [],
+  "itemsList": [],
+  "libraryItemName": "attachmentSlot"
+ },
+ "TooltipSpecialAbilityDisplay": {
+  "audioMetadataName": "None"
+ },
+ "MessageDescTooltip": {
+  "Root": null,
+  "animProxy": null,
+  "audioMetadataName": "None"
+ },
+ "inkColorFillEffect": {
+  "colorA": 0,
+  "colorG": 255,
+  "effectName": "ColorFill_0",
+  "isEnabled": 1
+ },
+ "inkListItemControllerCallback": {
+  "callbackName": "None",
+  "listeners": []
+ },
+ "inkLanguageSpecificImageController": {
+  "audioMetadataName": "None"
+ },
+ "inkScrollAreaWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "backendData": null,
+  "canSupportFocus": 0,
+  "childMargin": {
+   "$type": "inkMargin",
+   "bottom": 0,
+   "left": 0,
+   "right": 0,
+   "top": 0
+  },
+  "childOrder": "Forward",
+  "constrainContentPosition": 0,
+  "effects": [],
+  "fitToContent": 0,
+  "fitToContentDirection": "None",
+  "horizontalScrolling": 0,
+  "isInteractive": 0,
+  "logicController": null,
+  "name": "scrollArea",
+  "opacity": 1,
+  "propertyManager": null,
+  "renderTransform": {
+   "$type": "inkUITransform",
+   "rotation": 0,
+   "scale": {
+    "$type": "Vector2",
+    "X": 1,
+    "Y": 1
+   },
+   "shear": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   },
+   "translation": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   }
+  },
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "secondaryControllers": [],
+  "state": "Default",
+  "style": null,
+  "tintColor": {
+   "$type": "HDRColor",
+   "Alpha": 1,
+   "Blue": 1,
+   "Green": 1,
+   "Red": 1
+  },
+  "useInternalMask": 1,
+  "userData": [],
+  "verticalScrolling": 0,
+  "visible": 1
+ },
+ "inkSliderController": {
+  "HACK_isDisabledForHDRCalibrationScreen": 0,
+  "SliderHandleReleased": {
+   "$type": "inkSliderControllerHandleReleasedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "SliderInput": {
+   "$type": "inkSliderControllerInputCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "SliderValueChanged": {
+   "$type": "inkSliderControllerValueChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "audioMetadataName": "None",
+  "autoSizeHandle": 1,
+  "currentProgress": 0,
+  "defaultColor": "MainColors.Red",
+  "defaultOpacity": 0,
+  "defaultScale": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  },
+  "direction": "Vertical",
+  "handleWidgetRef": null,
+  "hoveredColor": "MainColors.Blue",
+  "isDragging": 0,
+  "maxHandleSize": 0,
+  "maximumValue": 100,
+  "minHandleSize": 20,
+  "minimumValue": 0,
+  "nextRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "percentHandleSize": 0.100000001,
+  "pressedColor": "MainColors.ActiveBlue",
+  "pressedOpacity": 0.699999988,
+  "pressedScale": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  },
+  "priorRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "slidingAreaWidgetRef": null,
+  "step": 1
+ },
+ "inkSliderControllerHandleReleasedCallback": {
+  "callbackName": "None",
+  "listeners": []
+ },
+ "inkSliderControllerInputCallback": {
+  "callbackName": "None",
+  "listeners": []
+ },
+ "inkSliderControllerValueChangeCallback": {
+  "callbackName": "None",
+  "listeners": []
+ },
+ "inkScrollController": {
+  "CompoundWidgetRef": {
+   "$type": "inkCompoundWidgetReference",
+   "widget": null
+  },
+  "audioMetadataName": "None",
+  "autoHideVertical": 1,
+  "contentSmallerThanViewport": 1,
+  "desiredSetupPosition": 0,
+  "direction": "Vertical",
+  "navigableCompoundWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "position": 0,
+  "scrollSpeedGamepad": 75,
+  "scrollSpeedMouse": 75,
+  "useGlobalInput": 0
+ },
+ "inkCacheWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "backendData": null,
+  "canSupportFocus": 0,
+  "childMargin": {
+   "$type": "inkMargin",
+   "bottom": 0,
+   "left": 0,
+   "right": 0,
+   "top": 0
+  },
+  "childOrder": "Forward",
+  "effects": [],
+  "fitToContent": 0,
+  "innerScale": {
+   "$type": "Vector2",
+   "X": 1,
+   "Y": 1
+  },
+  "isInteractive": 0,
+  "logicController": null,
+  "mode": "ExternalDynamicTexture",
+  "opacity": 1,
+  "propertyManager": null,
+  "renderTransform": {
+   "$type": "inkUITransform",
+   "rotation": 0,
+   "scale": {
+    "$type": "Vector2",
+    "X": 1,
+    "Y": 1
+   },
+   "shear": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   },
+   "translation": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   }
+  },
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "secondaryControllers": [],
+  "state": "Default",
+  "style": null,
+  "tintColor": {
+   "$type": "HDRColor",
+   "Alpha": 1,
+   "Blue": 1,
+   "Green": 1,
+   "Red": 1
+  },
+  "userData": [],
+  "visible": 1
+ },
+ "CodexEntryViewController": {
+  "audioMetadataName": "None",
+  "data": null,
+  "scroll": null
+ },
+ "inkListController": {
+  "ItemActivated": {
+   "$type": "inkListControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ItemSelected": {
+   "$type": "inkListControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "audioMetadataName": "None",
+  "beginToggled": 0,
+  "cycledNavigation": 1
+ },
+ "inkListControllerCallback": {
+  "callbackName": "None",
+  "listeners": []
+ },
+ "inkVirtualCompoundWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "backendData": null,
+  "canSupportFocus": 0,
+  "childMargin": {
+   "$type": "inkMargin",
+   "bottom": 0,
+   "left": 0,
+   "right": 0,
+   "top": 0
+  },
+  "childOrder": "Forward",
+  "effects": [],
+  "fitToContent": 0,
+  "isInteractive": 0,
+  "opacity": 1,
+  "propertyManager": null,
+  "renderTransform": {
+   "$type": "inkUITransform",
+   "rotation": 0,
+   "scale": {
+    "$type": "Vector2",
+    "X": 1,
+    "Y": 1
+   },
+   "shear": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   },
+   "translation": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   }
+  },
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "secondaryControllers": [],
+  "state": "Default",
+  "style": null,
+  "tintColor": {
+   "$type": "HDRColor",
+   "Alpha": 1,
+   "Blue": 1,
+   "Green": 1,
+   "Red": 1
+  },
+  "userData": [],
+  "visible": 1
+ },
+ "inkVirtualCompoundControllerCallback": {
+  "callbackName": "None",
+  "listeners": []
+ },
+ "ListItemStateMapper": {
+  "audioMetadataName": "None",
+  "new": 0,
+  "selected": 0,
+  "toggled": 0,
+  "widget": null
+ },
+ "fullscreenDpadSupported": {
+  "audioMetadataName": "None",
+  "targetPath_DpadDown": null,
+  "targetPath_DpadLeft": null,
+  "targetPath_DpadRight": null,
+  "targetPath_DpadUp": null
+ },
+ "TabRadioGroup": {
+  "TooltipsManager": null,
+  "ValueChanged": {
+   "$type": "inkRadioGroupChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "alwaysToggled": 1,
+  "audioMetadataName": "None",
+  "selectedIndex": 0,
+  "toggleRefs": [],
+  "toggles": []
+ },
+ "inkRadioGroupChangedCallback": {
+  "callbackName": "None",
+  "listeners": []
+ },
+ "DropdownListController": {
+  "activeElement": null,
+  "audioMetadataName": "None",
+  "data": [],
+  "displayContext": "NotSet",
+  "listOpened": 0,
+  "ownerController": null,
+  "triggerButton": null
+ },
+ "FilterRadioGroup": {
+  "TooltipIndex": 0,
+  "TooltipsManager": null,
+  "ValueChanged": {
+   "$type": "inkRadioGroupChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "alwaysToggled": 1,
+  "audioMetadataName": "None",
+  "rootRef": null,
+  "selectedIndex": 0,
+  "toggleRefs": [],
+  "toggles": []
+ },
+ "inkVirtualGridController": {
+  "AllElementsSpawned": {
+   "$type": "inkEmptyCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ItemActivated": {
+   "$type": "inkVirtualCompoundControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ItemSelected": {
+   "$type": "inkVirtualCompoundControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "audioMetadataName": "None",
+  "cycleNavigation": 0,
+  "isNavigalbe": 0,
+  "shouldUpdateScrollController": 1,
+  "supportsHoldInput": 1
+ },
+ "DropdownButtonController": {
+  "audioMetadataName": "None",
+  "frame": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  }
+ },
+ "SpawnLibraryItemController": {
+  "audioMetadataName": "None",
+  "libraryID": "previewPanel"
+ },
+ "DropdownElementController": {
+  "ButtonController": null,
+  "active": 0,
+  "audioMetadataName": "None",
+  "data": null,
+  "isNavigalbe": 1,
+  "shouldUpdateScrollController": 0,
+  "supportsHoldInput": 1
+ },
+ "gameuiPuppetPreviewCameraController": {
+  "activeSetup": 0,
+  "transitionDelay": 0.5
+ },
+ "gameuiPuppetPreviewCameraSetup": {
+  "interpolationTime": 1
+ },
+ "gameuiCreditsSectionController": {
+  "audioMetadataName": "None"
+ },
+ "gameuiCreditsPositionController": {
+  "audioMetadataName": "None"
+ },
+ "inkTextReplaceAnimationController": {
+  "animationName": "None",
+  "audioMetadataName": "None",
+  "baseTextLocalized": {
+   "unk1": "0",
+   "value": ""
+  },
+  "duration": 0,
+  "endValue": 1,
+  "playOnInitialize": 0,
+  "startDelay": 0,
+  "startValue": 0,
+  "useDefaultAnimation": 0,
+  "widgetTextUsage": "BaseText"
+ },
+ "inkCensorshipEffect": {
+  "effectName": "Glitch_0",
+  "isEnabled": 1,
+  "offsetX": 0
+ },
+ "CharacterCreationPersistantElements": {
+  "LBBtn": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "RBBtn": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "audioMetadataName": "None",
+  "c_fluffMaxX": 1800,
+  "c_fluffMaxY": 2000,
+  "c_fluffMinY": 300,
+  "headerHolder": {
+   "$type": "inkCompoundWidgetReference",
+   "widget": null
+  },
+  "headers": [],
+  "selectedHeader": null
+ },
+ "inkTextOffsetAnimationController": {
+  "animationName": "None",
+  "audioMetadataName": "None",
+  "duration": 0,
+  "endValue": 1,
+  "playOnInitialize": 1,
+  "startDelay": 0,
+  "startValue": 0,
+  "timeToSkip": 0.0500000007,
+  "useDefaultAnimation": 0
+ },
+ "characterCreationBodyMorphOptionSelectorButton": {
+  "audioMetadataName": "None"
+ },
+ "LoadingScreenProgressBarController": {
+  "audioMetadataName": "None",
+  "rotationAnimation": null,
+  "rotationAnimationProxy": null,
+  "rotationInterpolator": null
+ },
+ "SSoundData": {
+  "onHoverOutKey": "None",
+  "onHoverOverKey": "None",
+  "onPressKey": "None",
+  "onReleaseKey": "None",
+  "widgetAudioName": "Button"
+ },
+ "gameuiHackingMinigameGameController": {
+  "TooltipsManager": null,
+  "audioMetadataName": "None",
+  "bbControllerStateListener": null,
+  "bbMinigame": null,
+  "bbMinigameStateListener": null,
+  "bbUiData": null,
+  "contextHelpOverlay": 0,
+  "dimension": 0,
+  "elementRecordID": "UIElements.HackingMinigame",
+  "isItemBreach": 0,
+  "isOfficerBreach": 0,
+  "isRemoteBreach": 0,
+  "isTutorialActive": 0,
+  "miniGameRecord": null,
+  "numberAttempts": 0,
+  "symbolsRecordTDBID": "minigame_v2.DefaultMinigameSymbols",
+  "uiSystem": null
+ },
+ "gameuiTrapTooltipDisplayer": {
+  "animationProxy": null,
+  "audioMetadataName": "None",
+  "delayDuration": 0.5,
+  "trap": null
+ },
+ "gameuiTutorialArea": {
+  "audioMetadataName": "None"
+ },
+ "AutoplayVideoController": {
+  "audioMetadataName": "None"
+ },
+ "gameuiHackingMinigameLogicController": {
+  "activatedTrapIconLibraryName": "ActivatedAction",
+  "audioMetadataName": "None",
+  "bufferCellClickFlashAnimName": "BufferCellClickFlash",
+  "bufferCellHoverAnimName": "BufferCellHover",
+  "bufferCellLibraryName": "BufferCell",
+  "bufferCellTextWidgetRelativePath": "Element",
+  "cursorAnimName": "CursorAnimation",
+  "cursorWidgetRelativePath": "Cursor",
+  "gameLostAnimName": "GameFailed",
+  "gameWonAnimName": "GameSuccessful",
+  "gridCellClickFlashAnimName": "GridCellClickFlash",
+  "gridCellDefaultStateName": "Default",
+  "gridCellDisabledStateName": "Disabled",
+  "gridCellDisabledSymbol": "[  ]",
+  "gridCellHoverAnimName": "GridCellHover",
+  "gridCellHoveredStateName": "DefaultBold",
+  "gridCellLibraryName": "GridCell",
+  "gridCellProgramHighlightRelativePath": "ProgramHighlight",
+  "gridCellSelectedStateName": "Selected",
+  "gridCellTextWidgetRelativePath": "ElementWithTrapIcon/Element",
+  "gridCellTrapIconContainerRelativePath": "ElementWithTrapIcon/IconContainer",
+  "gridCellTrapIconWidgetRelativePath": "ElementWithTrapIcon/IconContainer/TrapIcon",
+  "higlightAnimName": "HiglightAnimation",
+  "inactiveHiglightBarStateName": "Disabled",
+  "introAnimName": "IntroAnimation",
+  "loopAnimName": "LoopAnimation",
+  "mainHiglightBarStateName": "MainHiglight",
+  "programCellClickFlashAnimName": "ProgramCellClickFlash",
+  "programCellHighlightStateName": "Selected",
+  "programCellLibraryName": "ProgramCell",
+  "programCellReadyStateName": "Resolved",
+  "programCellTextWidgetRelativePath": "Element",
+  "programEntryIconPath": "Program/DescriptionAndIcon/IconContainer/StatusAndIcon/IconContainer/Icon",
+  "programEntryInstructionContainerRelativePath": "Program/InstructionCells",
+  "programEntryLibraryName": "Program",
+  "programEntryNoteWidgetRelativePath": "Program/DescriptionAndIcon/DescriptionContainer/Texts/Texts/NOTE",
+  "programEntryTextWidgetRelativePath": "Program/DescriptionAndIcon/DescriptionContainer/Texts/Texts/NAME",
+  "programFailedAnimName": "ProgramFailed",
+  "programFailedStateName": "Failed",
+  "programResetFromFailedAnimName": "ProgramResetFromFail",
+  "programSucceedAnimName": "ProgramSucceed",
+  "programSucceedStateName": "Succeed",
+  "resetButton": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "secondaryHiglightBarStateName": "SecondaryHiglight",
+  "terminalShutdownAnimName": "TerminalShutdown",
+  "trapActivatedAnimName": "ActivatedActionAdded",
+  "trapIconsContainerRelativePath": "DataContainer"
+ },
+ "HubMenuLabelController": {
+  "audioMetadataName": "None",
+  "data": {
+   "$type": "MenuData",
+   "attrFlag": 0,
+   "attrText": 0,
+   "disabled": 0,
+   "eventName": "None",
+   "fullscreenName": "None",
+   "icon": "None",
+   "identifier": -1,
+   "label": "",
+   "overrideDefaultUserData": 0,
+   "overrideSubMenuUserData": 0,
+   "parentIdentifier": 0,
+   "perkFlag": 0,
+   "perkText": 0,
+   "subMenus": [],
+   "userData": null
+  },
+  "direction": 0,
+  "isRadialVariant": 0,
+  "once": 0,
+  "watchForInstatnSize": 0,
+  "watchForSize": 0,
+  "wrapper": null,
+  "wrapperController": null,
+  "wrapperNext": null,
+  "wrapperNextController": null
+ },
+ "MenuData": {
+  "attrFlag": 0,
+  "attrText": 0,
+  "disabled": 0,
+  "eventName": "None",
+  "fullscreenName": "None",
+  "icon": "None",
+  "identifier": -1,
+  "label": "",
+  "overrideDefaultUserData": 0,
+  "overrideSubMenuUserData": 0,
+  "parentIdentifier": 0,
+  "perkFlag": 0,
+  "perkText": 0,
+  "subMenus": [],
+  "userData": null
+ },
+ "hubSelectorController": {
+  "SelectionChanged": {
+   "$type": "inkSelectionChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "audioMetadataName": "None",
+  "cycledNavigation": 1,
+  "hubElementsData": [],
+  "index": -1,
+  "label": null,
+  "labelPath": "Panel/Label",
+  "leftArrow": null,
+  "leftArrowButton": null,
+  "leftArrowPath": "Panel/LeftArrow",
+  "previousIndex": 0,
+  "previouslySelectedMenuLabel": null,
+  "rightArrow": null,
+  "rightArrowButton": null,
+  "rightArrowPath": "Panel/RightArrow",
+  "selectedMenuLabel": null,
+  "value": null,
+  "valuePath": "Panel/Value",
+  "values": []
+ },
+ "inkSelectionChangeCallback": {
+  "callbackName": "None",
+  "listeners": []
+ },
+ "inkGradientWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "backendData": null,
+  "canSupportFocus": 0,
+  "effects": [],
+  "endColor": {
+   "$type": "HDRColor",
+   "Alpha": 0,
+   "Blue": 0,
+   "Green": 0,
+   "Red": 0
+  },
+  "fitToContent": 0,
+  "gradientMode": "Linear",
+  "isInteractive": 0,
+  "logicController": null,
+  "opacity": 1,
+  "propertyManager": null,
+  "renderTransform": {
+   "$type": "inkUITransform",
+   "rotation": 0,
+   "scale": {
+    "$type": "Vector2",
+    "X": 1,
+    "Y": 1
+   },
+   "shear": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   },
+   "translation": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   }
+  },
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "secondaryControllers": [],
+  "state": "Default",
+  "style": null,
+  "tintColor": {
+   "$type": "HDRColor",
+   "Alpha": 1,
+   "Blue": 1,
+   "Green": 1,
+   "Red": 1
+  },
+  "userData": [],
+  "visible": 1
+ },
+ "gameuiTimeDisplayLogicController": {
+  "audioMetadataName": "None"
+ },
+ "MenuItemController": {
+  "attrFlag": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "attrText": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "audioMetadataName": "ui_main_menu_generic_map",
+  "background": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "buttonTransitionProxy": null,
+  "fluffText": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "hoverPanel": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "isDimmed": 0,
+  "isHyperlink": 0,
+  "isPanelShown": 0,
+  "itemHovered": 0,
+  "levelFlag": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "menuData": {
+   "$type": "MenuData",
+   "attrFlag": 0,
+   "attrText": 0,
+   "disabled": 0,
+   "eventName": "None",
+   "fullscreenName": "None",
+   "icon": "None",
+   "identifier": -1,
+   "label": "",
+   "overrideDefaultUserData": 0,
+   "overrideSubMenuUserData": 0,
+   "parentIdentifier": 0,
+   "perkFlag": 0,
+   "perkText": 0,
+   "subMenus": [],
+   "userData": null
+  },
+  "panelHovered": 0,
+  "panelTransitionProxy": null,
+  "perkFlag": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "perkText": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  }
+ },
+ "HubMenuLabelContentContainer": {
+  "audioMetadataName": "None",
+  "border": {
+   "$type": "inkBorderWidgetReference",
+   "widget": null
+  },
+  "carouselPosition": 0,
+  "data": {
+   "$type": "MenuData",
+   "attrFlag": 0,
+   "attrText": 0,
+   "disabled": 0,
+   "eventName": "None",
+   "fullscreenName": "None",
+   "icon": "None",
+   "identifier": -1,
+   "label": "",
+   "overrideDefaultUserData": 0,
+   "overrideSubMenuUserData": 0,
+   "parentIdentifier": 0,
+   "perkFlag": 0,
+   "perkText": 0,
+   "subMenus": [],
+   "userData": null
+  },
+  "desiredSizeWrapper": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "icon": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "isRadialVariant": 0,
+  "labelName": ""
+ },
+ "inkBorderWidgetReference": {
+  "widget": null
+ },
+ "inkWidgetLogicController": {
+  "audioMetadataName": "None"
+ },
+ "UINotification": {
+  "ItemChanged": {
+   "$type": "inkEmptyCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "NotificationPaused": {
+   "$type": "inkEmptyCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "NotificationResumed": {
+   "$type": "inkEmptyCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "actionLabelRef": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "actionRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "audioMetadataName": "None",
+  "blockAction": 0,
+  "customInputActionName": "None",
+  "data": null,
+  "elementRecordID": "0",
+  "isInteractive": 0,
+  "paused": 0,
+  "player": null,
+  "textRef": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "translationAnimationCtrl": null
+ },
+ "RadialMenuItemController": {
+  "applyHoverState": 0,
+  "attrFlag": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "attrText": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "audioMetadataName": "ui_main_menu_generic_map",
+  "background": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "buttonTransitionProxy": null,
+  "disableClick": 0,
+  "frameHovered": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "hoverPanel": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "icon": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "isDimmed": 0,
+  "isHyperlink": 0,
+  "isPanelShown": 0,
+  "itemHovered": 0,
+  "levelFlag": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "menuData": {
+   "$type": "MenuData",
+   "attrFlag": 0,
+   "attrText": 0,
+   "disabled": 0,
+   "eventName": "None",
+   "fullscreenName": "None",
+   "icon": "None",
+   "identifier": -1,
+   "label": "",
+   "overrideDefaultUserData": 0,
+   "overrideSubMenuUserData": 0,
+   "parentIdentifier": 0,
+   "perkFlag": 0,
+   "perkText": 0,
+   "subMenus": [],
+   "userData": null
+  },
+  "panelHovered": 0,
+  "panelTransitionProxy": null,
+  "perkFlag": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "perkText": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "queueHoverEvents": 0
+ },
+ "gameuiBaseMenuGameControllerPuppetSceneInfo": {
+  "puppetRecordId": "Character.Player_Puppet_Menu"
+ },
+ "inkGridController": {
+  "AllElementsSpawned": {
+   "$type": "inkEmptyCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ItemActivated": {
+   "$type": "inkVirtualCompoundControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ItemSelected": {
+   "$type": "inkVirtualCompoundControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "audioMetadataName": "None",
+  "items": []
+ },
+ "inkGridItemTemplate": {
+  "sizeX": 1,
+  "sizeY": 1
+ },
+ "InventoryItemDisplayEquipmentArea": {
+  "audioMetadataName": "None",
+  "numberOfSlots": 1
+ },
+ "InventoryItemDisplayCategoryArea": {
+  "audioMetadataName": "None",
+  "categoryAreas": [],
+  "newItemsCounter": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "newItemsWrapper": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  }
+ },
+ "InventoryStatsEntryController": {
+  "audioMetadataName": "None"
+ },
+ "InventoryEquipmentSlot": {
+  "CurrentItemView": null,
+  "DisableSlot": 0,
+  "Empty": 0,
+  "audioMetadataName": "None",
+  "bigSize": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  },
+  "equipmentArea": "AbilityCW",
+  "slotIndex": 0,
+  "slotName": "",
+  "smallSize": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  }
+ },
+ "gameuiInventoryPuppetPreviewGameController": {
+  "audioMetadataName": "None",
+  "baseEventDispatcher": null,
+  "collider": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "elementRecordID": "0",
+  "inputDisabled": 0,
+  "isRotatable": 1,
+  "maxMousePointerOffset": 40,
+  "mouseRotationSpeed": 250,
+  "rotationIsMouseDown": 0,
+  "rotationSpeed": 60,
+  "sceneName": "inventory",
+  "yawDefault": -125,
+  "yawSpeed": 1.25
+ },
+ "inkBoxBlurEffect": {
+  "blurDimension": "Horizontal",
+  "effectName": "BoxBlur_0",
+  "isEnabled": 1
+ },
+ "inkTextInputWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "canSupportFocus": 1,
+  "contentHAlign": "Fill",
+  "contentVAlign": "Fill",
+  "effects": [],
+  "fitToContent": 1,
+  "font": null,
+  "isInteractive": 1,
+  "justification": "Left",
+  "lineHeightPercentage": 1,
+  "lockFontInGame": 0,
+  "logicController": null,
+  "renderTransform": {
+   "$type": "inkUITransform",
+   "rotation": 0,
+   "scale": {
+    "$type": "Vector2",
+    "X": 1,
+    "Y": 1
+   },
+   "shear": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   },
+   "translation": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   }
+  },
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "scrollDelay": 30,
+  "scrollTextSpeed": 0.200000003,
+  "secondaryControllers": [],
+  "size": {
+   "$type": "Vector2",
+   "X": 100,
+   "Y": 32
+  },
+  "state": "Default",
+  "style": null,
+  "textHorizontalAlignment": "Left",
+  "textIdKey": "None",
+  "textOverflowPolicy": "None",
+  "textVerticalAlignment": "Top",
+  "tracking": 0,
+  "userData": [],
+  "visible": 1,
+  "wrappingInfo": {
+   "$type": "textWrappingInfo",
+   "autoWrappingEnabled": 0,
+   "forceMinimumWidthToWrappingAtPosition": 0,
+   "wrappingAtPosition": 0,
+   "wrappingPolicy": "Default"
+  }
+ },
+ "characterCreationNavigationBtn": {
+  "ButtonClick": {
+   "$type": "inkButtonClickCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldComplete": {
+   "$type": "inkButtonHoldCompleteCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldProgressChanged": {
+   "$type": "inkButtonProgressChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonSelectionChanged": {
+   "$type": "inkButtonSelectionCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonStateChanged": {
+   "$type": "inkButtonStateChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "audioMetadataName": "None",
+  "autoUpdateWidgetState": 0,
+  "canHold": 0,
+  "icon1": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "isNavigalbe": 1,
+  "root": null,
+  "selectable": 0,
+  "selected": 0,
+  "shouldPlaySoundOnHover": 1,
+  "shouldUpdateScrollController": 0,
+  "supportsHoldInput": 1
+ },
+ "characterCreationStatsAttributeBtn": {
+  "addEnabled": 0,
+  "animating": 0,
+  "audioMetadataName": "None",
+  "data": null,
+  "inputDisabled": 0,
+  "isPlusOrMinusBtnHoveredOver": 0,
+  "maxed": 0,
+  "minusEnabled": 0
+ },
+ "gameuiTooltipAttachmentSlot": {
+  "audioMetadataName": "None"
+ },
+ "characterCreationLifePathBtn": {
+  "ButtonClick": {
+   "$type": "inkButtonClickCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldComplete": {
+   "$type": "inkButtonHoldCompleteCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldProgressChanged": {
+   "$type": "inkButtonProgressChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonSelectionChanged": {
+   "$type": "inkButtonSelectionCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonStateChanged": {
+   "$type": "inkButtonStateChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "animationProxy": null,
+  "audioMetadataName": "None",
+  "autoUpdateWidgetState": 0,
+  "canHold": 0,
+  "isNavigalbe": 1,
+  "localizedText": "",
+  "root": null,
+  "selectable": 0,
+  "selected": 0,
+  "shouldUpdateScrollController": 0,
+  "supportsHoldInput": 1,
+  "translationAnimationCtrl": null
+ },
+ "GogRewardEntryController": {
+  "audioMetadataName": "None",
+  "backgroundWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "descriptionWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "isUnlocked": 0,
+  "nameWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  }
+ },
+ "InitializationSoundController": {
+  "audioMetadataName": "ui_hud_popups_map",
+  "initializeSoundName": "None",
+  "unitializeSoundName": "None"
+ },
+ "PerksMenuAttributeDisplayController": {
+  "ButtonController": null,
+  "attribute": "Body",
+  "attributeData": null,
+  "audioMetadataName": "None",
+  "dataManager": null,
+  "isNavigalbe": 1,
+  "levelContainer": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "shouldUpdateScrollController": 0,
+  "supportsHoldInput": 1
+ },
+ "PerksMenuAttributeItemController": {
+  "attributeDisplayController": null,
+  "audioMetadataName": "None",
+  "cool_in_proxy": null,
+  "cool_out_proxy": null,
+  "data": null,
+  "dataManager": null,
+  "holdStarted": 0,
+  "isReversed": 0,
+  "proficiencyButtonRefs": [],
+  "recentlyPurchased": 0,
+  "skillsLevelsContainer": {
+   "$type": "inkCompoundWidgetReference",
+   "widget": null
+  }
+ },
+ "NewPerksPerkItemLogicController": {
+  "animProxies": [],
+  "audioMetadataName": "None",
+  "container": null,
+  "currentLevel": 0,
+  "hovered": 0,
+  "iconGhost": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "initData": null,
+  "isRelic": 0,
+  "isUnlocked": 0,
+  "levelText": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "lockIcon": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "maxedAnimProxy": null,
+  "requiredPointsText": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  }
+ },
+ "NewPerksPerkContainerLogicController": {
+  "audioMetadataName": "None"
+ },
+ "NewPerksWireConnection": {
+  "connectionDependancies": [],
+  "dependanciesPresenceToggle": 0
+ },
+ "PerkScreenTierInfo": {
+  "hovered": 0,
+  "unlocked": 0
+ },
+ "NewPerkTabsArrowController": {
+  "audioMetadataName": "None",
+  "hovered": 0,
+  "pressed": 0
+ },
+ "StatsProgressController": {
+  "audioMetadataName": "None",
+  "barLenght": 0,
+  "labelRef": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  }
+ },
+ "ProficiencyButtonController": {
+  "ButtonClick": {
+   "$type": "inkButtonClickCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldComplete": {
+   "$type": "inkButtonHoldCompleteCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldProgressChanged": {
+   "$type": "inkButtonProgressChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonSelectionChanged": {
+   "$type": "inkButtonSelectionCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonStateChanged": {
+   "$type": "inkButtonStateChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "audioMetadataName": "None",
+  "autoUpdateWidgetState": 0,
+  "canHold": 0,
+  "index": 0,
+  "isNavigalbe": 1,
+  "selectable": 0,
+  "selected": 0,
+  "shouldUpdateScrollController": 0,
+  "supportsHoldInput": 1,
+  "transparencyAnimationProxy": null
+ },
+ "PerkDisplayController": {
+  "ButtonClick": {
+   "$type": "inkButtonClickCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldComplete": {
+   "$type": "inkButtonHoldCompleteCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldProgressChanged": {
+   "$type": "inkButtonProgressChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonSelectionChanged": {
+   "$type": "inkButtonSelectionCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonStateChanged": {
+   "$type": "inkButtonStateChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "audioMetadataName": "None",
+  "autoUpdateWidgetState": 0,
+  "canHold": 1,
+  "cool_in_proxy": null,
+  "cool_out_proxy": null,
+  "dataManager": null,
+  "displayData": null,
+  "holdStarted": 0,
+  "index": 0,
+  "isNavigalbe": 1,
+  "isTrait": 0,
+  "playerDevelopmentData": null,
+  "recentlyPurchased": 0,
+  "requiredTrainerIcon": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "selectable": 0,
+  "selected": 0,
+  "shouldUpdateScrollController": 0,
+  "supportsHoldInput": 1,
+  "wasLocked": 0
+ },
+ "PerkDisplayContainerController": {
+  "audioMetadataName": "None",
+  "controller": null,
+  "data": null,
+  "dataManager": null,
+  "isTrait": 0
+ },
+ "PerksSkillsLevelDisplayController": {
+  "audioMetadataName": "None"
+ },
+ "JournalEntriesListController": {
+  "ItemActivated": {
+   "$type": "inkListControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ItemSelected": {
+   "$type": "inkListControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "audioMetadataName": "None",
+  "beginToggled": 0,
+  "cycledNavigation": 0,
+  "itemLibraryID": "Message"
+ },
+ "MessengerTypingIndicator": {
+  "audioMetadataName": "None",
+  "textParams": null
+ },
+ "MessengerDialogViewController": {
+  "audioMetadataName": "None",
+  "audioSystem": null,
+  "breakingTypingAnimProxy": null,
+  "choicesListController": null,
+  "contactHash": 0,
+  "conversationHash": 0,
+  "delaySystem": null,
+  "delayTypingAnimProxy": null,
+  "delayedTypingCallbackId": {
+   "$type": "gameDelayID"
+  },
+  "hasFocus": 0,
+  "journalManager": null,
+  "messages": [],
+  "messagesListController": null,
+  "minimumTypingDelay": 0,
+  "parentEntry": null,
+  "parentHash": 0,
+  "playerObject": null,
+  "replyOptions": [],
+  "scrollController": null,
+  "singleThreadMode": 0,
+  "typingAnimProxy": null,
+  "typingIndicatorController": null
+ },
+ "MessangerItemRenderer": {
+  "AddedToList": {
+   "$type": "inkListItemControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonClick": {
+   "$type": "inkButtonClickCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldComplete": {
+   "$type": "inkButtonHoldCompleteCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldProgressChanged": {
+   "$type": "inkButtonProgressChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonSelectionChanged": {
+   "$type": "inkButtonSelectionCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonStateChanged": {
+   "$type": "inkButtonStateChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "Deselected": {
+   "$type": "inkListItemControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "MessageBubbleBG": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "MessageBubbleFG": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "ReplyBubbleBG": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "ReplyBubbleFG": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "Selected": {
+   "$type": "inkListItemControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ToggledOff": {
+   "$type": "inkListItemControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ToggledOn": {
+   "$type": "inkListItemControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "audioMetadataName": "None",
+  "autoUpdateWidgetState": 0,
+  "canHold": 0,
+  "container": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "image": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "imageId": "0",
+  "isNavigalbe": 1,
+  "labelPathRef": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "selectable": 0,
+  "selected": 0,
+  "shouldUpdateScrollController": 0,
+  "stateMessage": "Default",
+  "statePlayerReply": "Player",
+  "stateQuestReply": "Quest",
+  "supportsHoldInput": 1
+ },
+ "PhotoModeToggle": {
+  "ButtonClick": {
+   "$type": "inkButtonClickCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldComplete": {
+   "$type": "inkButtonHoldCompleteCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldProgressChanged": {
+   "$type": "inkButtonProgressChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonSelectionChanged": {
+   "$type": "inkButtonSelectionCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonStateChanged": {
+   "$type": "inkButtonStateChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "LabelWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "ToggleChanged": {
+   "$type": "inkToggleChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "audioMetadataName": "None",
+  "autoToggleOnInput": 0,
+  "autoUpdateWidgetState": 0,
+  "canHold": 0,
+  "fade2Anim": null,
+  "fadeAnim": null,
+  "isNavigalbe": 1,
+  "isToggled": 0,
+  "photoModeGroupController": null,
+  "selectable": 0,
+  "selected": 0,
+  "shouldUpdateScrollController": 0,
+  "supportsHoldInput": 1
+ },
+ "PhotoModeFrame": {
+  "audioMetadataName": "None",
+  "currentImagePart": "None",
+  "opacity": 0,
+  "stickersController": null
+ },
+ "inkGenericSystemNotificationLogicController": {
+  "DataSetByToken": {
+   "$type": "inkEmptyCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "additionalDataTextWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "audioMetadataName": "None",
+  "cancelButton": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "descriptionTextWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "titleTextWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  }
+ },
+ "Vector3": {
+  "X": 0,
+  "Y": 0
+ },
+ "CyberwareInventoryMiniGrid": {
+  "audioMetadataName": "None",
+  "displayContext": null,
+  "equipArea": "AbilityCW",
+  "gridData": [],
+  "isLeftAligned": 0,
+  "isNew": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "labelAnimation": null,
+  "labelPulse": null,
+  "margin": {
+   "$type": "inkMargin",
+   "bottom": 0,
+   "left": 0,
+   "right": 0,
+   "top": 0
+  },
+  "marginAnimation": null,
+  "minigridAnimation": null,
+  "onRealeaseCallbackName": "None",
+  "opacityAnimation": null,
+  "parent": {
+   "$type": "inkCompoundWidgetReference",
+   "widget": null
+  },
+  "parentObject": null,
+  "player": null,
+  "root": null,
+  "screen": "Invalid",
+  "selectedSlotIndex": 0,
+  "targetMargin": {
+   "$type": "inkMargin",
+   "bottom": 0,
+   "left": 0,
+   "right": 0,
+   "top": 0
+  }
+ },
+ "inkRadialWipeEffect": {
+  "effectName": "RadialWipe_0",
+  "isEnabled": 1
+ },
+ "RipperdocCwPreviewItemController": {
+  "audioMetadataName": "None",
+  "root": null
+ },
+ "SettingsCategoryController": {
+  "audioMetadataName": "None"
+ },
+ "BenchmarkLabelController": {
+  "audioMetadataName": "None"
+ },
+ "inkSettingsSelectorController": {
+  "IsPreGame": 0,
+  "SettingsEntry": null,
+  "additionalText": "None",
+  "audioMetadataName": "None",
+  "hoverInAnim": null,
+  "hoverOutAnim": null,
+  "hoveredChildren": [],
+  "indentMarker": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "varGroupPath": "None",
+  "varName": "None"
+ },
+ "gameuiControllerSettingsGameController": {
+  "audioMetadataName": "None",
+  "baseEventDispatcher": null,
+  "buttonHintsController": null,
+  "currentTab": 0,
+  "elementRecordID": "0",
+  "inputPanel": [],
+  "inputSettingGroup": null,
+  "inputSettingGroupName": "/controls/controller",
+  "inputSettingSelector": null,
+  "inputSettingVar": null,
+  "inputSettingVarName": "InputSchemesMode",
+  "inputSettingsListener": null,
+  "selectorCtrl": null,
+  "settings": null
+ },
+ "SettingsSelectorControllerListString": {
+  "IsPreGame": 0,
+  "ProgressBar": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "SettingsEntry": null,
+  "additionalText": "None",
+  "audioMetadataName": "None",
+  "hoverInAnim": null,
+  "hoverOutAnim": null,
+  "hoveredChildren": [],
+  "indentMarker": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "varGroupPath": "None",
+  "varName": "None"
+ },
+ "SettingsCategoryItem": {
+  "AddedToList": {
+   "$type": "inkListItemControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonClick": {
+   "$type": "inkButtonClickCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldComplete": {
+   "$type": "inkButtonHoldCompleteCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldProgressChanged": {
+   "$type": "inkButtonProgressChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonSelectionChanged": {
+   "$type": "inkButtonSelectionCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonStateChanged": {
+   "$type": "inkButtonStateChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "Deselected": {
+   "$type": "inkListItemControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "Selected": {
+   "$type": "inkListItemControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ToggledOff": {
+   "$type": "inkListItemControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ToggledOn": {
+   "$type": "inkListItemControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "audioMetadataName": "None",
+  "autoUpdateWidgetState": 0,
+  "canHold": 0,
+  "isNavigalbe": 0,
+  "selectable": 1,
+  "selected": 0,
+  "shouldUpdateScrollController": 0,
+  "supportsHoldInput": 0
+ },
+ "SettingsSelectorControllerFloat": {
+  "IsPreGame": 0,
+  "LabelText": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "LeftArrow": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "ProgressBar": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "RightArrow": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "SettingsEntry": null,
+  "additionalText": "None",
+  "audioMetadataName": "None",
+  "hoverGeneralHighlight": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "hoverInAnim": null,
+  "hoverOutAnim": null,
+  "hoveredChildren": [],
+  "indentMarker": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "newValue": 0,
+  "optionSwitchHint": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "sliderController": null,
+  "varGroupPath": "None",
+  "varName": "None"
+ },
+ "inkPlatformSpecificTextController": {
+  "audioMetadataName": "None"
+ },
+ "CyberwareSlot": {
+  "ButtonController": null,
+  "NumSlots": 0,
+  "SlotEquipArea": "AbilityCW",
+  "audioMetadataName": "None",
+  "isNavigalbe": 1,
+  "shouldUpdateScrollController": 0,
+  "supportsHoldInput": 1
+ },
+ "StatsViewController": {
+  "audioMetadataName": "None",
+  "icon": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "stat": {
+   "$type": "gameStatViewData",
+   "canBeCompared": 0,
+   "diffValue": 0,
+   "diffValueF": 0,
+   "isCompared": 0,
+   "isMaxValue": 0,
+   "statMaxValue": 0,
+   "statMaxValueF": 0,
+   "statMinValue": 0,
+   "statMinValueF": 0,
+   "statName": "",
+   "type": "Invalid",
+   "value": 0,
+   "valueF": 0
+  }
+ },
+ "gameStatViewData": {
+  "canBeCompared": 0,
+  "diffValue": 0,
+  "diffValueF": 0,
+  "isCompared": 0,
+  "isMaxValue": 0,
+  "statMaxValue": 0,
+  "statMaxValueF": 0,
+  "statMinValue": 0,
+  "statMinValueF": 0,
+  "statName": "",
+  "type": "Invalid",
+  "value": 0,
+  "valueF": 0
+ },
+ "inkanimTranslationInterpolator": {
+  "interpolationDirection": "FromTo",
+  "interpolationMode": "EasyIn",
+  "isAdditive": 0,
+  "useRelativeDuration": 0
+ },
+ "inkanimScaleInterpolator": {
+  "interpolationDirection": "FromTo",
+  "isAdditive": 0,
+  "useRelativeDuration": 0
+ },
+ "inkanimTransparencyInterpolator": {
+  "interpolationDirection": "FromTo",
+  "interpolationMode": "EasyIn",
+  "interpolationType": "Linear",
+  "isAdditive": 0,
+  "useRelativeDuration": 0
+ },
+ "inkLinePatternWidgetReference": {
+  "widget": null
+ },
+ "inkLinePatternWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "backendData": null,
+  "canSupportFocus": 0,
+  "contentHAlign": "Fill",
+  "contentVAlign": "Fill",
+  "effects": [],
+  "endOffset": 0,
+  "externalDynamicTexture": "None",
+  "fadeInLength": 0,
+  "fitToContent": 1,
+  "horizontalTileCrop": 0,
+  "isInteractive": 0,
+  "logicController": null,
+  "looseSpacing": 20,
+  "mirrorType": "NoMirror",
+  "nineSliceScale": {
+   "$type": "inkMargin",
+   "bottom": 0,
+   "left": 0,
+   "right": 0,
+   "top": 0
+  },
+  "opacity": 1,
+  "patternDirection": "Backward",
+  "renderTransform": {
+   "$type": "inkUITransform",
+   "rotation": 0,
+   "scale": {
+    "$type": "Vector2",
+    "X": 1,
+    "Y": 1
+   },
+   "shear": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   },
+   "translation": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   }
+  },
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  },
+  "rotateWithSegment": 0,
+  "secondaryControllers": [],
+  "size": {
+   "$type": "Vector2",
+   "X": 4,
+   "Y": 4
+  },
+  "spacing": 10,
+  "startOffset": 0,
+  "state": "Default",
+  "style": null,
+  "texturePart": "dot",
+  "tileHAlign": "Left",
+  "tileType": "NoTile",
+  "tileVAlign": "Top",
+  "useExternalDynamicTexture": 0,
+  "useNineSliceScale": 0,
+  "userData": [],
+  "vertexList": [],
+  "verticalTileCrop": 0,
+  "visible": 1
+ },
+ "gameuiInputHintController": {
+  "audioMetadataName": "None"
+ },
+ "gameuiNewsFeedDisplayController": {
+  "audioMetadataName": "None",
+  "randomNewsLibraryWidget": "RandomNewsStrip"
+ },
+ "gameuiRandomNewsFeedAnimator": {
+  "animDuration": 10,
+  "audioMetadataName": "None"
+ },
+ "QuestAnimationMappinController": {
+  "animPlayerAboveBelowWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "animPlayerTrackedWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "animProxy": null,
+  "animationRecord": null,
+  "arrowWidgetName": "Arrow",
+  "audioMetadataName": "None",
+  "canvasWidgetName": "Canvas",
+  "displayName": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "distanceText": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "iconWidget": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "isCurrentlyClamped": 0,
+  "isUnderCrosshair": 0,
+  "mappin": null,
+  "nameplateVisible": 0,
+  "playerTrackedWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "playing": 0,
+  "scaleWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "taggedWidgets": []
+ },
+ "inkTextKiroshiAnimationController": {
+  "animationName": "None",
+  "audioMetadataName": "None",
+  "duration": 0.600000024,
+  "endValue": 1,
+  "nativeText": "",
+  "playOnInitialize": 0,
+  "startDelay": 0.75,
+  "startValue": 0,
+  "timeToSkip": 0.0500000007,
+  "useDefaultAnimation": 1
+ },
+ "inkTextMotherTongueController": {
+  "audioMetadataName": "None"
+ },
+ "SubtitleLineLogicController": {
+  "audioMetadataName": "None",
+  "c_tier1_duration": 0.5,
+  "c_tier2_duration": 5,
+  "isKiroshiEnabled": 0,
+  "lineData": {
+   "$type": "scnDialogLineData",
+   "duration": 0,
+   "id": "0",
+   "isPersistent": 0,
+   "speaker": null,
+   "speakerName": "",
+   "text": "",
+   "type": "None"
+  },
+  "root": null,
+  "spekerNameParams": null,
+  "targetTextWidgetRef": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  }
+ },
+ "scnDialogLineData": {
+  "duration": 0,
+  "id": "0",
+  "isPersistent": 0,
+  "speaker": null,
+  "speakerName": "",
+  "text": "",
+  "type": "None"
+ },
+ "inkAnimatedAdvertController": {
+  "audioMetadataName": "None",
+  "loopType": "Cycle"
+ },
+ "YaibaButton": {
+  "ButtonClick": {
+   "$type": "inkButtonClickCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldComplete": {
+   "$type": "inkButtonHoldCompleteCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldProgressChanged": {
+   "$type": "inkButtonProgressChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonSelectionChanged": {
+   "$type": "inkButtonSelectionCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonStateChanged": {
+   "$type": "inkButtonStateChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "audioMetadataName": "None",
+  "autoUpdateWidgetState": 0,
+  "canHold": 0,
+  "isNavigalbe": 1,
+  "pressBackground": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "selectable": 0,
+  "selected": 0,
+  "shouldUpdateScrollController": 0
+ },
+ "YaibaOptionPreview": {
+  "active": 0,
+  "audioMetadataName": "None",
+  "isAnimated": 0,
+  "proxy": null
+ },
+ "CheckYaibaOption": {
+  "audioMetadataName": "None",
+  "defaultOpacity": 0,
+  "isChecked": 0,
+  "isEnabled": 0,
+  "isHovered": 0,
+  "previewController": null
+ },
+ "VehicleDetailsLogicController": {
+  "audioMetadataName": "None",
+  "backButton": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "custoImage": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "discount": 0,
+  "discountImageWrapper": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "discountText": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "discountWrapper": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "gunImage": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "howToUnlockText": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "howToUnlockWrapper": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "insufficientMoneyWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "offerRecord": null,
+  "originalPriceText": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "originalPriceWrapper": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "ownedWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "price": 0,
+  "priceText": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "priceWrapper": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "purchaseButton": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "rocketImage": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "vehicleNameText": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  }
+ },
+ "WebPage": {
+  "HOME_IMAGE_NAME": "ImageLink",
+  "HOME_TEXT_NAME": "TextLink",
+  "audioMetadataName": "None",
+  "canvasesList": [],
+  "lastClickedLinkAddress": "",
+  "videoList": []
+ },
+ "CustomAnimationsGameController": {
+  "audioMetadataName": "None",
+  "curentLibraryItemName": "None",
+  "currentLibraryItemAnchor": "TopLeft",
+  "defaultLibraryItemAnchor": "Fill",
+  "defaultLibraryItemName": "None",
+  "elementRecordID": "0",
+  "isInitialized": 0,
+  "onSpawnAnimations": [],
+  "ownerID": {
+   "$type": "entEntityID",
+   "hash": "0"
+  },
+  "root": null,
+  "spawnedLibrararyItem": null
+ },
+ "inkHudEntryInfo": {
+  "offset": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  }
+ },
+ "SBreadcrumbElementData": {
+  "elementID": 0,
+  "elementName": ""
+ },
+ "CustomAnimationsHudGameController": {
+  "audioMetadataName": "None",
+  "curentLibraryItemName": "None",
+  "currentLibraryItemAnchor": "TopLeft",
+  "defaultLibraryItemAnchor": "Fill",
+  "defaultLibraryItemName": "None",
+  "elementRecordID": "0",
+  "hideAnimDef": null,
+  "hideAnimProxy": null,
+  "hideAnimationName": "fold",
+  "isInitialized": 0,
+  "moduleShown": 0,
+  "onSpawnAnimations": [],
+  "ownerID": {
+   "$type": "entEntityID",
+   "hash": "0"
+  },
+  "root": null,
+  "showAnimDef": null,
+  "showAnimProxy": null,
+  "showAnimationName": "unfold",
+  "spawnedLibrararyItem": null
+ },
+ "activityLogEntryLogicController": {
+  "appearingAnim": null,
+  "audioMetadataName": "None",
+  "available": 0,
+  "disappearingAnim": null,
+  "disappearingAnimDef": null,
+  "disappearingAnimProxy": null,
+  "displayText": "",
+  "originalSize": 0,
+  "root": null,
+  "size": 0,
+  "typingAnim": null,
+  "typingAnimDef": null,
+  "typingAnimProxy": null
+ },
+ "gameSlotWeaponData": {
+  "ammoCurrent": -1,
+  "ammoId": {
+   "$type": "gameItemID",
+   "flags": 0,
+   "id": "0",
+   "rngSeed": 0,
+   "uniqueCounter": 0
+  },
+  "evolution": "Invalid",
+  "isActive": 0,
+  "isFirstEquip": 1,
+  "magazineCap": -1,
+  "triggerModeCurrent": "Invalid",
+  "triggerModeList": [],
+  "weaponID": {
+   "$type": "gameItemID",
+   "flags": 0,
+   "id": "0",
+   "rngSeed": 0,
+   "uniqueCounter": 0
+  }
+ },
+ "NameplateBarLogicController": {
+  "MaxCNBarFlashSize": 500,
+  "animDuration": 2,
+  "audioMetadataName": "None",
+  "barCap_anim": null,
+  "barCap_anim_proxy": null,
+  "changeN_anim": null,
+  "changeN_anim_proxy": null,
+  "changePBar": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "changeP_anim": null,
+  "changeP_anim_proxy": null,
+  "currentValue": 1,
+  "damagePreview": null,
+  "damagePreviewBar": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "emptyBar": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "empty_anim": null,
+  "empty_anim_proxy": null,
+  "full_anim": null,
+  "full_anim_proxy": null,
+  "height": 0,
+  "previousValue": 1,
+  "rootWidget": null,
+  "showBarCap": 0,
+  "width": 0
+ },
+ "BraindanceBarLogicController": {
+  "audioMetadataName": "None",
+  "isInLayer": 0,
+  "layer": "Visual",
+  "timelineActiveAnimation": null,
+  "timelineActiveAnimationName": "TimelineActive",
+  "timelineDisabledAnimation": null,
+  "timelineDisabledAnimationName": "TimelineDisabled"
+ },
+ "LcdScreenILogicController": {
+  "audioMetadataName": "None",
+  "customNumber": 0,
+  "messegeRecord": null,
+  "replaceTextWithCustomNumber": 0
+ },
+ "IronsightGameController": {
+  "ADSAnimator": null,
+  "InventoryManager": null,
+  "altimeter": null,
+  "altimeterContainer": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "ammo": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "ammoSpareCount": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "animIntro": null,
+  "animLoop": null,
+  "animPerfectCharge": null,
+  "animReload": null,
+  "attitude": "AIA_Friendly",
+  "audioMetadataName": "None",
+  "bb": null,
+  "bbID": null,
+  "chargebar": null,
+  "chargebarContainer": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "chargebarTriggerModeChanged": null,
+  "chargebarValueChanged": null,
+  "compass": null,
+  "compass2": null,
+  "compassContainer": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "compassContainer2": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "crosshairState": "Default",
+  "crosshairStateChanged": null,
+  "currentAmmo": -1,
+  "dot": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "elementRecordID": "0",
+  "firstEquipAnimationName": "None",
+  "isTargetEnemy": 0,
+  "originalWeapon": null,
+  "perfectChargeIndicator": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "playerPuppet": null,
+  "playerStateMachineBB": null,
+  "playerStateMachineUpperBodyBBID": null,
+  "range": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "seeThroughWalls": 0,
+  "shootAnimation": null,
+  "shootAnimationName": "None",
+  "target": null,
+  "targetAcquiredBBID": null,
+  "targetAcquiredObstructedBBID": null,
+  "targetAttitudeAnimator": null,
+  "targetAttitudeBBID": null,
+  "targetAttitudeContainer": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "targetAttitudeEnemyNonHostile": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "targetAttitudeFriendly": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "targetAttitudeHostile": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "targetBB": null,
+  "targetHealthListener": null,
+  "targetHitAnimation": null,
+  "targetHitAnimationName": "None",
+  "targetRange": 0,
+  "targetRangeBBID": null,
+  "targetRangeDecimalPrecision": 2,
+  "targetRangeObstructedBBID": null,
+  "upperBodyState": "Default",
+  "weaponBB": null,
+  "weaponDataBB": null,
+  "weaponDataShootBBID": null,
+  "weaponDataTargetHitBBID": null
+ },
+ "ChargebarController": {
+  "animationChargedShoot": null,
+  "animationMaxCharge": null,
+  "animationStaticCharge": null,
+  "animationStaticChargePlayed": 0,
+  "audioMetadataName": "None",
+  "background": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "canFullyCharge": 0,
+  "canOvercharge": 0,
+  "chargedShootAnimationName": "None",
+  "isCharged": 0,
+  "listenerFullCharge": null,
+  "listenerOvercharge": null,
+  "maxChargeAnimationName": "None",
+  "maxChargeResetAnimationName": "None",
+  "midground": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "playStaticChargeAnimationInstead": 0,
+  "player": null,
+  "radialWipe": 0,
+  "staticChargeAnimationName": "None",
+  "statsSystem": null,
+  "verticalChargeBar": 0
+ },
+ "gamesmartGunUITargetParameters": {
+  "accuracy": 0,
+  "attachedBoneName": "None",
+  "distance": 0,
+  "entityID": {
+   "$type": "entEntityID",
+   "hash": "0"
+  },
+  "isLocked": 0,
+  "pos": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  },
+  "state": "0",
+  "timeLocking": 0,
+  "timeUnlocking": 0
+ },
+ "Crosshair_Smart_Rifl_Bucket": {
+  "activeCallbacks": [],
+  "audioMetadataName": "None",
+  "data": {
+   "$type": "gamesmartGunUITargetParameters",
+   "accuracy": 0,
+   "attachedBoneName": "None",
+   "distance": 0,
+   "entityID": {
+    "$type": "entEntityID",
+    "hash": "0"
+   },
+   "isLocked": 0,
+   "pos": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   },
+   "state": "0",
+   "timeLocking": 0,
+   "timeUnlocking": 0
+  },
+  "deadEyeAnimProxy": null,
+  "deadEyeWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "hasDeadEye": 0,
+  "lockingAnimationLength": 1.29999995,
+  "lockingAnimationProxy": null,
+  "unlockingAnimationLength": 1.29999995,
+  "unlockingAnimationProxy": null
+ },
+ "CompassController": {
+  "audioMetadataName": "None",
+  "decimalPrecision": 2,
+  "faceLeftStartPosition": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  },
+  "faceRightStartPosition": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  },
+  "isVertical": 0,
+  "playerPuppet": null,
+  "precisionEpsilon": 0,
+  "textWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "valueFloat": 0
+ },
+ "AimDownSightController": {
+  "animationPlayer": null,
+  "audioMetadataName": "None",
+  "currentAnimation": "None",
+  "hideAnimation": "ads_hide",
+  "idleAnimation": "None",
+  "isAiming": 0,
+  "showAnimation": "ads_show"
+ },
+ "inkInnerGlowEffect": {
+  "colorA": 0,
+  "colorB": 255,
+  "colorG": 255,
+  "effectName": "InnerGlow_0",
+  "isEnabled": 1,
+  "offsetX": 0,
+  "offsetY": 0
+ },
+ "inkanimSizeInterpolator": {
+  "interpolationDirection": "FromTo",
+  "isAdditive": 0,
+  "useRelativeDuration": 0
+ },
+ "inkanimRotationInterpolator": {
+  "goShortPath": 1,
+  "interpolationDirection": "FromTo",
+  "interpolationMode": "EasyIn",
+  "interpolationType": "Linear",
+  "isAdditive": 0,
+  "useRelativeDuration": 0
+ },
+ "TargetHitIndicatorLogicController": {
+  "animationPriority": 1,
+  "audioMetadataName": "None"
+ },
+ "DeviceWidgetControllerBase": {
+  "actionData": null,
+  "actionWidgetsData": [],
+  "actionsListWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "audioMetadataName": "None",
+  "backgroundTextureRef": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "displayNameWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "isInitialized": 0,
+  "statusNameWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "targetWidget": null,
+  "targetWidgetRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  }
+ },
+ "DeviceThumbnailWidgetControllerBase": {
+  "ButtonClick": {
+   "$type": "inkButtonClickCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldComplete": {
+   "$type": "inkButtonHoldCompleteCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldProgressChanged": {
+   "$type": "inkButtonProgressChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonSelectionChanged": {
+   "$type": "inkButtonSelectionCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonStateChanged": {
+   "$type": "inkButtonStateChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "audioMetadataName": "None",
+  "autoUpdateWidgetState": 0,
+  "canHold": 0,
+  "defaultStyle": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "0",
+     "$s": "uint64"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "deviceIconRef": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "displayNameWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "iconWidget": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "isInitialized": 0,
+  "isNavigalbe": 1,
+  "isSelected": 0,
+  "onHoverOutAnimations": null,
+  "onHoverOverAnimations": null,
+  "onPressAnimations": null,
+  "onReleaseAnimations": null,
+  "selectable": 0,
+  "selected": 0,
+  "selectionMarkerWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "selectionStyle": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "0",
+     "$s": "uint64"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "shouldUpdateScrollController": 0,
+  "sizeProviderWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "soundData": {
+   "$type": "SSoundData",
+   "onHoverOutKey": "None",
+   "onHoverOverKey": "None",
+   "onPressKey": "None",
+   "onReleaseKey": "None",
+   "widgetAudioName": "Button"
+  },
+  "statusNameWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "supportsHoldInput": 1,
+  "targetWidget": null,
+  "targetWidgetRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "thumbnailAction": null,
+  "toggleSwitchWidget": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  }
+ },
+ "DeviceActionWidgetControllerBase": {
+  "ButtonClick": {
+   "$type": "inkButtonClickCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldComplete": {
+   "$type": "inkButtonHoldCompleteCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldProgressChanged": {
+   "$type": "inkButtonProgressChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonSelectionChanged": {
+   "$type": "inkButtonSelectionCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonStateChanged": {
+   "$type": "inkButtonStateChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "actionData": null,
+  "actions": [],
+  "audioMetadataName": "None",
+  "autoUpdateWidgetState": 0,
+  "canHold": 0,
+  "defaultStyle": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "0",
+     "$s": "uint64"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "displayNameWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "iconWidget": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "isInactive": 0,
+  "isInitialized": 0,
+  "isNavigalbe": 1,
+  "isSelected": 0,
+  "onHoverOutAnimations": null,
+  "onHoverOverAnimations": null,
+  "onPressAnimations": null,
+  "onReleaseAnimations": null,
+  "selectable": 0,
+  "selected": 0,
+  "selectionMarkerWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "selectionStyle": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "0",
+     "$s": "uint64"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "shouldUpdateScrollController": 0,
+  "sizeProviderWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "soundData": {
+   "$type": "SSoundData",
+   "onHoverOutKey": "None",
+   "onHoverOverKey": "None",
+   "onPressKey": "None",
+   "onReleaseKey": "None",
+   "widgetAudioName": "Button"
+  },
+  "supportsHoldInput": 1,
+  "targetWidget": null,
+  "targetWidgetRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "toggleSwitchWidget": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  }
+ },
+ "ComputerMenuButtonController": {
+  "ButtonClick": {
+   "$type": "inkButtonClickCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldComplete": {
+   "$type": "inkButtonHoldCompleteCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldProgressChanged": {
+   "$type": "inkButtonProgressChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonSelectionChanged": {
+   "$type": "inkButtonSelectionCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonStateChanged": {
+   "$type": "inkButtonStateChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "audioMetadataName": "None",
+  "autoUpdateWidgetState": 0,
+  "canHold": 0,
+  "counterWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "defaultStyle": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "0",
+     "$s": "uint64"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "displayNameWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "iconWidget": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "isInitialized": 0,
+  "isNavigalbe": 1,
+  "isSelected": 0,
+  "menuID": "",
+  "notificationidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "onHoverOutAnimations": null,
+  "onHoverOverAnimations": null,
+  "onPressAnimations": null,
+  "onReleaseAnimations": null,
+  "selectable": 0,
+  "selected": 0,
+  "selectionMarkerWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "selectionStyle": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "0",
+     "$s": "uint64"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "shouldUpdateScrollController": 0,
+  "sizeProviderWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "soundData": {
+   "$type": "SSoundData",
+   "onHoverOutKey": "None",
+   "onHoverOverKey": "None",
+   "onPressKey": "None",
+   "onReleaseKey": "None",
+   "widgetAudioName": "Button"
+  },
+  "supportsHoldInput": 1,
+  "targetWidget": null,
+  "targetWidgetRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "toggleSwitchWidget": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  }
+ },
+ "ComputerMenuWidgetController": {
+  "audioMetadataName": "None",
+  "contentWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "fileThumbnailWidgetsData": [],
+  "fileWidgetsData": [],
+  "isInitialized": 0,
+  "thumbnailsListWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  }
+ },
+ "ComputerDocumentWidgetController": {
+  "audioMetadataName": "None",
+  "closeButtonWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "datePanelWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "dateWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "displayNameWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "documentType": "FILE",
+  "imageContentWidget": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "isInitialized": 0,
+  "lastPlayedVideo": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "0",
+     "$s": "uint64"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "ownerNameWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "ownerPanelWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "targetWidget": null,
+  "targetWidgetRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "textContentHolder": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "textContentWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "titleWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "videoContentWidget": {
+   "$type": "inkVideoWidgetReference",
+   "widget": null
+  }
+ },
+ "ComputerDocumentThumbnailWidgetController": {
+  "ButtonClick": {
+   "$type": "inkButtonClickCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldComplete": {
+   "$type": "inkButtonHoldCompleteCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldProgressChanged": {
+   "$type": "inkButtonProgressChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonSelectionChanged": {
+   "$type": "inkButtonSelectionCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonStateChanged": {
+   "$type": "inkButtonStateChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "audioMetadataName": "None",
+  "autoUpdateWidgetState": 0,
+  "canHold": 0,
+  "defaultStyle": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "0",
+     "$s": "uint64"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "displayNameWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "documentAdress": {
+   "$type": "SDocumentAdress",
+   "documentID": -1,
+   "folderID": -1
+  },
+  "documentIconWidget": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "documentType": "FILE",
+  "iconWidget": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "isInitialized": 0,
+  "isNavigalbe": 1,
+  "isSelected": 0,
+  "onHoverOutAnimations": null,
+  "onHoverOverAnimations": null,
+  "onPressAnimations": null,
+  "onReleaseAnimations": null,
+  "questInfo": {
+   "$type": "gamedeviceQuestInfo",
+   "factName": "None",
+   "isHighlighted": 0
+  },
+  "selectable": 0,
+  "selected": 0,
+  "selectionMarkerWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "selectionStyle": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "0",
+     "$s": "uint64"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "shouldUpdateScrollController": 0,
+  "sizeProviderWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "soundData": {
+   "$type": "SSoundData",
+   "onHoverOutKey": "None",
+   "onHoverOverKey": "None",
+   "onPressKey": "None",
+   "onReleaseKey": "None",
+   "widgetAudioName": "Button"
+  },
+  "supportsHoldInput": 1,
+  "targetWidget": null,
+  "targetWidgetRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "toggleSwitchWidget": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  }
+ },
+ "SDocumentAdress": {
+  "documentID": -1,
+  "folderID": -1
+ },
+ "gamedeviceQuestInfo": {
+  "factName": "None",
+  "isHighlighted": 0
+ },
+ "DeviceButtonLogicControllerBase": {
+  "ButtonClick": {
+   "$type": "inkButtonClickCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldComplete": {
+   "$type": "inkButtonHoldCompleteCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldProgressChanged": {
+   "$type": "inkButtonProgressChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonSelectionChanged": {
+   "$type": "inkButtonSelectionCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonStateChanged": {
+   "$type": "inkButtonStateChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "audioMetadataName": "None",
+  "autoUpdateWidgetState": 0,
+  "canHold": 0,
+  "defaultStyle": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "0",
+     "$s": "uint64"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "displayNameWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "iconWidget": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "isInitialized": 0,
+  "isNavigalbe": 1,
+  "isSelected": 0,
+  "onHoverOutAnimations": null,
+  "onHoverOverAnimations": null,
+  "onPressAnimations": null,
+  "onReleaseAnimations": null,
+  "selectable": 0,
+  "selected": 0,
+  "selectionMarkerWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "selectionStyle": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "0",
+     "$s": "uint64"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "shouldUpdateScrollController": 0,
+  "sizeProviderWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "soundData": {
+   "$type": "SSoundData",
+   "onHoverOutKey": "None",
+   "onHoverOverKey": "None",
+   "onPressKey": "None",
+   "onReleaseKey": "None",
+   "widgetAudioName": "Button"
+  },
+  "supportsHoldInput": 1,
+  "targetWidget": null,
+  "targetWidgetRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "toggleSwitchWidget": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  }
+ },
+ "ComputerBannerWidgetController": {
+  "audioMetadataName": "None",
+  "bannerButtonWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "displayNameWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "imageContentWidget": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "isInitialized": 0,
+  "lastPlayedVideo": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "0",
+     "$s": "uint64"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "targetWidget": null,
+  "targetWidgetRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "textContentWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "titleWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "videoContentWidget": {
+   "$type": "inkVideoWidgetReference",
+   "widget": null
+  }
+ },
+ "SBannerWidgetPackage": {
+  "bckgroundTextureID": "0",
+  "content": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "0",
+     "$s": "uint64"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "customData": null,
+  "description": "",
+  "displayName": "",
+  "iconID": "None",
+  "iconTextureID": "0",
+  "isValid": 1,
+  "isWidgetInactive": 0,
+  "libraryID": "None",
+  "libraryPath": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "0",
+     "$s": "uint64"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "orientation": "Horizontal",
+  "ownerID": {
+   "$type": "gamePersistentID",
+   "componentName": "None",
+   "entityHash": "0"
+  },
+  "ownerIDClassName": "None",
+  "placement": "DOCKED",
+  "textData": null,
+  "title": "",
+  "widget": null,
+  "widgetName": "",
+  "widgetState": "DEFAULT",
+  "widgetTweakDBID": "0"
+ },
+ "gamePersistentID": {
+  "componentName": "None",
+  "entityHash": "0"
+ },
+ "NewsFeedMenuWidgetController": {
+  "audioMetadataName": "None",
+  "bannerWidgetsData": [],
+  "bannersListWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "bannersListWidgetPath": "banners",
+  "isInitialized": 0
+ },
+ "ComputerMainMenuWidgetController": {
+  "audioMetadataName": "None",
+  "computerMenuButtonWidgetsData": [],
+  "isInitialized": 0,
+  "menuButtonsListWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  }
+ },
+ "ComputerMainLayoutWidgetController": {
+  "activeWindowID": "",
+  "audioMetadataName": "None",
+  "computerMenuButtonWidgetsData": [],
+  "currentScreenSaverLibraryID": "None",
+  "currentWallpaperLibraryID": "None",
+  "devicesMenu": null,
+  "devicesMenuInitialized": 0,
+  "filesMenu": null,
+  "internetContainer": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "internetData": null,
+  "isInitialized": 0,
+  "isWindowOpened": 0,
+  "mailsMenu": null,
+  "mainMenu": null,
+  "menuButtonList": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "menuContainer": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "menuFilesID": {
+   "$t": "TweakDBID",
+   "$v": "DevicesUIDefinitions.MenuFilesWidget",
+   "$s": "string"
+  },
+  "menuMailsID": {
+   "$t": "TweakDBID",
+   "$v": "DevicesUIDefinitions.MenuMailsWidget",
+   "$s": "string"
+  },
+  "menuMainID": {
+   "$t": "TweakDBID",
+   "$v": "DevicesUIDefinitions.MenuMainWidget",
+   "$s": "string"
+  },
+  "menuNewsFeedID": {
+   "$t": "TweakDBID",
+   "$v": "DevicesUIDefinitions.MenuNewsFeedWidget",
+   "$s": "string"
+  },
+  "menuToOpen": "INVALID",
+  "newsFeedMenu": null,
+  "offButton": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "screenSaver": null,
+  "screenSaverID": {
+   "$t": "TweakDBID",
+   "$v": "0",
+   "$s": "uint64"
+  },
+  "screenSaverSlot": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "wallpaper": null,
+  "wallpaperID": {
+   "$t": "TweakDBID",
+   "$v": "0",
+   "$s": "uint64"
+  },
+  "wallpaperSlot": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "windowCloseAanimation": "windowClose_16x9",
+  "windowCloseButton": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "windowContainer": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "windowHeader": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "windowOpenAanimation": "windowOpen_16x9"
+ },
+ "ComputerFullBannerWidgetController": {
+  "audioMetadataName": "None",
+  "bannerButtonWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "closeButtonWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "displayNameWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "imageContentWidget": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "isInitialized": 0,
+  "lastPlayedVideo": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "0",
+     "$s": "uint64"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "targetWidget": null,
+  "targetWidgetRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "textContentWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "titleWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "videoContentWidget": {
+   "$type": "inkVideoWidgetReference",
+   "widget": null
+  }
+ },
+ "SmartWindowMainLayoutWidgetController": {
+  "activeWindowID": "",
+  "audioMetadataName": "None",
+  "computerMenuButtonWidgetsData": [],
+  "currentScreenSaverLibraryID": "None",
+  "currentWallpaperLibraryID": "None",
+  "devicesMenu": null,
+  "devicesMenuInitialized": 0,
+  "filesMenu": null,
+  "internetBrowserID": {
+   "$t": "TweakDBID",
+   "$v": "0",
+   "$s": "uint64"
+  },
+  "internetContainer": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "internetData": null,
+  "isInitialized": 0,
+  "isWindowOpened": 0,
+  "mailsMenu": null,
+  "mainMenu": null,
+  "menuButtonList": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "menuContainer": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "menuDevicesSlot": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "menuFilesID": {
+   "$t": "TweakDBID",
+   "$v": "0",
+   "$s": "uint64"
+  },
+  "menuFilesSlot": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "menuMailsID": {
+   "$t": "TweakDBID",
+   "$v": "0",
+   "$s": "uint64"
+  },
+  "menuMailsSlot": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "menuMainID": {
+   "$t": "TweakDBID",
+   "$v": "0",
+   "$s": "uint64"
+  },
+  "menuNewsFeedID": {
+   "$t": "TweakDBID",
+   "$v": "0",
+   "$s": "uint64"
+  },
+  "menuNewsFeedSlot": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "menuToOpen": "INVALID",
+  "newsFeedMenu": null,
+  "offButton": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "screenSaver": null,
+  "screenSaverID": "0",
+  "screenSaverSlot": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "wallpaper": null,
+  "wallpaperID": "0",
+  "wallpaperSlot": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "windowCloseAanimation": "windowClose_16x9",
+  "windowCloseButton": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "windowContainer": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "windowHeader": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "windowOpenAanimation": "windowOpen_16x9"
+ },
+ "KeypadDeviceController": {
+  "ActionText": null,
+  "actionButton": null,
+  "actionData": null,
+  "actionWidgetsData": [],
+  "actionsListWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "arePasswordsInitialized": 0,
+  "audioMetadataName": "None",
+  "backgroundTextureRef": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "blackboard": null,
+  "cardName": "",
+  "displayNameWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "enteredPasswordWidget": null,
+  "hasButtonAuthorization": 0,
+  "isInitialized": 0,
+  "isPasswordKnown": 0,
+  "maxDigitsCount": 0,
+  "passwordStatusWidget": null,
+  "passwordsList": [],
+  "row1": null,
+  "row2": null,
+  "row3": null,
+  "row4": null,
+  "statusNameWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "targetWidget": null,
+  "targetWidgetRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  }
+ },
+ "ImageActionButtonLogicController": {
+  "ButtonClick": {
+   "$type": "inkButtonClickCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldComplete": {
+   "$type": "inkButtonHoldCompleteCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldProgressChanged": {
+   "$type": "inkButtonProgressChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonSelectionChanged": {
+   "$type": "inkButtonSelectionCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonStateChanged": {
+   "$type": "inkButtonStateChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "actionData": null,
+  "actions": [],
+  "audioMetadataName": "None",
+  "autoUpdateWidgetState": 0,
+  "canHold": 0,
+  "defaultStyle": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "0",
+     "$s": "uint64"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "displayNameWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "iconWidget": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "isInactive": 0,
+  "isInitialized": 0,
+  "isNavigalbe": 1,
+  "isSelected": 0,
+  "onHoverOutAnimations": null,
+  "onHoverOverAnimations": null,
+  "onPressAnimations": null,
+  "onReleaseAnimations": null,
+  "price": 0,
+  "selectable": 0,
+  "selected": 0,
+  "selectionMarkerWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "selectionStyle": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "0",
+     "$s": "uint64"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "shouldUpdateScrollController": 0,
+  "sizeProviderWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "soundData": {
+   "$type": "SSoundData",
+   "onHoverOutKey": "None",
+   "onHoverOverKey": "None",
+   "onPressKey": "None",
+   "onReleaseKey": "None",
+   "widgetAudioName": "Button"
+  },
+  "supportsHoldInput": 1,
+  "tallImageWidget": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "targetWidget": null,
+  "targetWidgetRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "toggleSwitchWidget": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  }
+ },
+ "ElevatorArrowsLogicController": {
+  "animFade1": null,
+  "animFade2": null,
+  "animFade3": null,
+  "animOptions1": {
+   "$type": "inkanimPlaybackOptions",
+   "applyCustomTimeDilation": 0,
+   "customTimeDilation": 1,
+   "dependsOnTimeDilation": 0,
+   "executionDelay": 0,
+   "fromMarker": "None",
+   "loopCounter": 0,
+   "loopInfinite": 0,
+   "loopType": "None",
+   "oneSegment": 0,
+   "playReversed": 0,
+   "toMarker": "None"
+  },
+  "animOptions2": {
+   "$type": "inkanimPlaybackOptions",
+   "applyCustomTimeDilation": 0,
+   "customTimeDilation": 1,
+   "dependsOnTimeDilation": 0,
+   "executionDelay": 0,
+   "fromMarker": "None",
+   "loopCounter": 0,
+   "loopInfinite": 0,
+   "loopType": "None",
+   "oneSegment": 0,
+   "playReversed": 0,
+   "toMarker": "None"
+  },
+  "animOptions3": {
+   "$type": "inkanimPlaybackOptions",
+   "applyCustomTimeDilation": 0,
+   "customTimeDilation": 1,
+   "dependsOnTimeDilation": 0,
+   "executionDelay": 0,
+   "fromMarker": "None",
+   "loopCounter": 0,
+   "loopInfinite": 0,
+   "loopType": "None",
+   "oneSegment": 0,
+   "playReversed": 0,
+   "toMarker": "None"
+  },
+  "animSlow1": null,
+  "animSlow2": null,
+  "arrow1Widget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "arrow2Widget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "arrow3Widget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "audioMetadataName": "None",
+  "displayNameWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "isInitialized": 0,
+  "targetWidget": null,
+  "targetWidgetRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  }
+ },
+ "ElevatorTerminalLogicController": {
+  "actionData": null,
+  "actionWidgetsData": [],
+  "actionsListWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "audioMetadataName": "None",
+  "backgroundTextureRef": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "displayNameWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "elevatorDownArrowsWidget": {
+   "$type": "inkFlexWidgetReference",
+   "widget": null
+  },
+  "elevatorUpArrowsWidget": {
+   "$type": "inkFlexWidgetReference",
+   "widget": null
+  },
+  "forcedElevatorArrowsState": "Disabled",
+  "isInitialized": 0,
+  "statusNameWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "targetWidget": null,
+  "targetWidgetRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  }
+ },
+ "TerminalInkGameControllerBase": {
+  "actionWidgetsData": [],
+  "activeBreadcrumb": {
+   "$type": "SBreadcrumbElementData",
+   "elementID": 0,
+   "elementName": ""
+  },
+  "animationManager": null,
+  "audioMetadataName": "None",
+  "bbCallbacksRegistered": 0,
+  "breadcrumbStack": [],
+  "buttonVisibility": 0,
+  "cashedState": "OFF",
+  "currentLayoutLibraryID": "None",
+  "currentlyActiveDevices": [],
+  "deviceWidgetsData": [],
+  "elementRecordID": "0",
+  "hasUICameraZoom": 0,
+  "isInitialized": 0,
+  "keypadController": null,
+  "layoutID": {
+   "$t": "TweakDBID",
+   "$v": "DevicesUIDefinitions.TerminalLayoutWidget",
+   "$s": "string"
+  },
+  "mainDisplayWidget": null,
+  "mainLayout": null,
+  "onActionWidgetsUpdateListener": null,
+  "onBreadcrumbBarUpdateListener": null,
+  "onCleanPasswordListener": null,
+  "onDeviceWidgetsUpdateListener": null,
+  "onGlitchingStateChangedListener": null,
+  "onRefreshListener": null,
+  "onThumbnailWidgetsUpdateListener": null,
+  "rootWidget": null,
+  "terminalTitle": "",
+  "thumbnailWidgetsData": []
+ },
+ "TvInkGameController": {
+  "actionWidgetsData": [],
+  "actionsList": null,
+  "activeAudio": "None",
+  "activeBreadcrumb": {
+   "$type": "SBreadcrumbElementData",
+   "elementID": 0,
+   "elementName": ""
+  },
+  "activeChannelIDX": -1,
+  "activeMessage": null,
+  "activeSequence": [],
+  "activeSequenceVideo": 0,
+  "animationManager": null,
+  "audioMetadataName": "None",
+  "backgroundWidget": null,
+  "bbCallbacksRegistered": 0,
+  "breadcrumbStack": [],
+  "cashedState": "OFF",
+  "channellTextWidget": null,
+  "defaultUI": null,
+  "deviceWidgetsData": [],
+  "elementRecordID": "0",
+  "globalTVChannels": [],
+  "globalTVchanellsCount": -1,
+  "globalTVchanellsSpawned": 0,
+  "globalTVslot": null,
+  "hasUICameraZoom": 0,
+  "isInitialized": 0,
+  "mainDisplayWidget": null,
+  "messegeWidget": null,
+  "onActionWidgetsUpdateListener": null,
+  "onBreadcrumbBarUpdateListener": null,
+  "onChangeChannelListener": null,
+  "onDeviceWidgetsUpdateListener": null,
+  "onGlitchingStateChangedListener": null,
+  "onRefreshListener": null,
+  "previousGlobalTVChannelID": -1,
+  "rootWidget": null,
+  "securedTextWidget": null,
+  "securedUI": null
+ },
+ "VisibilitySimpleControllerBase": {
+  "affectedWidgets": [
+   "previous_channel_",
+   "next_channel_"
+  ],
+  "audioMetadataName": "None",
+  "isVisible": 0,
+  "widget": null
+ },
+ "inkInputActionValidityController": {
+  "audioMetadataName": "None",
+  "inputActionName": "LeftShoulder"
+ },
+ "GameTime": {
+  "seconds": 0
+ },
+ "QuickhackBarController": {
+  "audioMetadataName": "None"
+ },
+ "QuickHackQueueItem": {
+  "anim": null,
+  "audioMetadataName": "None",
+  "data": null
+ },
+ "NetRunnerListItem": {
+  "audioMetadataName": "None"
+ },
+ "JournalNotification": {
+  "ItemChanged": {
+   "$type": "inkEmptyCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "NotificationPaused": {
+   "$type": "inkEmptyCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "NotificationResumed": {
+   "$type": "inkEmptyCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "animProxy": null,
+  "audioMetadataName": "ui_hud_popups_map",
+  "bbListenerId": null,
+  "blockAction": 0,
+  "customInputActionName": "None",
+  "data": null,
+  "elementRecordID": "0",
+  "interactionsBlackboard": null,
+  "isInteractive": 0,
+  "paused": 0,
+  "player": null,
+  "questNotificationData": null,
+  "translationAnimationCtrl": null
+ },
+ "inkanimAnimationController": {
+  "audioMetadataName": "None"
+ },
+ "LevelUpNotification": {
+  "ItemChanged": {
+   "$type": "inkEmptyCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "LevelUpHolder": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "NotificationPaused": {
+   "$type": "inkEmptyCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "NotificationResumed": {
+   "$type": "inkEmptyCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "PerkPreviousValue": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "SkillIcon": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "SkillIconShadow": {
+   "$type": "inkImageWidgetReference",
+   "widget": null
+  },
+  "actionLabelRef": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "animation": null,
+  "audioMetadataName": "ui_hud_popups_map",
+  "blockAction": 0,
+  "bonusDisplay": null,
+  "bonusRecord": null,
+  "customInputActionName": "NotificationOpenLvlup",
+  "data": null,
+  "elementRecordID": "0",
+  "isInteractive": 0,
+  "levelupData": null,
+  "passiveBonusReward": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "passiveBonusRewardLabel": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "paused": 0,
+  "player": null,
+  "translationAnimationCtrl": null,
+  "unlockedActivites": 0
+ },
+ "ProgramData": {
+  "commandLists": [],
+  "effects": [],
+  "id": "",
+  "localizationKey": "",
+  "startAsUnknown": 0,
+  "type": "BasicAccess",
+  "wasCompleted": 0
+ },
+ "ElementData": {
+  "id": ""
+ },
+ "gameSimpleScreenMessage": {
+  "duration": 0,
+  "isInstant": 0,
+  "isShown": 0,
+  "message": "",
+  "type": "Undefined"
+ },
+ "TutorialPopupDisplayController": {
+  "audioMetadataName": "None",
+  "data": null
+ },
+ "VehicleVisualCustomizationTemplate": {
+  "genericData": {
+   "$type": "GenericTemplatePersistentData",
+   "lightsColorDefined": 0,
+   "lightsColorHue": 0,
+   "primaryColorB": 0,
+   "primaryColorDefined": 0,
+   "primaryColorG": 0,
+   "primaryColorR": 0,
+   "secondaryColorB": 0,
+   "secondaryColorDefined": 0,
+   "secondaryColorG": 0,
+   "secondaryColorR": 0
+  },
+  "hasUniqueTemplate": 0
+ },
+ "GenericTemplatePersistentData": {
+  "lightsColorDefined": 0,
+  "lightsColorHue": 0,
+  "primaryColorB": 0,
+  "primaryColorDefined": 0,
+  "primaryColorG": 0,
+  "primaryColorR": 0,
+  "secondaryColorB": 0,
+  "secondaryColorDefined": 0,
+  "secondaryColorG": 0,
+  "secondaryColorR": 0
+ },
+ "UniqueTemplateData": {
+  "customDecals": [],
+  "customIcon": null,
+  "customMultilayers": [],
+  "partsClearCoatOverrides": [],
+  "recordId": "0",
+  "twintoneModelName": "None"
+ },
+ "vehicleVehicleClearCoatOverrides": {
+  "coatFresnelBias": -1,
+  "coatSpecularColor": {
+   "$type": "Color",
+   "Alpha": 0,
+   "Blue": 0,
+   "Green": 0,
+   "Red": 0
+  },
+  "coatTintFresnelBias": -1,
+  "coatTintFwd": {
+   "$type": "Color",
+   "Alpha": 0,
+   "Blue": 0,
+   "Green": 0,
+   "Red": 0
+  },
+  "coatTintSide": {
+   "$type": "Color",
+   "Alpha": 0,
+   "Blue": 0,
+   "Green": 0,
+   "Red": 0
+  },
+  "opacity": -1
+ },
+ "ZoneAlertNotification": {
+  "ItemChanged": {
+   "$type": "inkEmptyCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "NotificationPaused": {
+   "$type": "inkEmptyCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "NotificationResumed": {
+   "$type": "inkEmptyCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ZoneLabelText": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "actionLabelRef": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "actionRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "animation": null,
+  "audioMetadataName": "ui_hud_popups_map",
+  "blockAction": 0,
+  "customInputActionName": "None",
+  "data": null,
+  "elementRecordID": "0",
+  "isInteractive": 0,
+  "paused": 0,
+  "player": null,
+  "textRef": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "titleRef": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "translationAnimationCtrl": null,
+  "zone_data": null
+ },
+ "inkVirtualListController": {
+  "AllElementsSpawned": {
+   "$type": "inkEmptyCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ItemActivated": {
+   "$type": "inkVirtualCompoundControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ItemSelected": {
+   "$type": "inkVirtualCompoundControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "cycleNavigation": 1,
+  "isNavigalbe": 1,
+  "shouldUpdateScrollController": 0,
+  "supportsHoldInput": 1
+ },
+ "PhoneContactItemVirtualController": {
+  "Added": {
+   "$type": "inkVirtualCompoundItemControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonClick": {
+   "$type": "inkButtonClickCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldComplete": {
+   "$type": "inkButtonHoldCompleteCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldProgressChanged": {
+   "$type": "inkButtonProgressChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonSelectionChanged": {
+   "$type": "inkButtonSelectionCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonStateChanged": {
+   "$type": "inkButtonStateChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "Deselected": {
+   "$type": "inkVirtualCompoundItemControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "Selected": {
+   "$type": "inkVirtualCompoundItemSelectControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ToggledOff": {
+   "$type": "inkVirtualCompoundItemControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ToggledOn": {
+   "$type": "inkVirtualCompoundItemControllerCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "animProxyHide": null,
+  "animProxySelection": null,
+  "audioMetadataName": "None",
+  "autoUpdateWidgetState": 0,
+  "callInputHint": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "canHold": 0,
+  "chatInputHint": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "contactData": null,
+  "isCallingEnabled": 0,
+  "isNavigalbe": 1,
+  "isQuestImportant": 0,
+  "isUnread": 0,
+  "msgCount": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "msgIndicator": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "preview": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "pulse": null,
+  "replyAlertIcon": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "root": null,
+  "selectable": 0,
+  "selected": 0,
+  "separtor": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "shouldUpdateScrollController": 0,
+  "supportsHoldInput": 1
+ },
+ "gameuiLocalPhoneElement": {
+  "request": null,
+  "widget": null
+ },
+ "gameuiHudScalingSensitiveWidget": {
+  "adjustMargin": 1,
+  "adjustScale": 0,
+  "adjustTranslation": 0
+ },
+ "WeaponRadialSlot": {
+  "active": "Hover",
+  "blocked": "Blocked",
+  "inactive": "Default",
+  "index": 0,
+  "targetAngle": 0,
+  "widget": null
+ },
+ "inkWidgetSlotController": {
+  "audioMetadataName": "None"
+ },
+ "scannerDataStructure": {
+  "empty": 0,
+  "entityName": "",
+  "questEntries": [],
+  "quickHackDesc": "",
+  "quickHackName": ""
+ },
+ "gameuiTutorialOverlayLogicController": {
+  "animProxy": null,
+  "audioMetadataName": "None",
+  "hideAnimation": "hide",
+  "hideInMenu": 1,
+  "hideOnInput": 0,
+  "showAnimation": "show",
+  "tutorialManager": null
+ },
+ "vehicleUIGameController": {
+  "UIEnabled": 0,
+  "analogSpeedWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "analogTachWidget": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "audioMetadataName": "None",
+  "elementRecordID": "0",
+  "endAnimProxy": null,
+  "gearBox": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "hideAnimDef": null,
+  "hideAnimProxy": null,
+  "hideAnimationName": "fold",
+  "instruments": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "isVehicleReady": 0,
+  "loopAnimProxy": null,
+  "loopingBootProxy": null,
+  "moduleShown": 0,
+  "radio": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "rootWidget": null,
+  "showAnimDef": null,
+  "showAnimProxy": null,
+  "showAnimationName": "unfold",
+  "startAnimProxy": null,
+  "vehicle": null,
+  "vehicleBBStateConectionId": null,
+  "vehicleBBUIActivId": null,
+  "vehicleBlackboard": null,
+  "vehicleCollisionBBStateID": null,
+  "vehiclePS": null
+ },
+ "gearboxLogicController": {
+  "audioMetadataName": "None",
+  "gearboxBBConnectionId": null,
+  "vehBB": null
+ },
+ "tachometerLogicController": {
+  "audioMetadataName": "None",
+  "currentRPM": -1,
+  "rpmGaugeMaxSize": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  },
+  "rpmMaxValue": 0,
+  "rpmMinValue": 0,
+  "rpmValueBBConnectionId": null,
+  "rpmValueWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "scaleX": 1,
+  "vehBB": null
+ },
+ "gametimeLogicController": {
+  "audioMetadataName": "None",
+  "gametimeBBConnectionId": null,
+  "parent": null,
+  "vehBB": null,
+  "vehicle": null
+ },
+ "speedometerLogicController": {
+  "audioMetadataName": "None",
+  "currentSpeed": -1,
+  "speedBBConnectionId": null,
+  "vehBB": null,
+  "vehicle": null
+ },
+ "RadioLogicController": {
+  "audioMetadataName": "None",
+  "eqLoopAnimProxy": null,
+  "radioNameBBConnectionId": null,
+  "radioStateBBConnectionId": null,
+  "radioTextWidgetSize": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  },
+  "vehBB": null
+ },
+ "instrumentPanelLogicController": {
+  "audioMetadataName": "None",
+  "cautionStateBBConnectionId": null,
+  "lightStateBBConnectionId": null,
+  "vehBB": null
+ },
+ "inkDexLimoGameController": {
+  "activeVehicleBlackboard": null,
+  "audioMetadataName": "None",
+  "elementRecordID": "0",
+  "playerVehStateId": null,
+  "screenVideoWidget": null,
+  "screenVideoWidgetPath": "video"
+ },
+ "inkLightSweepEffect": {
+  "effectName": "LightSweep_0",
+  "isEnabled": 1,
+  "positionY": 0.5
+ },
+ "inkanimEffectInterpolator": {
+  "effectName": "Glitch_0",
+  "effectType": "Glitch",
+  "interpolationDirection": "FromTo",
+  "interpolationMode": "EasyIn",
+  "interpolationType": "Linear",
+  "isAdditive": 0,
+  "paramName": "intensity",
+  "useRelativeDuration": 0
+ },
+ "vehicleVcarRootLogicController": {
+  "audioMetadataName": "None"
+ },
+ "vehicleInteriorUIGameController": {
+  "HudRedLineAnimation": null,
+  "activeChunks": 0,
+  "audioMetadataName": "None",
+  "autopilotOnId": null,
+  "autopilotTextWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "chunksNumber": 20,
+  "dynamicRpmPath": "HudMain/middlePart/rpmBar/rpmFull/FBar",
+  "elementRecordID": "0",
+  "gearBBConnectionId": null,
+  "gearTextWidget": {
+   "$type": "inkTextWidgetReference",
+   "widget": null
+  },
+  "hasRevMax": 1,
+  "hideAnimDef": null,
+  "hideAnimProxy": null,
+  "hideAnimationName": "fold",
+  "isInAutoPilot": 0,
+  "isVehicleReady": 0,
+  "moduleShown": 0,
+  "rootWidget": null,
+  "rpmGaugeForegroundWidget": {
+   "$type": "inkRectangleWidgetReference",
+   "widget": null
+  },
+  "rpmGaugeMaxSize": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  },
+  "rpmMaxBBConnectionId": null,
+  "rpmMaxValue": 0,
+  "rpmPerChunk": 500,
+  "rpmValueBBConnectionId": null,
+  "showAnimDef": null,
+  "showAnimProxy": null,
+  "showAnimationName": "unfold",
+  "speedBBConnectionId": null,
+  "vehicleBBReadyConectionId": null,
+  "vehicleBBStateConectionId": null,
+  "vehicleBBUIActivId": null,
+  "vehicleBlackboard": null
+ },
+ "StarController": {
+  "animBlink": null,
+  "animBlinkLastStage": 0,
+  "animBlinkLoops": {
+   "Elements": [
+    0,
+    0,
+    0
+   ]
+  },
+  "animBlinkOptions": {
+   "$type": "inkanimPlaybackOptions",
+   "applyCustomTimeDilation": 0,
+   "customTimeDilation": 1,
+   "dependsOnTimeDilation": 0,
+   "executionDelay": 0,
+   "fromMarker": "None",
+   "loopCounter": 0,
+   "loopInfinite": 0,
+   "loopType": "None",
+   "oneSegment": 0,
+   "playReversed": 0,
+   "toMarker": "None"
+  },
+  "animBlinkProxy": null,
+  "animIntroOptions": {
+   "$type": "inkanimPlaybackOptions",
+   "applyCustomTimeDilation": 0,
+   "customTimeDilation": 1,
+   "dependsOnTimeDilation": 0,
+   "executionDelay": 0,
+   "fromMarker": "None",
+   "loopCounter": 0,
+   "loopInfinite": 0,
+   "loopType": "None",
+   "oneSegment": 0,
+   "playReversed": 0,
+   "toMarker": "None"
+  },
+  "animIntroProxy": null,
+  "audioMetadataName": "None",
+  "blinkAnimInterpolationMode": "EasyIn",
+  "blinkAnimInterpolationType": "Linear",
+  "blinkAnimLoopType": "Cycle",
+  "blinkDuration": 1,
+  "blinkSpeed1": 1,
+  "blinkSpeed2": 2,
+  "blinkSpeed3": 3,
+  "dogtownIconBgName": "kutrz_shadow",
+  "dogtownIconName": "kutrz_active",
+  "ncpdIconBgName": "ultimateStar_socket",
+  "ncpdIconName": "ultimateStar",
+  "rootWidget": null
+ },
+ "inkCensorshipController": {
+  "audioMetadataName": "None"
+ },
+ "gameuiAdvertLightColorPickerController": {
+  "audioMetadataName": "None"
+ },
+ "inkQuadShapeWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "backendData": null,
+  "canSupportFocus": 0,
+  "effects": [],
+  "fitToContent": 0,
+  "isInteractive": 0,
+  "logicController": null,
+  "opacity": 1,
+  "propertyManager": null,
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "secondaryControllers": [],
+  "size": {
+   "$type": "Vector2",
+   "X": 64,
+   "Y": 400
+  },
+  "state": "Default",
+  "style": null,
+  "textureAtlas": {
+   "DepotPath": {
+    "$t": "ResourcePath",
+    "$v": "0",
+    "$s": "uint64"
+   },
+   "Flags": "Soft"
+  },
+  "texturePart": "None",
+  "tintColor": {
+   "$type": "HDRColor",
+   "Alpha": 1,
+   "Blue": 0.505882382,
+   "Green": 0.24313727,
+   "Red": 1
+  },
+  "userData": [],
+  "visible": 1
+ },
+ "ApartmentScreenInkGameController": {
+  "actionWidgetsData": [],
+  "activeBreadcrumb": {
+   "$type": "SBreadcrumbElementData",
+   "elementID": 0,
+   "elementName": ""
+  },
+  "animationManager": null,
+  "audioMetadataName": "None",
+  "backgroundFrameWidget": null,
+  "backgroundWidget": null,
+  "bbCallbacksRegistered": 0,
+  "breadcrumbStack": [],
+  "cashedState": "OFF",
+  "customNumber": 0,
+  "defaultUI": null,
+  "deviceWidgetsData": [],
+  "elementRecordID": "0",
+  "hasUICameraZoom": 0,
+  "isInitialized": 0,
+  "mainDisplayWidget": null,
+  "messegeRecord": null,
+  "messegeWidget": null,
+  "onActionWidgetsUpdateListener": null,
+  "onBreadcrumbBarUpdateListener": null,
+  "onDeviceWidgetsUpdateListener": null,
+  "onGlitchingStateChangedListener": null,
+  "onMessegeChangedListener": null,
+  "onRefreshListener": null,
+  "replaceTextWithCustomNumber": 0,
+  "rootWidget": null
+ },
+ "gameuiSideScrollerMiniGameCollisionLogicAdvanced": {
+  "audioMetadataName": "None"
+ },
+ "gameuiPanzerCloud": {
+  "audioMetadataName": "None"
+ },
+ "gameuiarcadeArcadeScoreController": {
+  "audioMetadataName": "None"
+ },
+ "gameuiarcadeArcadeParallaxPlaneController": {
+  "audioMetadataName": "None",
+  "displacementAxis": "Horizontal",
+  "loopType": "Repeat"
+ },
+ "gameuiarcadeArcadeMenuController": {
+  "audioMetadataName": "None"
+ },
+ "gameuiRoadEditorSegment": {
+  "hasCheckpoint": 0
+ },
+ "gameuiRoadEditorObstacleSettings": {
+  "speed": 1000
+ },
+ "gameuiQuadRacerSprite": {
+  "audioMetadataName": "None"
+ },
+ "QuadRacerObstacleCollisionLogic": {
+  "audioMetadataName": "None",
+  "colliderPositionOffset": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  },
+  "colliderSizeOffset": {
+   "$type": "Vector2",
+   "X": -130,
+   "Y": 0
+  }
+ },
+ "gameuiRoachRaceDynObjectLogic": {
+  "audioMetadataName": "None",
+  "extraSpeed": 0,
+  "spawnPoolSize": 5
+ },
+ "ObstacleCollisionLogic": {
+  "audioMetadataName": "None",
+  "colliderPositionOffset": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  },
+  "colliderSizeOffset": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  },
+  "hasTriggered": 0,
+  "invincibityBonusTime": 0.800000012
+ },
+ "gameuiarcadeShooterVFXSpawnerController": {
+  "audioMetadataName": "None",
+  "initialObjectsCount": 0,
+  "objectLibraryID": "DefaultObject"
+ },
+ "gameuiarcadeShooterBulletSpawnerController": {
+  "audioMetadataName": "None",
+  "initialObjectsCount": 0,
+  "objectLibraryID": "DefaultObject"
+ },
+ "gameuiarcadeShooterCollisionController": {
+  "audioMetadataName": "None",
+  "explosionPlatformDelay": 0
+ },
+ "gameuiarcadeShooterSpawnController": {
+  "audioMetadataName": "None",
+  "awaitPreviousUnitDead": 1,
+  "offScreenSpawnExpiryTime": 3,
+  "skipOffset": 200,
+  "skippable": 1,
+  "spawnCondition": "ScreenRight",
+  "spawnCount": 1,
+  "spawnDelay": 0
+ },
+ "gameuiarcadeShooterSpawnerController": {
+  "audioMetadataName": "None",
+  "initialObjectsCount": 0,
+  "objectLibraryID": "DefaultObject"
+ },
+ "gameuiarcadeShooterEventManager": {
+  "audioMetadataName": "None",
+  "eventFinishDelay": 0,
+  "eventId": -1,
+  "levelEndCheckDelay": 1
+ },
+ "gameuiarcadeShooterEventSpawnerData": {
+  "dataName": "None",
+  "triggerCondition": "SpawnerObjectsDeath"
+ },
+ "gameuiarcadeShooterBackgroundController": {
+  "allowMarginTranslation": 0,
+  "audioMetadataName": "None"
+ },
+ "gameuiarcadeShooterLayerInfo": {
+  "layerName": "None",
+  "planeRelativeValue": {
+   "$type": "Vector2",
+   "X": 1,
+   "Y": 1
+  }
+ },
+ "gameuiarcadeShooterLevelController": {
+  "audioMetadataName": "None",
+  "levelType": "HORIZONTAL",
+  "mapEndBorder": {
+   "$type": "Vector2",
+   "X": 14400,
+   "Y": 0
+  }
+ },
+ "gameuiarcadeShooterTransporterSpawnerController": {
+  "audioMetadataName": "None",
+  "choosenMounts": [],
+  "isRandomSpawn": 0
+ },
+ "gameuiarcadeShooterTransporterSpawnData": {
+  "count": 1
+ },
+ "gameuiarcadeArcadeColliderData": {
+  "type": "Body"
+ },
+ "gameuiarcadeShooterBullet": {
+  "audioMetadataName": "None",
+  "boundSize": {
+   "$type": "Vector2",
+   "X": 0,
+   "Y": 0
+  },
+  "customBoundSize": 0
+ },
+ "gameuiarcadeShooterVFXController": {
+  "audioMetadataName": "None",
+  "colliderList": []
+ },
+ "VendingMachineInkGameController": {
+  "ActionsPanel2": {
+   "$type": "inkHorizontalPanelWidgetReference",
+   "widget": null
+  },
+  "actionWidgetsData": [],
+  "activeBreadcrumb": {
+   "$type": "SBreadcrumbElementData",
+   "elementID": 0,
+   "elementName": ""
+  },
+  "audioMetadataName": "None",
+  "bbCallbacksRegistered": 0,
+  "breadcrumbStack": [],
+  "cashedState": "OFF",
+  "deviceWidgetsData": [],
+  "elementRecordID": "0",
+  "hasUICameraZoom": 0,
+  "isInitialized": 0,
+  "onActionWidgetsUpdateListener": null,
+  "onBreadcrumbBarUpdateListener": null,
+  "onDeviceWidgetsUpdateListener": null,
+  "onGlitchingStateChangedListener": null,
+  "onRefreshListener": null,
+  "onSoldOutListener": null,
+  "onUpdateStatusListener": null,
+  "rootWidget": null,
+  "soldOut": 0,
+  "state": "DEFAULT"
+ },
+ "TvDeviceWidgetController": {
+  "actionData": null,
+  "actionWidgetsData": [],
+  "activeVideo": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "0",
+     "$s": "uint64"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "audioMetadataName": "None",
+  "globalTVChannel": null,
+  "isInitialized": 0,
+  "targetWidget": null,
+  "targetWidgetRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  }
+ },
+ "SystemDeviceWidgetController": {
+  "actionData": null,
+  "actionWidgetsData": [],
+  "isInitialized": 0,
+  "targetWidget": null,
+  "targetWidgetRef": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  }
+ },
+ "LinkController": {
+  "ButtonClick": {
+   "$type": "inkButtonClickCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldComplete": {
+   "$type": "inkButtonHoldCompleteCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldProgressChanged": {
+   "$type": "inkButtonProgressChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonSelectionChanged": {
+   "$type": "inkButtonSelectionCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonStateChanged": {
+   "$type": "inkButtonStateChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "IGNORED_COLOR": {
+   "$type": "HDRColor",
+   "Alpha": 0,
+   "Blue": 0,
+   "Green": 0,
+   "Red": 0
+  },
+  "audioMetadataName": "None",
+  "autoUpdateWidgetState": 0,
+  "canHold": 0,
+  "defaultColor": {
+   "$type": "HDRColor",
+   "Alpha": 0,
+   "Blue": 0,
+   "Green": 0,
+   "Red": 0
+  },
+  "hoverColor": {
+   "$type": "HDRColor",
+   "Alpha": 0,
+   "Blue": 0,
+   "Green": 0,
+   "Red": 0
+  },
+  "isNavigalbe": 1,
+  "linkAddress": "",
+  "selectable": 0,
+  "selected": 0,
+  "shouldUpdateScrollController": 0,
+  "supportsHoldInput": 1
+ },
+ "BrowserGameController": {
+  "audioMetadataName": "None",
+  "elementRecordID": "0",
+  "journalManager": null,
+  "locationTags": []
+ },
+ "BrowserController": {
+  "audioMetadataName": "None",
+  "currentPage": null,
+  "currentRequestedPage": null,
+  "defaultDevicePage": "",
+  "gameController": null,
+  "homeButtonCoontroller": null,
+  "journalManager": null,
+  "spinnerContentRoot": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "spinnerPath": {
+   "$type": "redResourceReferenceScriptToken",
+   "resource": {
+    "DepotPath": {
+     "$t": "ResourcePath",
+     "$v": "base\\gameplay\\gui\\world\\internet\\internet_spinner.inkwidget",
+     "$s": "string"
+    },
+    "Flags": "Soft"
+   }
+  },
+  "webPageLibraryID": "Root",
+  "webPageSpawnRequest": null
+ },
+ "LcdScreenInkGameController": {
+  "actionWidgetsData": [],
+  "activeBreadcrumb": {
+   "$type": "SBreadcrumbElementData",
+   "elementID": 0,
+   "elementName": ""
+  },
+  "animationManager": null,
+  "audioMetadataName": "None",
+  "backgroundWidget": null,
+  "bbCallbacksRegistered": 0,
+  "breadcrumbStack": [],
+  "cashedState": "OFF",
+  "customNumber": 0,
+  "defaultUI": null,
+  "deviceWidgetsData": [],
+  "elementRecordID": "0",
+  "hasUICameraZoom": 0,
+  "isInitialized": 0,
+  "mainDisplayWidget": null,
+  "messegeRecord": null,
+  "messegeWidget": null,
+  "onActionWidgetsUpdateListener": null,
+  "onBreadcrumbBarUpdateListener": null,
+  "onDeviceWidgetsUpdateListener": null,
+  "onGlitchingStateChangedListener": null,
+  "onMessegeChangedListener": null,
+  "onRefreshListener": null,
+  "replaceTextWithCustomNumber": 0,
+  "rootWidget": null
+ },
+ "RadioInkGameController": {
+  "actionWidgetsData": [],
+  "activeBreadcrumb": {
+   "$type": "SBreadcrumbElementData",
+   "elementID": 0,
+   "elementName": ""
+  },
+  "audioMetadataName": "None",
+  "bbCallbacksRegistered": 0,
+  "breadcrumbStack": [],
+  "cashedState": "OFF",
+  "deviceWidgetsData": [],
+  "elementRecordID": "0",
+  "hasUICameraZoom": 0,
+  "isInitialized": 0,
+  "onActionWidgetsUpdateListener": null,
+  "onBreadcrumbBarUpdateListener": null,
+  "onDeviceWidgetsUpdateListener": null,
+  "onRefreshListener": null,
+  "rootWidget": null
+ },
+ "ComputerInkGameController": {
+  "actionWidgetsData": [],
+  "activeBreadcrumb": {
+   "$type": "SBreadcrumbElementData",
+   "elementID": 0,
+   "elementName": ""
+  },
+  "animationManager": null,
+  "audioMetadataName": "None",
+  "bbCallbacksRegistered": 0,
+  "breadcrumbStack": [],
+  "cashedState": "OFF",
+  "currentLayoutLibraryID": "None",
+  "deviceWidgetsData": [],
+  "devicesMenuInitialized": 0,
+  "devicesMenuSpawnRequested": 0,
+  "devicesMenuSpawned": 0,
+  "elementRecordID": "0",
+  "forceOpenDocumentAdress": {
+   "$type": "SDocumentAdress",
+   "documentID": -1,
+   "folderID": -1
+  },
+  "forceOpenDocumentType": "Invalid",
+  "hasUICameraZoom": 0,
+  "isInitialized": 0,
+  "mainDisplayWidget": null,
+  "mainLayout": null,
+  "menuInitialized": 0,
+  "onActionWidgetsUpdateListener": null,
+  "onBannerWidgetsUpdateListener": null,
+  "onBreadcrumbBarUpdateListener": null,
+  "onDeviceWidgetsUpdateListener": null,
+  "onFileThumbnailWidgetsUpdateListener": null,
+  "onFileWidgetsUpdateListener": null,
+  "onGlitchingStateChangedListener": null,
+  "onMailThumbnailWidgetsUpdateListener": null,
+  "onMailWidgetsUpdateListener": null,
+  "onMainMenuButtonWidgetsUpdateListener": null,
+  "onMenuButtonWidgetsUpdateListener": null,
+  "onRefreshListener": null,
+  "rootWidget": null
+ },
+ "TerminalMainLayoutWidgetController": {
+  "audioMetadataName": "None",
+  "isInitialized": 0,
+  "main_canvas": null
+ },
+ "SlotMachineSlot": {
+  "audioMetadataName": "None",
+  "imagePresets": [],
+  "winningRowIndex": 7
+ },
+ "ncartLineListDef": {
+  "lineIsLooped": 0
+ },
+ "BunkerSystemsFactsSet": {
+  "ALPHA_FACT": "q305_server_01_offline",
+  "BRAVO_FACT": "q305_server_02_offline",
+  "SIERRA_FACT": "q305_server_backup_01_offline",
+  "VICTOR_FACT": "q305_server_backup_02_offline"
+ },
+ "SystemStatusLogicController": {
+  "audioMetadataName": "None",
+  "offlineIco": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "onlineIco": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "statusBackground": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "statusBackgroundProxy": null,
+  "sysIndicator": {
+   "$type": "inkWidgetReference",
+   "widget": null
+  },
+  "widgetsToColor": []
+ },
+ "SceneScreenGameController": {
+  "audioMetadataName": "None",
+  "elementRecordID": "0",
+  "onQuestAnimChangeListener": null
+ },
+ "InnerBunkerSystemStatusLogicController": {
+  "audioMetadataName": "None",
+  "stateAnimName": "logic_controller"
+ },
+ "BunkerComputerButtonController": {
+  "ButtonClick": {
+   "$type": "inkButtonClickCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldComplete": {
+   "$type": "inkButtonHoldCompleteCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonHoldProgressChanged": {
+   "$type": "inkButtonProgressChangedCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonSelectionChanged": {
+   "$type": "inkButtonSelectionCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "ButtonStateChanged": {
+   "$type": "inkButtonStateChangeCallback",
+   "callbackName": "None",
+   "listeners": []
+  },
+  "IGNORED_COLOR": {
+   "$type": "HDRColor",
+   "Alpha": 0,
+   "Blue": 0,
+   "Green": 0,
+   "Red": 0
+  },
+  "audioMetadataName": "None",
+  "autoUpdateWidgetState": 0,
+  "canHold": 0,
+  "defaultColor": {
+   "$type": "HDRColor",
+   "Alpha": 0,
+   "Blue": 0,
+   "Green": 0,
+   "Red": 0
+  },
+  "hoverColor": {
+   "$type": "HDRColor",
+   "Alpha": 0,
+   "Blue": 0,
+   "Green": 0,
+   "Red": 0
+  },
+  "isNavigalbe": 0,
+  "linkAddress": "",
+  "selectable": 0,
+  "selected": 0,
+  "shouldUpdateScrollController": 0,
+  "supportsHoldInput": 0,
+  "usePopupDefault": 0
+ },
+ "GateStatusLogicController": {
+  "audioMetadataName": "None"
+ },
+ "CasinoTableSlotData": {
+  "casinoChipsListener": null,
+  "controller": null,
+  "slotUser": null
+ },
+ "CasinoTableSlotLogicController": {
+  "audioMetadataName": "None",
+  "betData": {
+   "$type": "BetData",
+   "betAmount": 0,
+   "betOn": "none",
+   "chipsAmount": 0
+  },
+  "page": null,
+  "spawnRequest": null,
+  "state": "Idle"
+ },
+ "BetData": {
+  "betAmount": 0,
+  "betOn": "none",
+  "chipsAmount": 0
+ },
+ "inkanimAnimationLibraryResource": {
+  "cookingPlatform": "PLATFORM_PC"
+ },
+ "inkanimMarginInterpolator": {
+  "interpolationDirection": "FromTo",
+  "interpolationMode": "EasyIn",
+  "interpolationType": "Linear",
+  "isAdditive": 0,
+  "useRelativeDuration": 0
+ },
+ "inkanimColorInterpolator": {
+  "interpolationDirection": "FromTo",
+  "interpolationMode": "EasyIn",
+  "interpolationType": "Linear",
+  "isAdditive": 0,
+  "useRelativeDuration": 0
+ },
+ "inkanimSetVisibilityEvent": {
+  "isVisible": 0
+ },
+ "inkanimTextReplaceInterpolator": {
+  "endValue": 1,
+  "interpolationDirection": "FromTo",
+  "interpolationMode": "EasyIn",
+  "interpolationType": "Linear",
+  "isAdditive": 0,
+  "startValue": 0,
+  "useRelativeDuration": 0
+ },
+ "inkanimTextValueProgressInterpolator": {
+  "interpolationDirection": "FromTo",
+  "interpolationMode": "EasyIn",
+  "interpolationType": "Linear",
+  "isAdditive": 0,
+  "useRelativeDuration": 0
+ },
+ "inkanimPlayVideoEvent": {
+  "startTime": 0,
+  "videoResource": {
+   "DepotPath": {
+    "$t": "ResourcePath",
+    "$v": "0",
+    "$s": "uint64"
+   },
+   "Flags": "Soft"
+  }
+ },
+ "inkanimStopVideoEvent": {
+  "startTime": 0.532999992
+ },
+ "inkanimVideoInterpolator": {
+  "allowSkipBackward": 1,
+  "audioEvent": "None",
+  "interpolationDirection": "FromTo",
+  "interpolationMode": "EasyIn",
+  "interpolationType": "Linear",
+  "isAdditive": 0,
+  "retriggerAudioOnLoop": 0,
+  "startDelay": 0,
+  "startValue": 0,
+  "synchronizeToAudio": 0,
+  "useRelativeDuration": 0
+ },
+ "inkanimPivotInterpolator": {
+  "interpolationDirection": "FromTo",
+  "interpolationMode": "EasyIn",
+  "interpolationType": "Linear",
+  "isAdditive": 0,
+  "useRelativeDuration": 0
+ },
+ "inkanimAnchorInterpolator": {
+  "interpolationDirection": "FromTo",
+  "interpolationMode": "EasyIn",
+  "interpolationType": "Linear",
+  "isAdditive": 0,
+  "useRelativeDuration": 0
+ },
+ "inkanimTextOffsetInterpolator": {
+  "duration": 1,
+  "endValue": 1,
+  "interpolationDirection": "FromTo",
+  "interpolationMode": "EasyInOut",
+  "interpolationType": "Sinusoidal",
+  "isAdditive": 0,
+  "startValue": 0,
+  "useRelativeDuration": 0
+ },
+ "inkanimShearInterpolator": {
+  "duration": 1,
+  "interpolationDirection": "FromTo",
+  "interpolationMode": "EasyInOut",
+  "isAdditive": 0,
+  "useRelativeDuration": 0
+ },
+ "inkanimExecuteControllerFunctionEvent": {
+  "controllerType": "AnimationLogicController",
+  "eventName": "OnChangeState"
+ },
+ "inkanimSetStyleEvent": {
+  "startTime": 0,
+  "style": {
+   "DepotPath": "base\\gameplay\\gui\\quests\\assets\\q115_health_stats_ripperdoc_monitor.inkstyle",
+   "Flags": "Soft"
+  }
+ },
+ "inkTextureAtlas": {
+  "activeTexture": "StaticTexture",
+  "cookingPlatform": "PLATFORM_PC",
+  "dynamicTexture": {
+   "DepotPath": {
+    "$t": "ResourcePath",
+    "$v": "0",
+    "$s": "uint64"
+   },
+   "Flags": "Soft"
+  },
+  "isSingleTextureMode": 1,
+  "slices": [],
+  "texture": {
+   "DepotPath": {
+    "$t": "ResourcePath",
+    "$v": "0",
+    "$s": "uint64"
+   },
+   "Flags": "Soft"
+  },
+  "textureResolution": "UltraHD_3840_2160"
+ },
+ "inkDynamicTextureSlot": {
+  "texture": {
+   "DepotPath": {
+    "$t": "ResourcePath",
+    "$v": "0",
+    "$s": "uint64"
+   },
+   "Flags": "Soft"
+  }
+ },
+ "inkTextureAtlasMapper": {
+  "clippingRectInPixels": {
+   "$type": "Rect",
+   "bottom": 0,
+   "left": 0,
+   "right": 0,
+   "top": 0
+  }
+ },
+ "Rect": {
+  "bottom": 0,
+  "left": 0,
+  "right": 0,
+  "top": 0
+ },
+ "inkStyleResource": {
+  "cookingPlatform": "PLATFORM_PC",
+  "hideInInheritingStyles": 0
+ },
+ "CName": {
+  "Value": "Medium"
+ },
+ "inkFontFamilyResource": {
+  "cookingPlatform": "PLATFORM_PC"
+ },
+ "inkShapeCollectionResource": {
+  "cookingPlatform": "PLATFORM_PC"
+ },
+ "inkLanguageDefinition": {
+  "fonts": [
+   {
+    "$type": "inkLanguageFont",
+    "font": {
+     "DepotPath": "base\\gameplay\\gui\\fonts\\raj\\raj.inkfontfamily",
+     "Flags": "Soft"
+    },
+    "mapper": null
+   }
+  ],
+  "isoScriptCode": "Latn",
+  "textDirection": "LeftToRight"
+ },
+ "inkLanguageFont": {
+  "font": {
+   "DepotPath": "base\\gameplay\\gui\\fonts\\raj\\raj.inkfontfamily",
+   "Flags": "Soft"
+  },
+  "mapper": null
+ },
+ "gameuiCharacterCustomizationOptionVersionUpdateInfo": {
+  "curDefintionName": "None",
+  "optionPrereqs": [],
+  "replaceCurOption": 0
+ },
+ "gameuiCharacterCustomizationOptionVersionPrereq": {
+  "definitionName": "None",
+  "optionName": "cyberware_01"
+ },
+ "gameuiAppearanceInfo": {
+  "censorFlag": "0",
+  "censorFlagAction": "Activate",
+  "defaultIndex": 0,
+  "editTags": [
+   "NewGame",
+   "HairDresser",
+   "Ripperdoc"
+  ],
+  "enabled": 0,
+  "hidden": 0,
+  "linkController": 1,
+  "onDeactivateActions": [],
+  "useThumbnails": 1
+ },
+ "gameuiIndexedAppearanceDefinition": {
+  "actions": [],
+  "localizedName": "",
+  "tags": {
+   "$type": "redTagList",
+   "tags": []
+  }
+ },
+ "gameuiCharacterRandomizationInfo": {
+  "maxRating": 10
+ },
+ "redTagList": {
+  "tags": []
+ },
+ "gameuiMorphInfo": {
+  "censorFlag": "0",
+  "censorFlagAction": "Activate",
+  "defaultIndex": 0,
+  "editTags": [
+   "NewGame",
+   "Ripperdoc"
+  ],
+  "enabled": 1,
+  "hidden": 0,
+  "link": "None",
+  "linkController": 0,
+  "onDeactivateActions": []
+ },
+ "gameuiIndexedMorphName": {
+  "randomizationInfo": {
+   "$type": "gameuiCharacterRandomizationInfo",
+   "maxRating": 10,
+   "minRating": 1
+  },
+  "tags": {
+   "$type": "redTagList",
+   "tags": []
+  }
+ },
+ "gameuiSwitcherInfo": {
+  "censorFlag": "0",
+  "censorFlagAction": "Activate",
+  "defaultIndex": 0,
+  "editTags": [
+   "NewGame",
+   "HairDresser",
+   "Ripperdoc"
+  ],
+  "enabled": 1,
+  "hidden": 0,
+  "link": "None",
+  "linkController": 0,
+  "switchVisibility": 1
+ },
+ "gameuiSwitcherOption": {
+  "actions": [],
+  "tags": {
+   "$type": "redTagList",
+   "tags": []
+  }
+ },
+ "gameuiCharacterCustomizationAction": {
+  "applyImmediately": 0,
+  "applyToUISlot": 1,
+  "params": "cyberware",
+  "type": "Refresh"
+ },
+ "inkHudEntriesResource": {
+  "cookingPlatform": "PLATFORM_PC",
+  "rootWidget": {
+   "DepotPath": {
+    "$t": "ResourcePath",
+    "$v": "base\\gameplay\\gui\\widgets\\root\\root.inkwidget",
+    "$s": "string"
+   },
+   "Flags": "Default"
+  },
+  "themeOverride": "None"
+ },
+ "inkHudWidgetSpawnEntry": {
+  "affectedByBlackwallEffect": 0,
+  "affectedByGlitchEffect": 0,
+  "attachToSlot": 0,
+  "contextVisibility": "SceneDefault, SceneTier1, SceneTier2, SceneTier3, SceneTier4, SceneTier5",
+  "enabled": 1,
+  "hudScalingInterpolationValue": 1,
+  "hudScalingMarginCorrection": {
+   "$type": "inkMargin",
+   "bottom": 0,
+   "left": 0,
+   "right": 0,
+   "top": 0
+  },
+  "ignoreHudSafezones": 0,
+  "ignoreHudScaleOverride": 1,
+  "margins": {
+   "$type": "inkMargin",
+   "bottom": 0,
+   "left": 0,
+   "right": 0,
+   "top": 0
+  },
+  "spawnBeforeSlots": 0,
+  "spawnMode": "SingleAndMultiplayer",
+  "useSeparateWindow": 0
+ },
+ "inkWidgetSlotAttachmentParams": {
+  "slotID": "None",
+  "useSlotLayout": 1
+ },
+ "inkCompositionPreset": {
+  "transitions": [],
+  "useBackgroundTexture": 0
+ },
+ "fxCompositionShaderParams": {
+  "backgroundBlurRadius": 0.0160000008,
+  "backgroundTextureFactor": 0,
+  "blurredRenderFactor": 0,
+  "blurredRenderSaturation": 0.730000019,
+  "glitchParam": 0,
+  "glitchParam1": 0,
+  "glowTresholdEnd": 1,
+  "health": 0,
+  "mainRenderFactor": 1,
+  "uiFactor": 1,
+  "uiLayer2Scale": {
+   "$type": "Vector2",
+   "X": -0.00499999989,
+   "Y": -0.00249999994
+  },
+  "uiLayer2Weight": 0.0799999982,
+  "uiLayer3Scale": {
+   "$type": "Vector2",
+   "X": -0.0108000003,
+   "Y": -0.00680000009
+  },
+  "uiLayer3Weight": 0.0700000003,
+  "uiLayer4Scale": {
+   "$type": "Vector2",
+   "X": -0.0126,
+   "Y": -0.00730000017
+  },
+  "uiLayer4Weight": 0.0599999987,
+  "uiPassthroughFactor": 0,
+  "uiSaturation": 1,
+  "vignetteEnd": 0.899999976,
+  "vignetteIntensity": 0.816989005,
+  "vignetteStart": 0.600000024,
+  "visionActiveTime": 1
+ },
+ "inkMenuEntry": {
+  "depth": 0,
+  "inputContext": "None",
+  "isAffectedByFadeout": 1,
+  "spawnMode": "SingleAndMultiplayer"
+ }
+}
