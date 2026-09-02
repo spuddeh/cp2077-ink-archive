@@ -70,6 +70,9 @@ class RangeHandler(SimpleHTTPRequestHandler):
 
     def end_headers(self):
         self.send_header("Cache-Control", "no-cache")
+        # Advertised on every response: sql.js-httpvfs checks the plain-GET response for
+        # it and falls back to whole-file reads when it is missing.
+        self.send_header("Accept-Ranges", "bytes")
         super().end_headers()
 
 

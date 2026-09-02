@@ -38,7 +38,9 @@ async function boot() {
 }
 
 async function q(sql, ...params) {
-  const rows = await DB.query(sql, ...params);
+  // sql.js exec() takes the bind values as one array; a bare value binds nothing and
+  // leaves every ? as NULL.
+  const rows = await DB.query(sql, params.length ? params : undefined);
   updateStats();
   return rows;
 }
