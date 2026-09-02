@@ -174,7 +174,13 @@ async function route() {
     else if (what === "browse") { showTab("browse"); await runBrowse(arg); }
     else if (what === "sql") showTab("sql");
     else if (what === "layers") { showTab("layers"); await viewLayers(); }
-    else if (what === "preview") { showTab("preview"); if (arg) await loadPreviewFile(+arg); }
+    else if (what === "preview") {
+      showTab("preview");
+      const [pf, pc] = arg.split("/");
+      if (pf) await loadPreviewFile(+pf);
+      if (pc) previewSelectAny(+pc);
+    }
+    else if (what === "tree") await viewTree(arg);
     else if (what === "about") showTab("about");
     else {
       showTab("search");
@@ -401,11 +407,14 @@ async function viewFile(fid) {
   h += '<div class="crumbs"><span class="cls">' + esc(f.class || f.kind) + "</span> · " +
     esc(f.path) + " · " + esc(f.source) + " · " + f.chunk_count + " chunks";
   if (f.kind === "inkwidget") h += ' · <a href="#preview/' + fid + '">preview layout</a>';
+  h += ' · <a href="#tree/file/' + fid + '">tree</a>';
   h += "</div>";
   if (items.length) {
     h += "<h3>Library items</h3>" + table(items, ["name", "widget tree", "controller"], (r, c) => {
       if (c === "name") return esc(r.name || "—");
-      if (c === "widget tree") return r.root_widget_cid ? chunkLink(r.root_widget_cid, "#" + r.root_widget_cid) : '<span class="dim">—</span>';
+      if (c === "widget tree") return r.root_widget_cid
+        ? chunkLink(r.root_widget_cid, "#" + r.root_widget_cid) + ' · <a href="#tree/' + r.root_widget_cid + '">tree</a>'
+        : '<span class="dim">—</span>';
       return r.controller
         ? (r.controller_cid ? chunkLink(r.controller_cid, r.controller) : esc(r.controller))
         : '<span class="dim">—</span>';
@@ -439,7 +448,8 @@ async function viewChunk(cid) {
   h += trailHtml();
   h += '<div class="crumbs">' + fileLink(c.fid, c.path) + " · chunk <b>" + esc(c.chunk_id) +
     '</b> · <span class="cls">' + esc(c.class) + "</span>" +
-    (c.name ? " · " + esc(c.name) : "") + "</div>";
+    (c.name ? " · " + esc(c.name) : "") +
+    ' · <a href="#tree/' + cid + '">tree</a></div>';
   if (chain.length > 1) {
     h += '<div class="chain">widget tree: ' + chain.map((n, i) =>
       i === chain.length - 1
@@ -717,10 +727,357 @@ function previewSelect(cid) {
   const fields = ["class", "name", "anchor", "halign", "valign", "size_x", "size_y",
     "margin_l", "margin_t", "margin_r", "margin_b", "fit", "visible", "text", "part", "atlas", "style", "state"];
   $("preview-info").innerHTML = '<div class="crumbs">' + chunkLink(w.cid, "open chunk #" + w.cid) +
-    "</div><table>" + fields
+    ' · <a href="#tree/' + w.cid + '">tree</a></div><table>' + fields
       .filter((f) => w[f] !== null && w[f] !== undefined && w[f] !== "")
       .map((f) => "<tr><th>" + f + "</th><td>" + esc(String(w[f])) + "</td></tr>").join("") +
     "</table>";
+}
+
+// Select a widget by cid whichever library item it sits in: the preview renders one
+// item at a time, so the items are tried in turn until the box exists.
+function previewSelectAny(cid) {
+  if (!PV) return;
+  const sel = $("preview-item");
+  for (let i = 0; i < Math.max(1, sel.options.length); i++) {
+    if (i > 0) { sel.value = String(i); renderPreview(); }
+    if (document.querySelector('.pv-box[data-cid="' + cid + '"]')) { previewSelect(cid); return; }
+  }
+}
+
+/* ------------------------------------------------------------------ tree -- */
+
+// The tree walks the reference graph lazily: a node renders its children when it is
+// opened, and each loader below is a few indexed queries, so a 4,000-chunk menu costs
+// what the visitor opens rather than the whole file. A chunk opens into three groups:
+// the widget children the engine walks (widget_tree), every other handle it holds
+// grouped by field (refs), and every resource path it names (xrefs). A chunk of a
+// class this page knows nothing about still appears under the field that holds it;
+// nothing reachable is left out. A resolved path opens the file it names, so the walk
+// crosses file boundaries downward; a file's "referenced by" crosses them upward.
+
+const TREE_UP_FIELD = "parentWidget";   // a widget's back-reference to its own parent
+
+function treeKey(kind, id) { return kind + ":" + id; }
+
+function treeNodeHtml(kind, id, label, opts) {
+  opts = opts || {};
+  return '<div class="tn" data-k="' + esc(treeKey(kind, id)) + '" data-kind="' + kind +
+    '" data-id="' + esc(String(id)) + '">' +
+    '<div class="tn-row"><span class="tn-tog' + (opts.leaf ? " leaf" : "") + '">' +
+    (opts.leaf ? "" : "&#9656;") + "</span>" +
+    '<span class="tn-label">' + label + "</span>" +
+    (opts.links ? '<span class="tn-links">' + opts.links + "</span>" : "") +
+    '</div><div class="tn-kids" hidden></div></div>';
+}
+
+function treeGroup(title, inner) {
+  return '<div class="tg"><div class="tg-h">' + title + "</div>" + inner + "</div>";
+}
+
+function treeFileLabel(f) {
+  const b = basename(f.path);
+  return '<span class="tn-file">' + esc(b) + '</span> <span class="path">' +
+    esc(f.path.slice(0, f.path.length - b.length)) + "</span>";
+}
+function treeFileLinks(f) {
+  return '<a href="#file/' + f.fid + '">record</a>' +
+    (f.kind === "inkwidget" ? '<a href="#preview/' + f.fid + '">preview</a>' : "") +
+    '<a href="#tree/file/' + f.fid + '">focus</a>';
+}
+function treeFileNode(f) {
+  return treeNodeHtml("f", f.fid, treeFileLabel(f), { links: treeFileLinks(f) });
+}
+
+function treeChunkLabel(r) {
+  return (r.name ? "<b>" + esc(r.name) + "</b> " : "") +
+    '<span class="cls">' + esc(r.class || "?") + "</span>" +
+    (r.n_kids ? ' <span class="tn-count">' + r.n_kids + "</span>" : "");
+}
+function treeChunkLinks(r) {
+  return '<a href="#chunk/' + r.cid + '">#' + r.cid + "</a>" +
+    (r.is_widget ? '<a href="#preview/' + r.fid + "/" + r.cid + '">preview</a>' : "") +
+    '<a href="#tree/' + r.cid + '">focus</a>';
+}
+function treeChunkNode(r, opts) {
+  return treeNodeHtml("c", r.cid, treeChunkLabel(r),
+    { links: treeChunkLinks(r), leaf: opts && opts.leaf });
+}
+
+// Handles grouped by the field that holds them. The parent back-reference is shown
+// as a leaf: opening it would only repeat the level above.
+function treeRefGroups(rows) {
+  const groups = new Map();
+  for (const r of rows) {
+    if (!groups.has(r.field)) groups.set(r.field, []);
+    groups.get(r.field).push(r);
+  }
+  let h = "";
+  for (const [field, rs] of groups) {
+    const up = field === TREE_UP_FIELD;
+    h += treeGroup(esc(field) + (up ? ' <span class="dim">up</span>' : ""),
+      rs.map((r) => treeChunkNode(r, { leaf: up })).join(""));
+  }
+  return h;
+}
+
+// Resource paths grouped by field. A path that names an archive file opens that
+// file in place; any other path is shown as it is written.
+async function treeXrefGroups(xs) {
+  if (!xs.length) return "";
+  const fids = [...new Set(xs.filter((x) => x.to_fid).map((x) => x.to_fid))];
+  const files = new Map();
+  if (fids.length) {
+    const rows = await q("SELECT fid, path, kind FROM files WHERE fid IN (" +
+      fids.map(() => "?").join(",") + ")", ...fids);
+    for (const f of rows) files.set(f.fid, f);
+  }
+  const groups = new Map();
+  xs.forEach((x, i) => {
+    if (!groups.has(x.field)) groups.set(x.field, []);
+    groups.get(x.field).push([x, i]);
+  });
+  let h = "";
+  for (const [field, rs] of groups) {
+    h += treeGroup(esc(field) + ' <span class="dim">resource</span>', rs.map(([x, i]) => {
+      const f = files.get(x.to_fid);
+      if (f) return treeFileNode(f);
+      const why = /^\d+$/.test(x.to_path) ? "unresolved hash" : "outside the archive";
+      return treeNodeHtml("x", i, '<span class="path">' + esc(x.to_path) +
+        '</span> <span class="dim">' + why + "</span>", { leaf: true });
+    }).join(""));
+  }
+  return h;
+}
+
+async function treeKidsFile(fid) {
+  const items = await q(
+    "SELECT name, root_widget_cid, controller_cid, controller FROM items WHERE fid=? ORDER BY name", fid);
+  const rootRefs = await q(
+    "SELECT r.to_cid AS cid, r.field, r.ord, c.fid, c.class, c.name, (w.cid IS NOT NULL) AS is_widget, " +
+    "(SELECT count(*) FROM widget_tree x WHERE x.parent_cid = r.to_cid) AS n_kids " +
+    "FROM refs r INDEXED BY idx_refs_root JOIN chunks c ON c.cid = r.to_cid LEFT JOIN widgets w ON w.cid = r.to_cid " +
+    "WHERE r.from_cid = 0 AND r.fid = ? ORDER BY r.field, r.ord", fid);
+  const rootX = await q(
+    "SELECT to_path, to_fid, field, ord FROM xrefs INDEXED BY idx_x_root " +
+    "WHERE from_cid = 0 AND fid = ? ORDER BY field, ord", fid);
+  // An item's root widget and controller are reached through the item; the same
+  // handles appear in the root record and would otherwise show twice.
+  const covered = new Set();
+  let h = "";
+  for (const it of items) {
+    covered.add(it.root_widget_cid);
+    covered.add(it.controller_cid);
+    h += treeNodeHtml("i", fid + "/" + it.name,
+      "<b>" + esc(it.name || "—") + '</b> <span class="dim">item</span>' +
+      (it.controller ? ' · <span class="cls">' + esc(it.controller) + "</span>" : ""));
+  }
+  h += treeRefGroups(rootRefs.filter((r) => !covered.has(r.cid)));
+  h += await treeXrefGroups(rootX);
+  h += treeGroup("referenced by",
+    treeNodeHtml("rb", fid, '<span class="dim">records in other files that name this one</span>'));
+  return h;
+}
+
+async function treeKidsItem(fid, name) {
+  const [it] = await q("SELECT root_widget_cid, controller_cid FROM items WHERE fid=? AND name=?", fid, name);
+  if (!it) return '<p class="dim small">no such item</p>';
+  const ids = [it.root_widget_cid, it.controller_cid].filter((x) => x);
+  if (!ids.length) return '<p class="dim small">the item holds no chunks; its instance is inline in the file record</p>';
+  const rows = await q(
+    "SELECT c.cid, c.fid, c.class, c.name, (w.cid IS NOT NULL) AS is_widget, " +
+    "(SELECT count(*) FROM widget_tree x WHERE x.parent_cid = c.cid) AS n_kids " +
+    "FROM chunks c LEFT JOIN widgets w ON w.cid = c.cid WHERE c.cid IN (" +
+    ids.map(() => "?").join(",") + ")", ...ids);
+  const byId = new Map(rows.map((r) => [r.cid, r]));
+  let h = "";
+  if (byId.has(it.root_widget_cid)) h += treeGroup("rootWidget", treeChunkNode(byId.get(it.root_widget_cid)));
+  if (byId.has(it.controller_cid)) h += treeGroup("gameController", treeChunkNode(byId.get(it.controller_cid)));
+  return h;
+}
+
+async function treeKidsChunk(cid) {
+  const kids = await q(
+    "SELECT t.child_cid AS cid, w.fid, w.name, w.class, 1 AS is_widget, " +
+    "(SELECT count(*) FROM widget_tree x WHERE x.parent_cid = t.child_cid) AS n_kids " +
+    "FROM widget_tree t JOIN widgets w ON w.cid = t.child_cid WHERE t.parent_cid = ? ORDER BY t.ord", cid);
+  const refs = await q(
+    "SELECT r.to_cid AS cid, r.field, r.ord, c.fid, c.class, c.name, (w.cid IS NOT NULL) AS is_widget, " +
+    "(SELECT count(*) FROM widget_tree x WHERE x.parent_cid = r.to_cid) AS n_kids " +
+    "FROM refs r JOIN chunks c ON c.cid = r.to_cid LEFT JOIN widgets w ON w.cid = r.to_cid " +
+    "WHERE r.from_cid = ? ORDER BY r.field, r.ord", cid);
+  const xs = await q(
+    "SELECT to_path, to_fid, field, ord FROM xrefs WHERE from_cid = ? ORDER BY field, ord", cid);
+  let h = "";
+  const rest = [];
+  let container = null;
+  for (const r of refs) {
+    // widget_tree resolves the children handle through its inkMultiChildren chunk;
+    // the group header keeps a link to that chunk so the hop is visible.
+    if (kids.length && r.field === "children") container = r;
+    else rest.push(r);
+  }
+  if (kids.length) {
+    h += treeGroup("children" + (container ? " · " + chunkLink(container.cid, container.class) : ""),
+      kids.map((r) => treeChunkNode(r)).join(""));
+  }
+  h += treeRefGroups(rest);
+  h += await treeXrefGroups(xs);
+  return h || '<p class="dim small">no references</p>';
+}
+
+async function treeKidsRefBy(fid) {
+  const rows = await q(
+    "SELECT x.fid, f.path, f.kind, count(*) AS n FROM xrefs x JOIN files f ON f.fid = x.fid " +
+    "WHERE x.to_fid = ? GROUP BY x.fid ORDER BY f.path", fid);
+  if (!rows.length) return '<p class="dim small">no other file names this one</p>';
+  return rows.map((r) => treeNodeHtml("rf", fid + "/" + r.fid,
+    treeFileLabel(r) + ' <span class="tn-count">' + r.n + "</span>", { links: treeFileLinks(r) })).join("");
+}
+
+async function treeKidsRefFrom(toFid, fromFid) {
+  const rows = await q(
+    "SELECT x.from_cid AS cid, x.field, c.fid, c.class, c.name, (w.cid IS NOT NULL) AS is_widget " +
+    "FROM xrefs x LEFT JOIN chunks c ON c.cid = x.from_cid LEFT JOIN widgets w ON w.cid = x.from_cid " +
+    "WHERE x.to_fid = ? AND x.fid = ? ORDER BY x.field, x.from_cid LIMIT 500", toFid, fromFid);
+  const groups = new Map();
+  for (const r of rows) {
+    if (!groups.has(r.field)) groups.set(r.field, []);
+    groups.get(r.field).push(r);
+  }
+  let h = "";
+  for (const [field, rs] of groups) {
+    h += treeGroup(esc(field), rs.map((r) => r.cid === 0
+      ? treeNodeHtml("x", "root" + fromFid, '<span class="dim">file record</span>',
+          { leaf: true, links: '<a href="#file/' + fromFid + '">record</a><a href="#tree/file/' + fromFid + '">focus</a>' })
+      : treeChunkNode(r)).join(""));
+  }
+  return h + (rows.length === 500 ? '<p class="dim small">first 500 shown</p>' : "");
+}
+
+async function treeOpen(el) {
+  const kids = el.querySelector(":scope > .tn-kids");
+  const tog = el.querySelector(":scope > .tn-row > .tn-tog");
+  if (tog.classList.contains("leaf")) return;
+  if (el.dataset.loaded) {
+    kids.hidden = !kids.hidden;
+    tog.innerHTML = kids.hidden ? "&#9656;" : "&#9662;";
+    return;
+  }
+  tog.innerHTML = "&#8230;";
+  try {
+    const kind = el.dataset.kind, id = el.dataset.id;
+    let h = "";
+    if (kind === "f") h = await treeKidsFile(+id);
+    else if (kind === "c") h = await treeKidsChunk(+id);
+    else if (kind === "i") { const i = id.indexOf("/"); h = await treeKidsItem(+id.slice(0, i), id.slice(i + 1)); }
+    else if (kind === "rb") h = await treeKidsRefBy(+id);
+    else if (kind === "rf") { const [a, b] = id.split("/"); h = await treeKidsRefFrom(+a, +b); }
+    kids.innerHTML = h;
+    el.dataset.loaded = "1";
+    kids.hidden = false;
+    tog.innerHTML = "&#9662;";
+  } catch (e) {
+    kids.innerHTML = '<p class="err">' + esc(String(e)) + "</p>";
+    kids.hidden = false;
+    tog.innerHTML = "&#9656;";
+  }
+}
+
+function treeFind(el, key) {
+  for (const n of el.querySelectorAll(".tn")) if (n.dataset.k === key) return n;
+  return null;
+}
+
+// The path from a chunk up to its file: widget_tree parents first, then whichever
+// record holds a handle to the chunk, a widget or the file root before anything
+// else. A chunk shared by several holders gets one path here; the rest are listed
+// on its record.
+async function treeAncestors(cid) {
+  const [c] = await q("SELECT cid, fid, chunk_id, class, name FROM chunks WHERE cid=?", cid);
+  if (!c) return null;
+  const chain = [cid];
+  let cur = cid;
+  for (let i = 0; i < 80; i++) {
+    const up = await q("SELECT parent_cid FROM widget_tree WHERE child_cid=? LIMIT 1", cur);
+    if (up.length) { cur = up[0].parent_cid; chain.unshift(cur); continue; }
+    const rs = await q(
+      "SELECT r.from_cid, (w.cid IS NOT NULL) AS is_widget FROM refs r LEFT JOIN widgets w ON w.cid = r.from_cid " +
+      "WHERE r.to_cid=? AND r.field<>? LIMIT 20", cur, TREE_UP_FIELD);
+    if (!rs.length) break;
+    const pick = rs.find((r) => r.from_cid === 0) || rs.find((r) => r.is_widget) || rs[0];
+    if (pick.from_cid === 0 || chain.includes(pick.from_cid)) break;
+    cur = pick.from_cid;
+    chain.unshift(cur);
+  }
+  return { fid: c.fid, chain: chain, focus: c };
+}
+
+async function treeAttach(el, cid) {
+  // A chunk no record holds a handle to: shown at the level where it was expected.
+  const [r] = await q(
+    "SELECT c.cid, c.fid, c.class, c.name, (w.cid IS NOT NULL) AS is_widget FROM chunks c " +
+    "LEFT JOIN widgets w ON w.cid = c.cid WHERE c.cid=?", cid);
+  if (!r) return null;
+  const kids = el.querySelector(":scope > .tn-kids");
+  kids.insertAdjacentHTML("beforeend",
+    treeGroup('<span class="dim">held by no record</span>', treeChunkNode(r)));
+  return treeFind(el, treeKey("c", cid));
+}
+
+async function viewTree(arg) {
+  showTab("tree");
+  const out = $("tree-content");
+  if (!arg) {
+    if (!out.querySelector(".tn")) {
+      out.innerHTML = '<p class="dim">Find a file above, or open the tree from any file or chunk record.</p>';
+    }
+    return;
+  }
+  out.innerHTML = '<p class="loading">loading…</p>';
+  let fid, chain = [], focus = null;
+  if (arg.startsWith("file/")) {
+    fid = +arg.slice(5);
+  } else {
+    const anc = await treeAncestors(+arg);
+    if (!anc) { out.innerHTML = '<p class="err">no chunk ' + esc(arg) + "</p>"; return; }
+    fid = anc.fid; chain = anc.chain; focus = anc.focus;
+  }
+  const [f] = await q("SELECT fid, path, kind FROM files WHERE fid=?", fid);
+  if (!f) { out.innerHTML = '<p class="err">no file ' + fid + "</p>"; return; }
+  pushTrail("#tree/" + (focus ? focus.cid : "file/" + fid),
+    "tree: " + (focus ? (focus.name || focus.class) + " [" + focus.chunk_id + "]" : basename(f.path)));
+  $("tree-file").value = f.path;
+  $("tree-suggest").innerHTML = "";
+  out.innerHTML = trailHtml() + '<div class="tree">' + treeFileNode(f) + "</div>";
+  let el = out.querySelector(".tn");
+  await treeOpen(el);
+  if (!chain.length) return;
+  const top = chain[0];
+  const owners = await q(
+    "SELECT name FROM items WHERE fid=? AND (root_widget_cid=? OR controller_cid=?)", fid, top, top);
+  if (owners.length) {
+    const n = treeFind(el, treeKey("i", fid + "/" + owners[0].name));
+    if (n) { await treeOpen(n); el = n; }
+  }
+  for (const cid of chain) {
+    let n = treeFind(el, treeKey("c", cid)) || await treeAttach(el, cid);
+    if (!n) break;
+    await treeOpen(n);
+    el = n;
+  }
+  if (el.dataset.kind === "c" && +el.dataset.id === focus.cid) {
+    el.classList.add("tn-focus");
+    el.scrollIntoView({ block: "center" });
+  }
+}
+
+async function treeSuggest(text) {
+  const out = $("tree-suggest");
+  if (!text.trim()) { out.innerHTML = ""; return; }
+  const rows = await q("SELECT fid, path FROM files WHERE path LIKE ? ORDER BY path LIMIT 20",
+    "%" + text.trim() + "%");
+  out.innerHTML = rows.map((r) =>
+    '<div><span class="link tree-pick" data-fid="' + r.fid + '">' + esc(r.path) + "</span></div>").join("");
 }
 
 /* ------------------------------------------------------------------ wire -- */
@@ -766,6 +1123,17 @@ document.addEventListener("DOMContentLoaded", () => {
   $("preview-item").addEventListener("change", renderPreview);
   window.addEventListener("resize", () => { if (PV) renderPreview(); });
 
+  let treeTimer = null;
+  $("tree-file").addEventListener("input", (e) => {
+    clearTimeout(treeTimer);
+    treeTimer = setTimeout(() => treeSuggest(e.target.value), 300);
+  });
+  $("tree-content").addEventListener("click", (e) => {
+    if (e.target.closest("a")) return;
+    const row = e.target.closest(".tn-row");
+    if (row) treeOpen(row.parentElement);
+  });
+
   initPresets();
   $("preset-select").addEventListener("change", presetChanged);
   $("preset-run").addEventListener("click", runPreset);
@@ -782,6 +1150,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (pl) { openPath(pl.dataset.path); return; }
     const pick = e.target.closest(".pv-pick");
     if (pick) { location.hash = "#preview/" + pick.dataset.fid; return; }
+    const tp = e.target.closest(".tree-pick");
+    if (tp) { location.hash = "#tree/file/" + tp.dataset.fid; return; }
   });
 
   const wrap = $("preview-canvas-wrap");

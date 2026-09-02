@@ -20,6 +20,7 @@
   <button data-tab="sql">SQL</button>
   <button data-tab="layers">Layers</button>
   <button data-tab="preview">Preview</button>
+  <button data-tab="tree">Tree</button>
   <button data-tab="about">About</button>
 </nav>
 
@@ -65,6 +66,7 @@
          <code>widgets</code> (layout columns per widget chunk) &middot;
          <code>widget_tree</code> (parent_cid, child_cid, ord) &middot;
          <code>refs</code> (from_cid, fid, to_cid, field, ord) &middot;
+         <code>xrefs</code> (from_cid, fid, to_path, to_fid, field, ord) &middot;
          <code>items</code> (fid, name, root_widget_cid, controller) &middot;
          <code>defaults</code>, <code>schema</code>, <code>classes</code> &middot;
          <code>search</code> (FTS5) &middot;
@@ -90,6 +92,20 @@
     <p class="dim small">Scroll to zoom, drag to pan, double-click to reset. A click selects the smallest box under the cursor; click the same spot again for the box behind it.</p>
     <div id="preview-canvas-wrap"><div id="preview-canvas"></div></div>
     <div id="preview-info" class="record"></div>
+  </section>
+
+  <section id="tab-tree" class="tab">
+    <div class="bar">
+      <input id="tree-file" type="search" placeholder="find a file by path&hellip;" autocomplete="off">
+    </div>
+    <div id="tree-suggest" class="results"></div>
+    <p class="dim small">Every handle and resource path a record holds, opened one node
+    at a time. Widget children come first, in the order the engine walks them; the other
+    fields of a chunk follow by name, then the resources it names. A resource that is an
+    archive file opens in place. <b>focus</b> re-roots the tree on a node and opens the
+    path down to it from its file; a file's <i>referenced by</i> lists the records in
+    other files that name it.</p>
+    <div id="tree-content" class="record"></div>
   </section>
 
   <section id="tab-record" class="tab">

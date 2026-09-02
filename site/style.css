@@ -172,6 +172,34 @@ a:hover, .link:hover { text-decoration: underline; }
 .pv-box.pv-hidden { border-style: dashed; opacity: .45; }
 .pv-box.pv-sel { outline: 2px solid var(--accent); z-index: 60; }
 
+.tree { font: 12.5px/1.6 var(--mono); margin-top: 6px; }
+.tn-row {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  white-space: nowrap;
+  padding: 0 4px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.tn-row:hover { background: var(--panel); }
+.tn-tog {
+  display: inline-block;
+  width: 14px;
+  text-align: center;
+  color: var(--dim);
+  user-select: none;
+  flex: none;
+}
+.tn-tog.leaf { visibility: hidden; }
+.tn-kids { margin-left: 9px; border-left: 1px solid #22262e; padding-left: 12px; }
+.tn-links { color: var(--dim); font-size: 11px; margin-left: 4px; }
+.tn-links a { margin-left: 8px; }
+.tn-count { color: var(--dim); font-size: 11px; }
+.tn-file { color: var(--accent2); }
+.tg-h { color: var(--dim); font-size: 11px; margin-top: 3px; padding-left: 4px; }
+.tn-focus > .tn-row { background: rgba(252, 238, 10, .10); outline: 1px solid var(--accent); }
+
 .err {
   color: var(--red);
   font-family: var(--mono);
