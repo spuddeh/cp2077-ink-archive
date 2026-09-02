@@ -197,6 +197,7 @@ a:hover, .link:hover { text-decoration: underline; }
 .tn-links a { margin-left: 8px; }
 .tn-count { color: var(--dim); font-size: 11px; }
 .tn-file { color: var(--accent2); }
+.tn-dir { color: var(--fg); font-weight: 600; }
 .tg-h { color: var(--dim); font-size: 11px; margin-top: 3px; padding-left: 4px; }
 .tn-focus > .tn-row { background: rgba(252, 238, 10, .10); outline: 1px solid var(--accent); }
 

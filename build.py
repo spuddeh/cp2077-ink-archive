@@ -72,6 +72,15 @@ CREATE TABLE xrefs (
     ord       INTEGER NOT NULL
 );
 
+CREATE TABLE dirs (
+    parent TEXT NOT NULL,      -- folder path with its trailing backslash; '' is the root
+    name   TEXT NOT NULL,
+    fid    INTEGER,            -- NULL for a folder
+    kind   TEXT,               -- the file's kind
+    files  INTEGER NOT NULL,   -- files under a folder; 1 for a file
+    PRIMARY KEY (parent, name)
+);
+
 CREATE TABLE items (
     fid             INTEGER NOT NULL,
     name            TEXT NOT NULL,
@@ -555,6 +564,21 @@ def build(db_path, stripped=False, verbose=True):
                      for fc, f, p, fl, o in xref_rows])
     n_xrefs = len(xref_rows)
     n_xrefs_resolved = sum(1 for r in xref_rows if r[2].lower() in fid_of_path)
+
+    # The folder listing the site browses from: one row per folder and per file,
+    # keyed by the folder that holds it, so a level costs one primary-key range.
+    folders = {}
+    file_rows = []
+    for path, kind, f in con.execute("SELECT path, kind, fid FROM files"):
+        parts = path.split("\\")
+        for i in range(1, len(parts)):
+            parent = "\\".join(parts[:i - 1]) + ("\\" if i > 1 else "")
+            folders[(parent, parts[i - 1])] = folders.get((parent, parts[i - 1]), 0) + 1
+        file_rows.append(("\\".join(parts[:-1]) + ("\\" if len(parts) > 1 else ""),
+                          parts[-1], f, kind, 1))
+    con.executemany("INSERT INTO dirs VALUES (?,?,NULL,NULL,?)",
+                    [(p, n, c) for (p, n), c in folders.items()])
+    con.executemany("INSERT INTO dirs VALUES (?,?,?,?,?)", file_rows)
 
     con.executescript(INDEXES)
 

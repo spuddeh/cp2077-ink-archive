@@ -68,6 +68,7 @@
          <code>refs</code> (from_cid, fid, to_cid, field, ord) &middot;
          <code>xrefs</code> (from_cid, fid, to_path, to_fid, field, ord) &middot;
          <code>items</code> (fid, name, root_widget_cid, controller) &middot;
+         <code>dirs</code> (parent, name, fid, kind, files) &middot;
          <code>defaults</code>, <code>schema</code>, <code>classes</code> &middot;
          <code>search</code> (FTS5) &middot;
          views <code>files</code>-joined: <code>chunks_v</code>, <code>widgets_v</code>, <code>items_v</code>.
@@ -96,15 +97,15 @@
 
   <section id="tab-tree" class="tab">
     <div class="bar">
-      <input id="tree-file" type="search" placeholder="find a file by path&hellip;" autocomplete="off">
+      <input id="tree-file" type="search" placeholder="jump to a file by path&hellip;" autocomplete="off">
     </div>
     <div id="tree-suggest" class="results"></div>
-    <p class="dim small">Every handle and resource path a record holds, opened one node
-    at a time. Widget children come first, in the order the engine walks them; the other
-    fields of a chunk follow by name, then the resources it names. A resource that is an
-    archive file opens in place. <b>focus</b> re-roots the tree on a node and opens the
-    path down to it from its file; a file's <i>referenced by</i> lists the records in
-    other files that name it.</p>
+    <p class="dim small">The archive as folders, files, and every handle and resource
+    path a record holds, opened one node at a time. Widget children come first, in the
+    order the engine walks them; the other fields of a chunk follow by name, then the
+    resources it names. A resource that is an archive file opens in place. <b>focus</b>
+    re-roots the tree on a node and opens the path down to it from the top; a file's
+    <i>referenced by</i> lists the records in other files that name it.</p>
     <div id="tree-content" class="record"></div>
   </section>
 

@@ -188,6 +188,11 @@ async function route() {
     }
   } catch (e) {
     console.error(e);
+    const msg = String(e);
+    $("meta").innerHTML = '<span class="err">' + esc(msg) +
+      (/malformed/i.test(msg)
+        ? " - the browser stitched cached parts of an older database build; a hard reload (Ctrl+F5) clears them"
+        : "") + "</span>";
   }
 }
 
@@ -849,6 +854,21 @@ async function treeXrefGroups(xs) {
   return h;
 }
 
+// A folder: its subfolders, then its files. The id is the folder path with its
+// trailing backslash, "" for the root.
+function treeDirNode(parent, name, files) {
+  return treeNodeHtml("d", parent + name + "\\",
+    '<span class="tn-dir">' + esc(name) + '</span> <span class="tn-count">' + files + "</span>");
+}
+
+async function treeKidsDir(parent) {
+  const rows = await q(
+    "SELECT name, fid, kind, files FROM dirs WHERE parent = ? ORDER BY fid IS NOT NULL, name", parent);
+  return rows.map((r) => r.fid
+    ? treeFileNode({ fid: r.fid, path: parent + r.name, kind: r.kind })
+    : treeDirNode(parent, r.name, r.files)).join("") || '<p class="dim small">empty</p>';
+}
+
 async function treeKidsFile(fid) {
   const items = await q(
     "SELECT name, root_widget_cid, controller_cid, controller FROM items WHERE fid=? ORDER BY name", fid);
@@ -967,7 +987,8 @@ async function treeOpen(el) {
   try {
     const kind = el.dataset.kind, id = el.dataset.id;
     let h = "";
-    if (kind === "f") h = await treeKidsFile(+id);
+    if (kind === "d") h = await treeKidsDir(id);
+    else if (kind === "f") h = await treeKidsFile(+id);
     else if (kind === "c") h = await treeKidsChunk(+id);
     else if (kind === "i") { const i = id.indexOf("/"); h = await treeKidsItem(+id.slice(0, i), id.slice(i + 1)); }
     else if (kind === "rb") h = await treeKidsRefBy(+id);
@@ -1024,13 +1045,35 @@ async function treeAttach(el, cid) {
   return treeFind(el, treeKey("c", cid));
 }
 
+// The tree always starts at the archive root, so a file sits under its folders and
+// "up" from any node ends at the top of the archive rather than at the file.
+async function treeRoot(out) {
+  out.innerHTML = '<div class="tree">' +
+    treeNodeHtml("d", "", '<span class="tn-dir">archive</span>') + "</div>";
+  const root = out.querySelector(".tn");
+  await treeOpen(root);
+  return root;
+}
+
+async function treeOpenPath(root, path) {
+  let el = root;
+  const parts = path.split("\\");
+  let prefix = "";
+  for (let i = 0; i < parts.length - 1; i++) {
+    prefix += parts[i] + "\\";
+    const n = treeFind(el, treeKey("d", prefix));
+    if (!n) return el;
+    await treeOpen(n);
+    el = n;
+  }
+  return el;
+}
+
 async function viewTree(arg) {
   showTab("tree");
   const out = $("tree-content");
   if (!arg) {
-    if (!out.querySelector(".tn")) {
-      out.innerHTML = '<p class="dim">Find a file above, or open the tree from any file or chunk record.</p>';
-    }
+    if (!out.querySelector(".tn")) await treeRoot(out);
     return;
   }
   out.innerHTML = '<p class="loading">loading…</p>';
@@ -1046,12 +1089,19 @@ async function viewTree(arg) {
   if (!f) { out.innerHTML = '<p class="err">no file ' + fid + "</p>"; return; }
   pushTrail("#tree/" + (focus ? focus.cid : "file/" + fid),
     "tree: " + (focus ? (focus.name || focus.class) + " [" + focus.chunk_id + "]" : basename(f.path)));
-  $("tree-file").value = f.path;
+  $("tree-file").value = "";
   $("tree-suggest").innerHTML = "";
-  out.innerHTML = trailHtml() + '<div class="tree">' + treeFileNode(f) + "</div>";
-  let el = out.querySelector(".tn");
+  const root = await treeRoot(out);
+  out.insertAdjacentHTML("afterbegin", trailHtml());
+  const dir = await treeOpenPath(root, f.path);
+  let el = treeFind(dir, treeKey("f", f.fid));
+  if (!el) { out.innerHTML += '<p class="err">' + esc(f.path) + " is not in the folder listing</p>"; return; }
   await treeOpen(el);
-  if (!chain.length) return;
+  if (!chain.length) {
+    el.classList.add("tn-focus");
+    el.scrollIntoView({ block: "center" });
+    return;
+  }
   const top = chain[0];
   const owners = await q(
     "SELECT name FROM items WHERE fid=? AND (root_widget_cid=? OR controller_cid=?)", fid, top, top);
