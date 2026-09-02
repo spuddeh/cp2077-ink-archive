@@ -1,6 +1,7 @@
 """Compare a runtime ink tree dump against the authored values in the archive.
 
-The Ink Tree Dumper CET mod (v1.1.0) writes one JSON object per widget with the node's
+The Ink Tree Dumper CET mod (v1.1.0) writes one JSON document per dump: a header plus a
+nodes array, one object per widget with the node's
 logic controller classes, layout values and content. Controllers are the join key: a
 runtime subtree whose node carries a controller class found in the archive's items table
 is matched to that library item, then walked name by name against widget_tree.
@@ -11,7 +12,7 @@ so the report separates "matched, equal" from "matched, runtime differs" from
 the differing fields are the runtime's own behavior, made visible.
 
 Usage:
-  python scripts/compare_runtime_dump.py <dump.jsonl> [--db data/ink.db]
+  python scripts/compare_runtime_dump.py <dump.json> [--db data/ink.db]
   python scripts/compare_runtime_dump.py --selftest FastTravelGameController
 
 --selftest synthesizes a dump from the archive itself and compares it back; every
@@ -118,18 +119,27 @@ class Archive:
 
 
 def load_dump(path):
+    """The mod (v1.1.0+) writes one JSON document with a nodes array; earlier builds
+    wrote JSON Lines. Both load."""
+    text = open(path, encoding="utf-8").read()
+    try:
+        doc = json.loads(text)
+        if isinstance(doc, dict) and isinstance(doc.get("nodes"), list):
+            nodes = doc.pop("nodes")
+            return doc, nodes
+    except json.JSONDecodeError:
+        pass
     nodes = []
     meta = {}
-    with open(path, encoding="utf-8") as fh:
-        for line in fh:
-            line = line.strip()
-            if not line:
-                continue
-            rec = json.loads(line)
-            if "meta" in rec or "done" in rec:
-                meta.update(rec)
-            else:
-                nodes.append(rec)
+    for line in text.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        rec = json.loads(line)
+        if "meta" in rec or "done" in rec:
+            meta.update(rec)
+        else:
+            nodes.append(rec)
     return meta, nodes
 
 
