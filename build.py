@@ -8,7 +8,10 @@ that field, never that the build dropped it.
 Two derived tables are conveniences over the same data, not other versions of it:
 `widgets` lifts the layout fields of every chunk that has an inkWidgetLayout into
 columns, and `widget_tree` resolves the children -> inkMultiChildren -> children hop so
-a tree query does not have to. `refs` is the full reference graph.
+a tree query does not have to. `refs` is the full reference graph inside a resource;
+`xrefs` is every resource path a record carries, resolved to the archive file it names
+when that file is an ink resource, so the graph can be walked across file boundaries in
+both directions.
 
 Standard library only. Python 3.9 or newer.
 """
@@ -56,6 +59,15 @@ CREATE TABLE refs (
     from_cid  INTEGER NOT NULL,   -- 0 means the file's root record
     fid       INTEGER NOT NULL,
     to_cid    INTEGER NOT NULL,
+    field     TEXT NOT NULL,
+    ord       INTEGER NOT NULL
+);
+
+CREATE TABLE xrefs (
+    from_cid  INTEGER NOT NULL,   -- 0 means the file's root record
+    fid       INTEGER NOT NULL,
+    to_path   TEXT NOT NULL,      -- as authored; a decimal string is an unresolved hash
+    to_fid    INTEGER,            -- NULL when the path is not an ink resource
     field     TEXT NOT NULL,
     ord       INTEGER NOT NULL
 );
@@ -138,6 +150,15 @@ CREATE INDEX idx_w_atlas          ON widgets(atlas);
 CREATE INDEX idx_w_lockey         ON widgets(lockey);
 CREATE INDEX idx_tree_parent      ON widget_tree(parent_cid);
 CREATE INDEX idx_tree_child       ON widget_tree(child_cid);
+-- The tree view expands a node with one query per direction, each answered from an
+-- index. Root records reference by (from_cid = 0, fid), which a from_cid index alone
+-- would range-scan across every file, so the root edges get covering partial indexes
+-- of their own. The planner in the browser's SQLite (3.35) still prefers the plain
+-- from_cid index for them, so the site names these two with INDEXED BY.
+CREATE INDEX idx_refs_root        ON refs(fid, from_cid, to_cid, field, ord) WHERE from_cid = 0;
+CREATE INDEX idx_x_from           ON xrefs(from_cid, field, ord, to_path, to_fid);
+CREATE INDEX idx_x_to             ON xrefs(to_fid, fid, from_cid, field);
+CREATE INDEX idx_x_root           ON xrefs(fid, from_cid, field, ord, to_path, to_fid) WHERE from_cid = 0;
 
 -- Convenience views so a query can use the file path without writing the join.
 CREATE VIEW chunks_v  AS SELECT c.*, f.path, f.kind, f.source FROM chunks c JOIN files f USING (fid);
@@ -211,6 +232,31 @@ def iter_refs(node, field="", out=None):
                 out.append((r, fname, 0))
             else:
                 iter_refs(v, fname, out)
+    return out
+
+
+def iter_paths(node, field="", out=None):
+    """Every resource path under node - a record carrying DepotPath - with the JSON key
+    that holds it and its array position. A null path ("0") is not a reference."""
+    if out is None:
+        out = []
+    if isinstance(node, list):
+        for i, v in enumerate(node):
+            if isinstance(v, dict) and "DepotPath" in v:
+                p = depot(v)
+                if p is not None:
+                    out.append((p, field, i))
+            else:
+                iter_paths(v, field, out)
+    elif isinstance(node, dict):
+        for k, v in node.items():
+            fname = field if k in ("$v", "$value") else k
+            if isinstance(v, dict) and "DepotPath" in v:
+                p = depot(v)
+                if p is not None:
+                    out.append((p, fname, 0))
+            else:
+                iter_paths(v, fname, out)
     return out
 
 
@@ -374,6 +420,9 @@ def build(db_path, stripped=False, verbose=True):
     n_files = n_chunks = n_widgets = n_items = 0
     roundtrip_fails = 0
     loc_rows = []
+    # Resource paths resolve to fids only once every file has one, so they wait.
+    xref_rows = []
+    fid_of_path = {}
 
     for shard in shards:
         with open(os.path.join(RAW, shard), encoding="utf-8") as fh:
@@ -434,6 +483,12 @@ def build(db_path, stripped=False, verbose=True):
                 for target, field, ord_ in iter_refs(root):
                     if target in local:
                         ref_rows.append((0, fid, local[target], field, ord_))
+                for chunk_id, chunk in restored.items():
+                    for p, field, ord_ in iter_paths(chunk):
+                        xref_rows.append((local[chunk_id], fid, p, field, ord_))
+                for p, field, ord_ in iter_paths(root):
+                    xref_rows.append((0, fid, p, field, ord_))
+                fid_of_path[path.lower()] = fid
 
                 # Library items: name plus the instance and controller behind the
                 # RedPackage buffer, so a search by controller lands on a file.
@@ -495,6 +550,12 @@ def build(db_path, stripped=False, verbose=True):
                 n_chunks += len(chunk_rows)
                 n_widgets += len(widget_rows)
 
+    con.executemany("INSERT INTO xrefs VALUES (?,?,?,?,?,?)",
+                    [(fc, f, p, fid_of_path.get(p.lower()), fl, o)
+                     for fc, f, p, fl, o in xref_rows])
+    n_xrefs = len(xref_rows)
+    n_xrefs_resolved = sum(1 for r in xref_rows if r[2].lower() in fid_of_path)
+
     con.executescript(INDEXES)
 
     # Index what a person searches by; the structured fields are already columns. Two
@@ -536,6 +597,7 @@ def build(db_path, stripped=False, verbose=True):
         print("items    {:>10,}".format(n_items))
         print("chunks   {:>10,}".format(n_chunks))
         print("widgets  {:>10,}".format(n_widgets))
+        print("xrefs    {:>10,}  ({:,} resolve to an archive file)".format(n_xrefs, n_xrefs_resolved))
         print("db       {:>10.1f} MB  {}".format(os.path.getsize(db_path) / 1048576, db_path))
         print("restore round trip against shipped records: {} failures".format(roundtrip_fails))
 

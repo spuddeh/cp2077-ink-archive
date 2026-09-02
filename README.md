@@ -134,6 +134,7 @@ Tables:
 | `files` | resource | `path`, `kind`, `source`, `data` (the whole root record) |
 | `chunks` | chunk | `class`, `name`, `data` (the whole chunk) |
 | `refs` | reference | `from_cid` (0 = the file root), `to_cid`, `field` - the full graph, minus the engine's null handles |
+| `xrefs` | resource path | `from_cid`, `to_path`, `to_fid` (NULL when the path is not an ink resource), `field` - every path a record names, so the graph crosses files in both directions |
 | `items` | widget library item | `name`, `controller`, `root_widget_cid` |
 | `widgets` | chunk with a layout | anchor, margins, size, text, `loc_text`/`lockey`, atlas part, resolved `style`, `state`... as columns |
 | `widget_tree` | parent-child pair | the children hop, resolved through `inkMultiChildren` |
@@ -173,7 +174,9 @@ SELECT prop, value FROM defaults WHERE class = 'inkTextWidget';
 
 `site/` is a static page that queries the database in the browser: full-text search,
 SQL with saved queries, a file and chunk browser with reference links, the layer map,
-and a wireframe preview of any widget file's layout at its authored resolution. It uses
+a wireframe preview of any widget file's layout at its authored resolution, and a tree
+that opens any file or chunk one node at a time - widget children, every other handle by
+field, every resource path - and follows resolved paths into other files and back. It uses
 [sql.js-httpvfs](https://github.com/phiresky/sql.js-httpvfs) (vendored, Apache-2.0) to
 read the database over HTTP range requests, so a query downloads kilobytes, not the
 database.
