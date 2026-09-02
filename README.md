@@ -5,9 +5,8 @@ in-world screen and loading spinner, plus the animations, atlases, styles, fonts
 definitions, credits screens and character-customization data they reference - extracted
 whole and written as JSONL plus a SQLite database.
 
-Built as a reference for anyone doing anything with ink: modding the UI, learning how the
-system fits together, or checking what the game actually ships. It is a dump of what is
-in the archives, not a curated view of it.
+A reference for anyone doing anything with ink: modding the UI, learning how the system
+fits together, or checking what the game ships.
 
 | Kind | Files | Chunks | What it is |
 | --- | --- | --- | --- |
@@ -24,81 +23,79 @@ in the archives, not a curated view of it.
 | `inklayers`, `inktypography`, `inkmenu`, `inkfullscreencomposition`, `inkenginesettings`, `inkgamesettings` | 8 | - | Layer definitions, type scale, menu and settings resources |
 
 3,915 resources, 1,081,184 chunks, 1,101 distinct classes. Base game and Phantom
-Liberty, game version 2.31. `source` records the path namespace (`base\` or `ep1\`);
-one path (`yaiba_showroom_website.inkwidget`) is provided by both a base and an EP1
-archive with identical sizes, and the dump carries the copy the game resolves to.
+Liberty, game version 2.31. `source` records the path namespace (`base\` or `ep1\`).
+One path, `yaiba_showroom_website.inkwidget`, is provided by both a base and an EP1
+archive; the two copies parse identically, and the dump carries the one the game
+resolves to.
 
 **The extension list comes from the engine's class-to-extension registry** (WolvenKit's
-`FileTypeHelper` mirrors it), not from a name pattern: three ink-family classes ship
-behind extensions that do not say "ink" - `credits`, `ccstate` and `charcustpreset` -
-and a substring filter misses all three.
+`FileTypeHelper` mirrors it). Three ink-family classes ship behind extensions that do
+not say "ink": `credits` (`inkCreditsResource`), `ccstate` and `charcustpreset` (the
+character creator presets). `inkWidgetBrushResource` has no registered extension at all
+and is covered by the hash sweep below.
 
 **Files whose path hash never resolved are swept too.** 174 of the game's 583,798
-archive entries have no known path and no usable extension; the generator opens each by
-its bare hash and reads the root class. Two are ink resources - an animation library
+archive entries have no known path; the generator opens each by its bare hash and reads
+the root class. Two are ink resources - an animation library
 (`840968453105948297.inkanim`) and a widget library (`10823073814826382310.inkwidget`),
 both in `basegame_4_gamedata`, referenced by nothing - and both are in the dump, named
 by their hash and marked `unresolvedPath`.
 
-## Complete means complete
+## The encoding
 
-No field is chosen and no field is skipped, at any level. The raw WolvenKit JSON of this
-set is about 2.6 GB; the archive is a tenth of that because of three reversible
-transformations, not because anything was left out:
+Every field of every chunk is kept, at every level. The raw WolvenKit JSON of this set
+is about 2.6 GB; the archive is a tenth of that through three reversible
+transformations:
 
 1. **The graph stays a graph.** A resource references the same chunk from many places.
    Each chunk is stored once and references become `{"$ref": "scope:id"}`. Handle
    numbering restarts inside every embedded buffer, so ids are scoped (`b3:12`). The
-   marker keys `$ref`, `$t`, `$s`, `$v` occur nowhere in the original data - checked
-   across every file - so they are unambiguous.
+   marker keys `$ref`, `$t`, `$s`, `$v` occur nowhere in the original data, so they are
+   unambiguous.
 2. **Scalar wrappers become values, described once.** WolvenKit writes every scalar as
-   `{$type, $storage, $value}`. The value is stored bare and the type/storage recorded per
-   (class, field) in `ink_schema.json`. The 39 fields whose type or storage varies between
-   occurrences - a `ResourcePath` is a string most of the time and a `uint64` hash
-   otherwise, and the difference matters - carry their tag inline as `{$t, $s, $v}`.
-3. **Class defaults are factored out.** A field equal to its class default is omitted and
-   the default recorded in `ink_defaults.json`. A default is only recorded for fields
-   present on every instance of the class, so restoring can never invent a field.
+   `{$type, $storage, $value}`. The value is stored bare and the type and storage
+   recorded per (class, field) in `ink_schema.json`. The 39 fields whose type or storage
+   varies between occurrences carry their tag inline as `{$t, $s, $v}` - a
+   `ResourcePath` is a string most of the time and a `uint64` hash otherwise.
+3. **Class defaults are factored out.** A field equal to its class default is omitted
+   and the default recorded in `ink_defaults.json`. A default is only recorded for
+   fields present on every instance of the class, so restoring can never invent a field.
 
-Every transformation is verified during generation, per resource, not assumed:
+Each transformation is verified during generation, per resource:
 
-- **Leaf check** - every typed leaf value of the original survives, with its type,
-  storage and JSON type, as a multiset comparison. 3,915 of 3,915 pass.
+- **Leaf check** - every leaf value of the original survives, with its type, storage
+  and JSON type, as a multiset comparison. 3,915 of 3,915 pass.
 - **Structural check** - the original and the encoding are compared position by
   position: 3,913 by full expansion, and the two perk screens - whose shared subtrees
-  make expansion explode past 300 million tokens - by an iterative graph hash (node
-  content hashed with references as placeholders, then 64 rounds of folding each node's
-  referenced hashes in, in reference order, on the same scope labels the encoder
-  assigns). 0 mismatches.
+  make expansion exceed 300 million tokens - by an iterative graph hash on the same
+  scope labels the encoder assigns. 0 mismatches.
 - **Default round trip** - stripping then restoring defaults reproduces the encoding
-  byte for byte on all 3,915, and `build.py` re-proves its own independent restore
-  against the shipped records on every build.
+  byte for byte on all 3,915, and `build.py` checks its own restore against the shipped
+  records on every build.
 - **Standing asserts** - every reference resolves to a chunk (the engine's null handle
   `-1` is the counted exception), every root record is a typed object, and the parts of
   the document outside `RootChunk` still match the constants they are elided as.
 
-Two facts the verification surfaced are kept deliberately rather than "fixed":
+Two duplications stay in the data:
 
 - A library item's buffer appears as both `package` (a CR2W re-wrap) and `packageData`
-  (the RedPackage the file actually stores). They are not copies - the CR2W view nulls
-  out every widget's `backendData` while the RedPackage view carries the full editor
-  state - so both stay.
-- 185 referenced ink paths do not exist in any archive (`kampf_test.inkatlas`,
-  `1.inkatlas`, ...). They are dead references in the shipped data - editor leftovers
-  and cut content - and they are preserved as exactly that.
+  (the RedPackage the file stores). They are not copies: the CR2W view nulls out every
+  widget's `backendData` while the RedPackage view carries the full editor state.
+- 185 referenced ink paths exist in no archive (`kampf_test.inkatlas`, `1.inkatlas`,
+  ...). They are dead references in the shipped data - editor leftovers and cut
+  content - and they are preserved as exactly that.
 
 ## The fidelity boundary
 
-The dump equals WolvenKit 8.20's parse of the archives, verified exactly against that parse. What that
-parse itself does not surface, no downstream check can recover, so the boundary is
-stated rather than glossed:
+The dump equals WolvenKit 8.20's parse of the archives, verified exactly against that
+parse. What that parse itself does not surface, no downstream check can recover:
 
 - Every number in the corpus survives `JSON.parse` exactly - all 17.7 million number
-  tokens were scanned against the 2^53 integer limit, zero exceed it. One value class is
-  flattened: a single negative-zero float in the whole corpus round-trips as `0`.
+  tokens are within the 2^53 exact-integer range. One value class is flattened: a
+  single negative-zero float in the whole corpus round-trips as `0`.
 - WolvenKit substitutes a class default when a property's bytes fail to read, and maps
-  an enum value its RTTI does not know to the enum's default, in both cases logging
-  rather than failing. The dump inherits any such substitution silently.
+  an enum value its RTTI does not know to the enum's default, logging rather than
+  failing in both cases. The dump inherits any such substitution silently.
 - CR2W container metadata - header timestamp, per-export flags, table layout - is not
   part of WolvenKit's JSON, and chunks unreachable from the root graph or buffers
   referenced by no chunk are dropped by its reader. None of that is widget data, but it
@@ -107,10 +104,16 @@ stated rather than glossed:
   (`Version` 195, `BuildVersion` 0, `EmbeddedFiles` empty) and are therefore not
   stored; the generator warns if a future game patch changes that.
 
-Binary assets the ink system points at are out of scope by design: the `.xbm` textures
-behind the atlases, the `.fnt` font files, the `.bk2` videos, and the redscript /
-native code behind every controller class name. UI strings resolve through LocKeys - the
-[journal archive](https://github.com/spuddeh/cp2077-journal-archive) covers the text side.
+Adjacent systems are not included here:
+
+- Binary assets: the `.xbm` textures behind the atlases, the `.fnt` font files, the
+  `.bk2` videos.
+- Code: the redscript and native classes behind every controller name.
+- TweakDB: the `UIIcon` and widget-definition records that route icons and HUD presets.
+- World placement: which `.ent`, `.app` or `.streamingsector` displays a given widget
+  library in the world.
+- Localization: UI strings resolve through LocKeys against the game's localization
+  files. The LocKey identifiers themselves are in the dump and in the search index.
 
 ## Using it
 
@@ -130,16 +133,17 @@ Tables:
 | --- | --- | --- |
 | `files` | resource | `path`, `kind`, `source`, `data` (the whole root record) |
 | `chunks` | chunk | `class`, `name`, `data` (the whole chunk) |
-| `refs` | reference | `from_cid` (0 = the file root), `to_cid`, `field` - the full graph |
+| `refs` | reference | `from_cid` (0 = the file root), `to_cid`, `field` - the full graph, minus the engine's null handles |
 | `items` | widget library item | `name`, `controller`, `root_widget_cid` |
 | `widgets` | chunk with a layout | anchor, margins, size, text, `loc_text`/`lockey`, atlas part, resolved `style`, `state`... as columns |
 | `widget_tree` | parent-child pair | the children hop, resolved through `inkMultiChildren` |
 | `defaults`, `schema`, `classes` | class / field | what the compact encoding factored out |
-| `search` | chunk AND file | FTS5 over name, class, path, on-screen text and the root record's part/property names |
+| `search` | chunk AND file | FTS5 over name, class, path, on-screen text, LocKeys, and the root record's part, property, option and credits names |
 
 `chunks_v`, `widgets_v` and `items_v` are the same tables with the file path joined on.
 `search` rows with `cid < 0` are per-file rows (`cid = -fid`), which is what makes a
-chunk-less resource - every atlas and style sheet - findable by path and part name.
+chunk-less resource - every atlas and style sheet - findable by path, part name and
+LocKey.
 
 ```sql
 -- which file to edit for a given controller
@@ -149,8 +153,9 @@ SELECT path FROM items_v WHERE controller = 'FastTravelGameController';
 SELECT path, name, size_x, size_y FROM widgets_v
  WHERE anchor = 'TopLeft' AND size_x > 1920 AND fit = 0 ORDER BY size_x DESC;
 
--- find on-screen text or an atlas part, land on the file that draws it
+-- find on-screen text, an atlas part or a LocKey, land on the file that uses it
 SELECT path, name FROM search WHERE search MATCH 'fast_travel' LIMIT 20;
+SELECT path, name FROM search WHERE search MATCH '"LocKey#49376"';
 
 -- which widgets bind a localization key
 SELECT path, name, lockey FROM widgets_v WHERE lockey IS NOT NULL LIMIT 20;
@@ -182,3 +187,7 @@ structure and values of the UI resources, and the scripts that extract and query
 which are the only part that is this repository's own work.
 
 This is an unofficial fan work and is not approved/endorsed by CD PROJEKT RED.
+
+This archive was built with the assistance of an LLM. Every count in this README was
+run against the data rather than estimated. No rogue AIs were permitted through the
+Blackwall.

@@ -3,9 +3,8 @@
 // Run it from WolvenKit's script manager against a game install. Output lands in the
 // script raw folder; copy the ink_*.json / ink_*.jsonl files into this repo's raw/.
 //
-// COMPLETE, NOT CURATED. No field is chosen and no field is skipped, at any level. The
-// whole RootChunk of every resource is encoded, so a field nobody has thought about yet
-// is in the archive anyway. Three reversible transformations are applied, and only three:
+// No field is chosen and no field is skipped, at any level: the whole RootChunk of
+// every resource is encoded. Three reversible transformations are applied:
 //
 //   1. A resource is a GRAPH. The same chunk is referenced from several places, written
 //      inline once as {HandleId, Data} and as {HandleRefId} thereafter. Each chunk is
@@ -16,29 +15,32 @@
 //   2. A scalar is written as {$type, $storage, $value}. It is emitted as the bare value
 //      and its type and storage are recorded once per (class, field) in the schema table.
 //      A field whose type or storage VARIES between occurrences is tagged inline instead,
-//      because a schema entry cannot describe it. That case is real: a ResourcePath is
-//      stored as a string most of the time and as a uint64 hash otherwise, and losing the
-//      difference would turn a hash into a path.
+//      because a schema entry cannot describe it: a ResourcePath is stored as a string
+//      most of the time and as a uint64 hash otherwise, and dropping the difference
+//      would turn a hash into a path.
 //
 //   3. A field equal to its class default is omitted, and the defaults table ships
 //      alongside. build.py restores them.
 //
-// Every one of those is verified rather than asserted: after encoding, each resource's
-// leaf values are compared against the original's, and any difference is reported.
+// Each transformation is verified during generation: every resource's leaf values are
+// compared against the original's, the structure is compared position by position, and
+// the default strip/restore is round-tripped. Any difference is reported.
 
 const SHARD_BYTES = 40 * 1024 * 1024;   // keep every committed file well under 100 MB
 
 // Every extension whose resource class belongs to the ink system. The authority is the
-// engine's class-to-extension registry (WolvenKit FileTypeHelper mirrors it): the 14
-// ink* extensions map to the 14 ink*/inkanim*/gameui customization resource classes,
-// and three more ink-family classes hide behind extensions that do not say "ink" -
-// credits (inkCreditsResource), ccstate (gameuiCharacterCustomizationPreset) and
-// charcustpreset (gameuiCharacterCustomizationUiPreset). An extension-substring filter
-// alone misses those three. Adding a type here is all that is needed to take it in;
-// nothing below is written per type.
+// engine's class-to-extension registry (WolvenKit FileTypeHelper mirrors it): the ink*
+// extensions map to the ink*/inkanim*/gameui customization resource classes, and three
+// more ink-family classes sit behind extensions that do not say "ink" - credits
+// (inkCreditsResource), ccstate (gameuiCharacterCustomizationPreset) and charcustpreset
+// (gameuiCharacterCustomizationUiPreset). Adding a type here is all that is needed to
+// take it in; nothing below is written per type.
+// inkWidgetBrushResource is the one ink-family resource class with no extension in the
+// registry; it can only exist as an unresolved-hash entry, and the hash sweep below
+// classifies every one of those, so it is covered without a row here.
 const EXTENSIONS = [
     'inkwidget', 'inkanim', 'inkatlas', 'inkstyle', 'inklayers', 'inkfontfamily',
-    'inkshapecollection', 'inktypography', 'inkcharcustomization', 'inkmenuitemsdatabase',
+    'inkshapecollection', 'inktypography', 'inkcharcustomization',
     'inkhud', 'inkfullscreencomposition', 'inkmenu', 'inkenginesettings', 'inkgamesettings',
     'credits', 'ccstate', 'charcustpreset'
 ];
@@ -552,6 +554,7 @@ const ROOT_CLASS_TO_EXT = {
     inkEngineSettingsResource: 'inkenginesettings',
     inkGameSettingsResource: 'inkgamesettings',
     inkCreditsResource: 'credits',
+    inkWidgetBrushResource: 'inkbrush',
     gameuiCharacterCustomizationPreset: 'ccstate',
     gameuiCharacterCustomizationUiPreset: 'charcustpreset',
 };

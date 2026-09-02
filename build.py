@@ -16,6 +16,7 @@ Standard library only. Python 3.9 or newer.
 import argparse
 import json
 import os
+import re
 import sqlite3
 import sys
 
@@ -197,11 +198,12 @@ def iter_refs(node, field="", out=None):
                 iter_refs(v, field, out)
     elif isinstance(node, dict):
         for k, v in node.items():
+            fname = field if k in ("$v", "$value") else k
             r = ref_of(v)
             if r is not None:
-                out.append((r, k, 0))
+                out.append((r, fname, 0))
             else:
-                iter_refs(v, k, out)
+                iter_refs(v, fname, out)
     return out
 
 
@@ -222,6 +224,10 @@ def depot(v):
         p = v.get("DepotPath")
         if isinstance(p, dict):
             p = p.get("$v", p.get("$value"))
+        # A hash-stored null path is the string "0"; a non-zero decimal string is a real
+        # reference whose path is unknown, and stays.
+        if p == "0":
+            return None
         return p if isinstance(p, str) else None
     return v if isinstance(v, str) else None
 
@@ -281,7 +287,13 @@ def widget_row(cid, chunk, fid, resolve):
     )
 
 
-NAME_KEYS = {"partName", "name", "propertyPath", "styleName", "fontStyle", "state"}
+NAME_KEYS = {
+    "partName", "name", "propertyPath", "styleName", "fontStyle", "state",
+    "sectionTitle", "referencedPath", "styleID", "hudEntryName", "slotID", "stateName",
+    "optionName", "newOptionName", "newDefinitionName", "curDefintionName", "definition",
+    "regionName", "targetName",
+}
+LOCKEY_RE = re.compile(r"LocKey#\d+")
 
 
 def harvest_names(node, out=None, depth=0):
@@ -354,6 +366,7 @@ def build(db_path, stripped=False, verbose=True):
     fid = 0
     n_files = n_chunks = n_widgets = n_items = 0
     roundtrip_fails = 0
+    loc_rows = []
 
     for shard in shards:
         with open(os.path.join(RAW, shard), encoding="utf-8") as fh:
@@ -382,12 +395,16 @@ def build(db_path, stripped=False, verbose=True):
                     my = local[chunk_id]
                     nm = chunk.get("name") if isinstance(chunk, dict) else None
                     stored = raw_chunks[chunk_id] if stripped else chunk
+                    data_str = json.dumps(stored, separators=(",", ":"))
                     chunk_rows.append((
                         my, fid, chunk_id,
                         chunk.get("$type", "") if isinstance(chunk, dict) else "",
                         nm if isinstance(nm, str) else None,
-                        json.dumps(stored, separators=(",", ":")),
+                        data_str,
                     ))
+                    lk = LOCKEY_RE.findall(data_str)
+                    if lk:
+                        loc_rows.append((my, " ".join(sorted(set(lk)))))
                     for target, field, ord_ in iter_refs(chunk):
                         if target in local:
                             ref_rows.append((my, fid, local[target], field, ord_))
@@ -477,20 +494,30 @@ def build(db_path, stripped=False, verbose=True):
     # resource whose whole content is the root record - every atlas and style sheet -
     # has no chunk rows and would otherwise be unfindable even by path.
     con.executescript("""
+        CREATE TEMP TABLE loc_extra (cid INTEGER PRIMARY KEY, txt TEXT NOT NULL);
+    """)
+    con.executemany("INSERT INTO loc_extra VALUES (?,?)", loc_rows)
+    con.executescript("""
         CREATE VIRTUAL TABLE search USING fts5(
             cid UNINDEXED, name, class, path, text, tokenize="unicode61"
         );
         INSERT INTO search(cid, name, class, path, text)
             SELECT c.cid, coalesce(c.name,''), c.class, f.path,
                    trim(coalesce(w.text,'') || ' ' || coalesce(w.loc_text,'') || ' ' ||
-                        coalesce(w.text_id,''))
-            FROM chunks c JOIN files f USING (fid) LEFT JOIN widgets w ON w.cid = c.cid;
+                        coalesce(w.text_id,'') || ' ' || coalesce(le.txt,''))
+            FROM chunks c JOIN files f USING (fid)
+            LEFT JOIN widgets w ON w.cid = c.cid
+            LEFT JOIN loc_extra le ON le.cid = c.cid;
+        DROP TABLE loc_extra;
     """)
     for fid_, path_, class_, data_ in con.execute(
             "SELECT fid, path, class, data FROM files").fetchall():
+        text = harvest_names(json.loads(data_))
+        lk = LOCKEY_RE.findall(data_)
+        if lk:
+            text = (text + " " + " ".join(sorted(set(lk)))).strip()
         con.execute("INSERT INTO search(cid, name, class, path, text) VALUES (?,?,?,?,?)",
-                    (-fid_, os.path.basename(path_), class_ or "", path_,
-                     harvest_names(json.loads(data_))))
+                    (-fid_, os.path.basename(path_), class_ or "", path_, text))
     con.execute("INSERT INTO search(search) VALUES('optimize')")
     con.commit()
     con.execute("VACUUM")
