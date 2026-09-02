@@ -136,6 +136,7 @@ Tables:
 | `refs` | reference | `from_cid` (0 = the file root), `to_cid`, `field` - the full graph, minus the engine's null handles |
 | `xrefs` | resource path | `from_cid`, `to_path`, `to_fid` (NULL when the path is not an ink resource), `field` - every path a record names, so the graph crosses files in both directions |
 | `items` | widget library item | `name`, `controller`, `root_widget_cid` |
+| `dirs` | folder or file | `parent`, `name`, `fid` (NULL for a folder), `files` - the archive as a folder listing, one level per query |
 | `widgets` | chunk with a layout | anchor, margins, size, text, `loc_text`/`lockey`, atlas part, resolved `style`, `state`... as columns |
 | `widget_tree` | parent-child pair | the children hop, resolved through `inkMultiChildren` |
 | `defaults`, `schema`, `classes` | class / field | what the compact encoding factored out |
@@ -183,7 +184,7 @@ database.
 
 ```bash
 python build.py --db data/ink_web.db --stripped
-python scripts/split_db.py data/ink_web.db site/data   # 50 MB parts + config.json
+python scripts/split_db.py data/ink_web.db site/data   # 50 MB parts in a content-hashed folder + config.json
 python scripts/serve.py                                # http://127.0.0.1:8787
 ```
 
