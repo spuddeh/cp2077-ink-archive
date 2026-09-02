@@ -44,8 +44,10 @@
   <section id="tab-sql" class="tab">
     <div class="bar">
       <select id="preset-select"></select>
-      <input id="preset-p0" type="search" hidden autocomplete="off">
-      <input id="preset-p1" type="search" hidden autocomplete="off">
+      <input id="preset-p0" type="search" hidden autocomplete="off" list="dl-p0">
+      <input id="preset-p1" type="search" hidden autocomplete="off" list="dl-p1">
+      <datalist id="dl-p0"></datalist>
+      <datalist id="dl-p1"></datalist>
       <button id="preset-run">Insert &amp; run</button>
     </div>
     <div class="sql-wrap">
@@ -85,6 +87,7 @@
     flex) is not reproduced here, so treat boxes that depend on it as approximate;
     fixed-size anchored widgets are exact.</p>
     <div id="preview-suggest" class="results"></div>
+    <p class="dim small">Scroll to zoom, drag to pan, double-click to reset. A click selects the smallest box under the cursor; click the same spot again for the box behind it.</p>
     <div id="preview-canvas-wrap"><div id="preview-canvas"></div></div>
     <div id="preview-info" class="record"></div>
   </section>

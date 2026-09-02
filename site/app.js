@@ -11,6 +11,8 @@ let DB = null;
 let WORKER = null;
 let DEFAULTS = null;
 let currentNav = "search";
+// The records visited since the last tab switch, newest last.
+let TRAIL = [];
 
 /* ------------------------------------------------------------------ boot -- */
 
@@ -120,6 +122,29 @@ function table(rows, cols, cell) {
   return h + "</table>";
 }
 
+function basename(p) {
+  const i = String(p).lastIndexOf("\\");
+  return i < 0 ? String(p) : String(p).slice(i + 1);
+}
+
+function pushTrail(hash, label) {
+  const last = TRAIL[TRAIL.length - 1];
+  if (last && last.hash === hash) return;
+  const seen = TRAIL.findIndex((t) => t.hash === hash);
+  if (seen >= 0) TRAIL.length = seen + 1;
+  else TRAIL.push({ hash: hash, label: label });
+  if (TRAIL.length > 10) TRAIL.shift();
+}
+
+function trailHtml() {
+  if (TRAIL.length < 2) return "";
+  return '<div class="trail">' + TRAIL.map((t, i) =>
+    i === TRAIL.length - 1
+      ? '<span class="here">' + esc(t.label) + "</span>"
+      : '<a href="' + t.hash + '">' + esc(t.label) + "</a>"
+  ).join('<span class="sep">&rsaquo;</span>') + "</div>";
+}
+
 function fileLink(fid, path) {
   return '<a href="#file/' + fid + '">' + esc(path) + "</a>";
 }
@@ -227,7 +252,7 @@ const PRESETS = [
   { label: "Class census - what exists, by count",
     sql: "SELECT class, count FROM classes ORDER BY count DESC LIMIT 40" },
   { label: "Which file has this controller",
-    params: ["controller class, e.g. FastTravelGameController"],
+    params: ["controller class, e.g. FastTravelGameController"], suggest: ["controller"],
     sql: "SELECT path FROM items_v WHERE controller = {0}" },
   { label: "Find widgets by exact name",
     params: ["widget name, e.g. fast_travel_grid"],
@@ -239,21 +264,44 @@ const PRESETS = [
     params: ["LocKey#12345"],
     sql: "SELECT cid, name, path FROM widgets_v WHERE lockey = {0}" },
   { label: "Which widgets use this atlas",
-    params: ["atlas path, e.g. base\\gameplay\\gui\\common\\icons\\atlas_common.inkatlas"],
+    params: ["atlas path - start typing to pick one"], suggest: ["atlas"],
     sql: "SELECT name, part, path FROM widgets_v WHERE atlas = {0} LIMIT 200" },
   { label: "Fields a class can carry",
-    params: ["class, e.g. inkTextWidget"],
+    params: ["class, e.g. inkTextWidget"], suggest: ["class"],
     sql: "SELECT prop, type, storage, varies FROM schema WHERE class = {0} ORDER BY prop" },
   { label: "Engine defaults of a class",
-    params: ["class, e.g. inkTextWidget"],
+    params: ["class, e.g. inkTextWidget"], suggest: ["class"],
     sql: "SELECT prop, value FROM defaults WHERE class = {0} ORDER BY prop" },
   { label: "All files of a kind",
-    params: ["kind, e.g. inkstyle"],
+    params: ["kind, e.g. inkstyle"], suggest: ["kind"],
     sql: "SELECT path, chunk_count FROM files WHERE kind = {0} ORDER BY path LIMIT 300" },
   { label: "Children of a widget, by cid",
     params: ["parent cid"], numeric: [0],
     sql: "SELECT c.cid, c.name, c.class FROM widget_tree t JOIN widgets c ON c.cid = t.child_cid WHERE t.parent_cid = {0} ORDER BY t.ord" },
 ];
+
+// Values the archive itself can suggest for a fill-in slot, fetched once and
+// cached. Every query reads an index only.
+const SUGGEST_SQL = {
+  controller: "SELECT DISTINCT controller AS v FROM items WHERE controller IS NOT NULL ORDER BY 1",
+  class: "SELECT class AS v FROM classes ORDER BY count DESC",
+  widgetclass: "SELECT class AS v FROM classes WHERE class LIKE 'ink%Widget' ORDER BY count DESC",
+  kind: "SELECT DISTINCT kind AS v FROM files ORDER BY 1",
+  atlas: "SELECT DISTINCT atlas AS v FROM widgets WHERE atlas IS NOT NULL ORDER BY 1",
+};
+const suggestCache = {};
+
+async function fillDatalist(slot, type) {
+  const dl = $("dl-p" + slot);
+  if (!type || !SUGGEST_SQL[type]) { dl.innerHTML = ""; return; }
+  if (!suggestCache[type]) {
+    try {
+      suggestCache[type] = (await q(SUGGEST_SQL[type])).map((r) => r.v);
+    } catch (e) { suggestCache[type] = []; }
+  }
+  dl.innerHTML = suggestCache[type].slice(0, 500).map((v) =>
+    '<option value="' + esc(v) + '"></option>').join("");
+}
 
 function initPresets() {
   $("preset-select").innerHTML = PRESETS.map((p, i) =>
@@ -268,7 +316,10 @@ function presetChanged() {
     const has = p.params && p.params.length > i;
     el.hidden = !has;
     el.value = "";
-    if (has) el.placeholder = p.params[i];
+    if (has) {
+      el.placeholder = p.params[i];
+      fillDatalist(i, (p.suggest || [])[i]);
+    }
   }
 }
 
@@ -315,11 +366,13 @@ async function runSql() {
     status.textContent = rows.length + " rows · " + ms + " ms";
     if (!rows.length) { out.innerHTML = '<p class="dim">no rows</p>'; return; }
     const cols = Object.keys(rows[0]);
+    const isPath = (s) => typeof s === "string" && /^(base|ep1|engine)[\\/].+\.[a-z0-9]+$/i.test(s);
     out.innerHTML = table(rows.slice(0, 500), cols, (r, c) => {
       const v = r[c];
       if (v === null) return '<span class="dim">NULL</span>';
-      if (c === "cid" && Number.isInteger(v) && v > 0) return chunkLink(v, v);
+      if (c.endsWith("cid") && Number.isInteger(v) && v > 0) return chunkLink(v, v);
       if (c === "fid" && Number.isInteger(v)) return '<a href="#file/' + v + '">' + v + "</a>";
+      if (isPath(v)) return '<span class="link pathlink" data-path="' + esc(v) + '">' + esc(v) + "</span>";
       const s = String(v);
       return esc(s.length > 400 ? s.slice(0, 400) + "…" : s);
     });
@@ -342,7 +395,9 @@ async function viewFile(fid) {
   const items = await q(
     "SELECT name, root_widget_cid, controller_cid, controller FROM items WHERE fid=? ORDER BY name", fid);
   const root = restore(JSON.parse(f.data));
+  pushTrail("#file/" + fid, basename(f.path));
   let h = '<div class="record">';
+  h += trailHtml();
   h += '<div class="crumbs"><span class="cls">' + esc(f.class || f.kind) + "</span> · " +
     esc(f.path) + " · " + esc(f.source) + " · " + f.chunk_count + " chunks";
   if (f.kind === "inkwidget") h += ' · <a href="#preview/' + fid + '">preview layout</a>';
@@ -370,11 +425,28 @@ async function viewChunk(cid) {
   const inbound = await q(
     "SELECT r.from_cid, c2.class, c2.name FROM refs r LEFT JOIN chunks c2 ON c2.cid = r.from_cid " +
     "WHERE r.to_cid=? LIMIT 25", cid);
+  // For a widget chunk, the path from its item root down to it - the tree the
+  // engine walks, as links.
+  const chain = await q(
+    "WITH RECURSIVE up(cid, depth) AS (" +
+    "  SELECT ?, 0 UNION ALL " +
+    "  SELECT t.parent_cid, up.depth + 1 FROM widget_tree t JOIN up ON t.child_cid = up.cid WHERE up.depth < 40) " +
+    "SELECT w.cid, w.name, w.class FROM up JOIN widgets w ON w.cid = up.cid ORDER BY up.depth DESC", cid);
   const data = restore(JSON.parse(c.data));
+  pushTrail("#chunk/" + cid,
+    (c.name || c.class || "chunk") + " [" + c.chunk_id + "]");
   let h = '<div class="record">';
+  h += trailHtml();
   h += '<div class="crumbs">' + fileLink(c.fid, c.path) + " · chunk <b>" + esc(c.chunk_id) +
     '</b> · <span class="cls">' + esc(c.class) + "</span>" +
     (c.name ? " · " + esc(c.name) : "") + "</div>";
+  if (chain.length > 1) {
+    h += '<div class="chain">widget tree: ' + chain.map((n, i) =>
+      i === chain.length - 1
+        ? '<span class="here">' + esc(n.name || n.class) + "</span>"
+        : chunkLink(n.cid, n.name || n.class)
+    ).join('<span class="sep">&rsaquo;</span>') + "</div>";
+  }
   if (inbound.length) {
     h += '<p class="dim small">referenced by: ' + inbound.map((r) =>
       r.from_cid === 0 ? "file root"
@@ -507,6 +579,38 @@ async function loadPreviewFile(fid) {
   renderPreview();
 }
 
+// The view over the canvas: scale plus translation, wheel-zoomed around the
+// cursor, dragged to pan, double-click back to the whole-file fit.
+let pvView = null;
+
+function pvApply() {
+  $("preview-canvas").style.transform =
+    "translate(" + pvView.tx + "px," + pvView.ty + "px) scale(" + pvView.scale + ")";
+}
+
+function pvFit() {
+  const wrap = $("preview-canvas-wrap");
+  const s = Math.max(0.01, (wrap.clientWidth - 2) / PV.W);
+  wrap.style.height = Math.ceil(PV.H * s + 2) + "px";
+  pvView = { scale: s, tx: 0, ty: 0, fit: s };
+  pvApply();
+}
+
+let pvPickLast = { x: -1, y: -1, cid: 0 };
+function pvPickAt(clientX, clientY) {
+  const boxes = document.elementsFromPoint(clientX, clientY)
+    .filter((el) => el.classList && el.classList.contains("pv-box"))
+    .sort((a, b) => a.offsetWidth * a.offsetHeight - b.offsetWidth * b.offsetHeight);
+  if (!boxes.length) return;
+  let pick = boxes[0];
+  if (pvPickLast.x === clientX && pvPickLast.y === clientY) {
+    const i = boxes.findIndex((el) => +el.dataset.cid === pvPickLast.cid);
+    if (i >= 0) pick = boxes[(i + 1) % boxes.length];
+  }
+  pvPickLast = { x: clientX, y: clientY, cid: +pick.dataset.cid };
+  previewSelect(pick.dataset.cid);
+}
+
 function renderPreview() {
   if (!PV || !PV.items.length) {
     $("preview-canvas").innerHTML = "";
@@ -598,10 +702,7 @@ function renderPreview() {
   const place2 = place;
   place(item.root_widget_cid, 0, 0, W, H, 0);
 
-  const wrap = $("preview-canvas-wrap");
-  const scale = Math.min(1, (wrap.clientWidth - 2) / W);
-  canvas.style.transform = "scale(" + scale + ")";
-  wrap.style.height = Math.ceil(H * scale + 2) + "px";
+  pvFit();
   $("preview-info").innerHTML =
     '<p class="dim small">' + count + " boxes · authored at " + W + "×" + H +
     " (" + esc(PV.res) + ") · " + esc(PV.path) + " · click a box for details</p>";
@@ -630,6 +731,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   for (const b of document.querySelectorAll("#tabs button")) {
     b.addEventListener("click", () => {
+      TRAIL = [];
       location.hash = "#" + b.dataset.tab + (b.dataset.tab === "search" ? "" : "");
       if (b.dataset.tab === "search") { showTab("search"); }
       route();
@@ -680,7 +782,42 @@ document.addEventListener("DOMContentLoaded", () => {
     if (pl) { openPath(pl.dataset.path); return; }
     const pick = e.target.closest(".pv-pick");
     if (pick) { location.hash = "#preview/" + pick.dataset.fid; return; }
-    const box = e.target.closest(".pv-box");
-    if (box) { previewSelect(box.dataset.cid); return; }
   });
+
+  const wrap = $("preview-canvas-wrap");
+  wrap.addEventListener("wheel", (e) => {
+    if (!pvView) return;
+    e.preventDefault();
+    const rect = wrap.getBoundingClientRect();
+    const px = e.clientX - rect.left, py = e.clientY - rect.top;
+    const f = Math.exp(-e.deltaY * 0.0015);
+    const s = Math.min(4, Math.max(pvView.fit * 0.5, pvView.scale * f));
+    const applied = s / pvView.scale;
+    pvView.tx = px - (px - pvView.tx) * applied;
+    pvView.ty = py - (py - pvView.ty) * applied;
+    pvView.scale = s;
+    pvApply();
+  }, { passive: false });
+  let drag = null;
+  wrap.addEventListener("mousedown", (e) => {
+    if (!pvView) return;
+    drag = { x: e.clientX, y: e.clientY, tx: pvView.tx, ty: pvView.ty, moved: false };
+  });
+  window.addEventListener("mousemove", (e) => {
+    if (!drag) return;
+    const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if (Math.abs(dx) + Math.abs(dy) > 4) drag.moved = true;
+    if (drag.moved) {
+      pvView.tx = drag.tx + dx;
+      pvView.ty = drag.ty + dy;
+      pvApply();
+    }
+  });
+  window.addEventListener("mouseup", (e) => {
+    if (!drag) return;
+    const wasDrag = drag.moved;
+    drag = null;
+    if (!wasDrag && e.target.closest("#preview-canvas-wrap")) pvPickAt(e.clientX, e.clientY);
+  });
+  wrap.addEventListener("dblclick", () => { if (pvView) pvFit(); });
 });
