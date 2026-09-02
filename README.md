@@ -169,6 +169,24 @@ SELECT prop, type, storage FROM schema WHERE class = 'inkTextWidget';
 SELECT prop, value FROM defaults WHERE class = 'inkTextWidget';
 ```
 
+## The website
+
+`site/` is a static page that queries the database in the browser: full-text search,
+SQL, a file and chunk browser with reference links, the layer map, and a wireframe
+preview of any widget file's authored layout at 16:9, 21:9 and 32:9. It uses
+[sql.js-httpvfs](https://github.com/phiresky/sql.js-httpvfs) (vendored, Apache-2.0) to
+read the database over HTTP range requests, so a query downloads kilobytes, not the
+database.
+
+```bash
+python build.py --db data/ink_web.db --stripped
+python scripts/split_db.py data/ink_web.db site/data   # 50 MB parts + config.json
+python scripts/serve.py                                # http://127.0.0.1:8787
+```
+
+`.github/workflows/pages.yml` does the same on GitHub Actions and deploys `site/` to
+GitHub Pages; the database parts are built there, never committed.
+
 ## Regenerating from the game
 
 `raw/` is the extraction itself and is committed; the databases are derived from it in
@@ -187,6 +205,8 @@ structure and values of the UI resources, and the scripts that extract and query
 which are the only part that is this repository's own work.
 
 This is an unofficial fan work and is not approved/endorsed by CD PROJEKT RED.
+
+The scripts, the website and the database schema are [MIT licensed](LICENSE).
 
 This archive was built with the assistance of an LLM. Every count in this README was
 run against the data rather than estimated. No rogue AIs were permitted through the

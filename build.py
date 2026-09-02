@@ -116,6 +116,8 @@ CREATE TABLE classes (
 """
 
 INDEXES = """
+-- Covering index so kind listings and path browsing never read the wide data column.
+CREATE INDEX idx_files_kind       ON files(kind, path, source, chunk_count);
 CREATE INDEX idx_chunks_class     ON chunks(class);
 CREATE INDEX idx_chunks_fid       ON chunks(fid);
 CREATE INDEX idx_chunks_name      ON chunks(name);

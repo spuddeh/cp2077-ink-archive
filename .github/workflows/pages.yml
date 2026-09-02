@@ -1,0 +1,57 @@
+# Build the website database from the committed JSONL and deploy the site to GitHub
+# Pages. The database is never committed: raw/ is the archive, everything else derives
+# from it here.
+name: pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "raw/**"
+      - "site/**"
+      - "build.py"
+      - "scripts/split_db.py"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build the website database
+        run: |
+          python build.py --db ink_web.db --stripped
+          python scripts/split_db.py ink_web.db site/data
+          rm ink_web.db
+          du -sh site/
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

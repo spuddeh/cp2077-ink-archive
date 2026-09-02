@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cyberpunk 2077 ink archive</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230d0f12'/%3E%3Crect x='2' y='2' width='12' height='12' fill='none' stroke='%23fcee0a' stroke-width='2'/%3E%3C/svg%3E">
+</head>
+<body>
+<header>
+  <h1>CP2077 <span class="accent">ink archive</span></h1>
+  <div id="meta" class="meta">connecting to the database&hellip;</div>
+  <div id="stats" class="stats"></div>
+</header>
+
+<nav id="tabs">
+  <button data-tab="search" class="active">Search</button>
+  <button data-tab="browse">Browse</button>
+  <button data-tab="sql">SQL</button>
+  <button data-tab="layers">Layers</button>
+  <button data-tab="preview">Preview</button>
+  <button data-tab="about">About</button>
+</nav>
+
+<main>
+  <section id="tab-search" class="tab active">
+    <div class="bar">
+      <input id="search-input" type="search"
+             placeholder='widget name, on-screen text, atlas part, class, "LocKey#49376", path&hellip;'
+             autocomplete="off">
+    </div>
+    <div id="search-results" class="results"></div>
+  </section>
+
+  <section id="tab-browse" class="tab">
+    <div class="bar">
+      <select id="browse-kind"></select>
+      <input id="browse-filter" type="search" placeholder="filter by path&hellip;" autocomplete="off">
+    </div>
+    <div id="browse-results" class="results"></div>
+  </section>
+
+  <section id="tab-sql" class="tab">
+    <div class="sql-wrap">
+      <textarea id="sql-input" spellcheck="false" rows="6">SELECT path, name, size_x, size_y FROM widgets_v
+WHERE anchor = 'TopLeft' AND size_x &gt; 1920 AND fit = 0
+ORDER BY size_x DESC LIMIT 50</textarea>
+      <div class="bar">
+        <button id="sql-run">Run (Ctrl+Enter)</button>
+        <span id="sql-status" class="dim"></span>
+      </div>
+    </div>
+    <div id="sql-results" class="results"></div>
+    <details class="hint">
+      <summary>Tables</summary>
+      <p><code>files</code> (fid, path, kind, source, class, data) &middot;
+         <code>chunks</code> (cid, fid, chunk_id, class, name, data) &middot;
+         <code>widgets</code> (layout columns per widget chunk) &middot;
+         <code>widget_tree</code> (parent_cid, child_cid, ord) &middot;
+         <code>refs</code> (from_cid, fid, to_cid, field, ord) &middot;
+         <code>items</code> (fid, name, root_widget_cid, controller) &middot;
+         <code>defaults</code>, <code>schema</code>, <code>classes</code> &middot;
+         <code>search</code> (FTS5) &middot;
+         views <code>files</code>-joined: <code>chunks_v</code>, <code>widgets_v</code>, <code>items_v</code>.
+         SELECT, WITH and EXPLAIN only; a LIMIT is added when missing.</p>
+    </details>
+  </section>
+
+  <section id="tab-layers" class="tab">
+    <div id="layers-content" class="results"></div>
+  </section>
+
+  <section id="tab-preview" class="tab">
+    <div class="bar">
+      <input id="preview-file" type="search" placeholder="find an .inkwidget by path&hellip;" autocomplete="off">
+      <select id="preview-item" hidden></select>
+      <select id="preview-res">
+        <option value="1920x1080">16:9 &middot; 1920&times;1080</option>
+        <option value="2560x1080">21:9 &middot; 2560&times;1080</option>
+        <option value="3440x1440">21:9 &middot; 3440&times;1440</option>
+        <option value="5120x1440">32:9 &middot; 5120&times;1440</option>
+      </select>
+    </div>
+    <p class="dim small">Wireframe of the authored layout values. The engine's layout
+    solver (fit-to-content, text measurement, flex) is not reproduced here, so treat
+    boxes that depend on it as approximate; fixed-size anchored widgets are exact.</p>
+    <div id="preview-suggest" class="results"></div>
+    <div id="preview-canvas-wrap"><div id="preview-canvas"></div></div>
+    <div id="preview-info" class="record"></div>
+  </section>
+
+  <section id="tab-record" class="tab">
+    <div id="record-content"></div>
+  </section>
+
+  <section id="tab-about" class="tab">
+    <div class="prose">
+      <h2>What this is</h2>
+      <p>Every ink (UI) resource in Cyberpunk 2077 - 3,915 files, 1,081,184 chunks -
+      as a queryable database. Widget trees, animations, atlases, styles, fonts, layer
+      definitions, credits and character-customization data, base game and Phantom
+      Liberty, game version 2.31.</p>
+      <p>The page queries a SQLite database over HTTP range requests; only the pages a
+      query touches are downloaded. The archive itself, the extraction scripts and the
+      verification that nothing was lost are in the repository this site is published
+      from.</p>
+      <h2>Whose it is</h2>
+      <p>The data is Cyberpunk 2077's and belongs to CD PROJEKT RED. This is an
+      extraction for modding and research under the
+      <a href="https://www.cdprojektred.com/en/fan-content">CD PROJEKT RED fan content
+      guidelines</a>: non-commercial, structure and values only, no textures, models,
+      audio or code. This is an unofficial fan work and is not approved/endorsed by
+      CD PROJEKT RED.</p>
+    </div>
+  </section>
+</main>
+
+<script src="vendor/sqljs-httpvfs/index.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
