@@ -134,7 +134,7 @@ a:hover, .link:hover { text-decoration: underline; }
 .prose a { color: var(--accent2); }
 
 #preview-canvas-wrap {
-  overflow: auto;
+  overflow: hidden;
   border: 1px solid var(--line);
   background: #08090b;
   margin-top: 8px;

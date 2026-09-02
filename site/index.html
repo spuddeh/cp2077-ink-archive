@@ -42,10 +42,14 @@
   </section>
 
   <section id="tab-sql" class="tab">
+    <div class="bar">
+      <select id="preset-select"></select>
+      <input id="preset-p0" type="search" hidden autocomplete="off">
+      <input id="preset-p1" type="search" hidden autocomplete="off">
+      <button id="preset-run">Insert &amp; run</button>
+    </div>
     <div class="sql-wrap">
-      <textarea id="sql-input" spellcheck="false" rows="6">SELECT path, name, size_x, size_y FROM widgets_v
-WHERE anchor = 'TopLeft' AND size_x &gt; 1920 AND fit = 0
-ORDER BY size_x DESC LIMIT 50</textarea>
+      <textarea id="sql-input" spellcheck="false" rows="6">SELECT class, count FROM classes ORDER BY count DESC LIMIT 40</textarea>
       <div class="bar">
         <button id="sql-run">Run (Ctrl+Enter)</button>
         <span id="sql-status" class="dim"></span>
@@ -75,16 +79,11 @@ ORDER BY size_x DESC LIMIT 50</textarea>
     <div class="bar">
       <input id="preview-file" type="search" placeholder="find an .inkwidget by path&hellip;" autocomplete="off">
       <select id="preview-item" hidden></select>
-      <select id="preview-res">
-        <option value="1920x1080">16:9 &middot; 1920&times;1080</option>
-        <option value="2560x1080">21:9 &middot; 2560&times;1080</option>
-        <option value="3440x1440">21:9 &middot; 3440&times;1440</option>
-        <option value="5120x1440">32:9 &middot; 5120&times;1440</option>
-      </select>
     </div>
-    <p class="dim small">Wireframe of the authored layout values. The engine's layout
-    solver (fit-to-content, text measurement, flex) is not reproduced here, so treat
-    boxes that depend on it as approximate; fixed-size anchored widgets are exact.</p>
+    <p class="dim small">Wireframe of the authored layout values at the file's own
+    authored resolution. The engine's layout solver (fit-to-content, text measurement,
+    flex) is not reproduced here, so treat boxes that depend on it as approximate;
+    fixed-size anchored widgets are exact.</p>
     <div id="preview-suggest" class="results"></div>
     <div id="preview-canvas-wrap"><div id="preview-canvas"></div></div>
     <div id="preview-info" class="record"></div>
@@ -103,8 +102,9 @@ ORDER BY size_x DESC LIMIT 50</textarea>
       Liberty, game version 2.31.</p>
       <p>The page queries a SQLite database over HTTP range requests; only the pages a
       query touches are downloaded. The archive itself, the extraction scripts and the
-      verification that nothing was lost are in the repository this site is published
-      from.</p>
+      verification that nothing was lost are in
+      <a href="https://github.com/spuddeh/cp2077-ink-archive">the repository</a> this
+      site is published from.</p>
       <h2>Whose it is</h2>
       <p>The data is Cyberpunk 2077's and belongs to CD PROJEKT RED. This is an
       extraction for modding and research under the

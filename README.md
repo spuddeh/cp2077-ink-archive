@@ -149,7 +149,7 @@ LocKey.
 -- which file to edit for a given controller
 SELECT path FROM items_v WHERE controller = 'FastTravelGameController';
 
--- every fixed-size, corner-anchored widget wider than a 1080p screen
+-- fixed-size, corner-anchored widgets, widest first
 SELECT path, name, size_x, size_y FROM widgets_v
  WHERE anchor = 'TopLeft' AND size_x > 1920 AND fit = 0 ORDER BY size_x DESC;
 
@@ -172,8 +172,8 @@ SELECT prop, value FROM defaults WHERE class = 'inkTextWidget';
 ## The website
 
 `site/` is a static page that queries the database in the browser: full-text search,
-SQL, a file and chunk browser with reference links, the layer map, and a wireframe
-preview of any widget file's authored layout at 16:9, 21:9 and 32:9. It uses
+SQL with saved queries, a file and chunk browser with reference links, the layer map,
+and a wireframe preview of any widget file's layout at its authored resolution. It uses
 [sql.js-httpvfs](https://github.com/phiresky/sql.js-httpvfs) (vendored, Apache-2.0) to
 read the database over HTTP range requests, so a query downloads kilobytes, not the
 database.

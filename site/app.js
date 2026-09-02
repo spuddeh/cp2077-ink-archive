@@ -221,6 +221,74 @@ async function runBrowse() {
 
 /* ------------------------------------------------------------------- sql -- */
 
+// Saved queries with fill-in slots, for reading the archive without writing SQL cold.
+// Every query here answers from an index, so it stays fast over HTTP.
+const PRESETS = [
+  { label: "Class census - what exists, by count",
+    sql: "SELECT class, count FROM classes ORDER BY count DESC LIMIT 40" },
+  { label: "Which file has this controller",
+    params: ["controller class, e.g. FastTravelGameController"],
+    sql: "SELECT path FROM items_v WHERE controller = {0}" },
+  { label: "Find widgets by exact name",
+    params: ["widget name, e.g. fast_travel_grid"],
+    sql: "SELECT cid, name, class, path FROM widgets_v WHERE name = {0} LIMIT 100" },
+  { label: "Fixed-size widgets, by minimum width",
+    params: ["minimum width in px, e.g. 1920"], numeric: [0],
+    sql: "SELECT w.size_x, w.size_y, w.name, f.path FROM widgets w JOIN files f USING (fid) WHERE w.anchor = 'TopLeft' AND w.fit = 0 AND w.size_x > {0} ORDER BY w.size_x DESC LIMIT 100" },
+  { label: "Which widgets bind this LocKey",
+    params: ["LocKey#12345"],
+    sql: "SELECT cid, name, path FROM widgets_v WHERE lockey = {0}" },
+  { label: "Which widgets use this atlas",
+    params: ["atlas path, e.g. base\\gameplay\\gui\\common\\icons\\atlas_common.inkatlas"],
+    sql: "SELECT name, part, path FROM widgets_v WHERE atlas = {0} LIMIT 200" },
+  { label: "Fields a class can carry",
+    params: ["class, e.g. inkTextWidget"],
+    sql: "SELECT prop, type, storage, varies FROM schema WHERE class = {0} ORDER BY prop" },
+  { label: "Engine defaults of a class",
+    params: ["class, e.g. inkTextWidget"],
+    sql: "SELECT prop, value FROM defaults WHERE class = {0} ORDER BY prop" },
+  { label: "All files of a kind",
+    params: ["kind, e.g. inkstyle"],
+    sql: "SELECT path, chunk_count FROM files WHERE kind = {0} ORDER BY path LIMIT 300" },
+  { label: "Children of a widget, by cid",
+    params: ["parent cid"], numeric: [0],
+    sql: "SELECT c.cid, c.name, c.class FROM widget_tree t JOIN widgets c ON c.cid = t.child_cid WHERE t.parent_cid = {0} ORDER BY t.ord" },
+];
+
+function initPresets() {
+  $("preset-select").innerHTML = PRESETS.map((p, i) =>
+    '<option value="' + i + '">' + esc(p.label) + "</option>").join("");
+  presetChanged();
+}
+
+function presetChanged() {
+  const p = PRESETS[+$("preset-select").value];
+  for (const i of [0, 1]) {
+    const el = $("preset-p" + i);
+    const has = p.params && p.params.length > i;
+    el.hidden = !has;
+    el.value = "";
+    if (has) el.placeholder = p.params[i];
+  }
+}
+
+function runPreset() {
+  const p = PRESETS[+$("preset-select").value];
+  let sql = p.sql;
+  for (const i of [0, 1]) {
+    if (!p.params || p.params.length <= i) break;
+    const raw = $("preset-p" + i).value.trim();
+    if (!raw) { $("preset-p" + i).focus(); return; }
+    const lit = (p.numeric || []).includes(i)
+      ? String(Number(raw) || 0)
+      : "'" + raw.replace(/'/g, "''") + "'";
+    sql = sql.split("{" + i + "}").join(lit);
+  }
+  $("sql-input").value = sql;
+  runSql();
+}
+
+
 async function runSql() {
   const out = $("sql-results");
   const status = $("sql-status");
@@ -233,8 +301,16 @@ async function runSql() {
   status.textContent = "running…";
   out.innerHTML = "";
   const t0 = performance.now();
+  const ticker = setInterval(async () => {
+    try {
+      const st = await WORKER.getStats();
+      status.textContent = "running… " + (st.totalFetchedBytes / 1048576).toFixed(1) +
+        " MB fetched - a query outside the indexes reads the table over HTTP";
+    } catch (e) { /* decoration */ }
+  }, 1500);
   try {
     const rows = await q(sql);
+    clearInterval(ticker);
     const ms = Math.round(performance.now() - t0);
     status.textContent = rows.length + " rows · " + ms + " ms";
     if (!rows.length) { out.innerHTML = '<p class="dim">no rows</p>'; return; }
@@ -248,6 +324,7 @@ async function runSql() {
       return esc(s.length > 400 ? s.slice(0, 400) + "…" : s);
     });
   } catch (e) {
+    clearInterval(ticker);
     status.textContent = "";
     out.innerHTML = '<p class="err">' + esc(String(e)) + "</p>";
   }
@@ -409,7 +486,7 @@ async function loadPreviewFile(fid) {
     "JOIN widgets p ON p.cid = t.parent_cid WHERE p.fid=? ORDER BY t.parent_cid, t.ord", fid);
   const items = await q(
     "SELECT name, root_widget_cid FROM items WHERE fid=? AND root_widget_cid IS NOT NULL ORDER BY name", fid);
-  const [f] = await q("SELECT path FROM files WHERE fid=?", fid);
+  const [f] = await q("SELECT path, root_resolution FROM files WHERE fid=?", fid);
   const wmap = new Map();
   for (const w of widgets) wmap.set(w.cid, w);
   const children = new Map();
@@ -417,7 +494,11 @@ async function loadPreviewFile(fid) {
     if (!children.has(e.parent_cid)) children.set(e.parent_cid, []);
     children.get(e.parent_cid).push(e.child_cid);
   }
-  PV = { fid: fid, widgets: wmap, children: children, items: items, path: f ? f.path : "" };
+  const rm = /_(\d+)_(\d+)$/.exec((f && f.root_resolution) || "");
+  PV = { fid: fid, widgets: wmap, children: children, items: items,
+         path: f ? f.path : "",
+         W: rm ? +rm[1] : 3840, H: rm ? +rm[2] : 2160,
+         res: (f && f.root_resolution) || "UltraHD_3840_2160" };
   $("preview-file").value = PV.path;
   const sel = $("preview-item");
   sel.innerHTML = items.map((it, i) =>
@@ -433,7 +514,7 @@ function renderPreview() {
     return;
   }
   const item = PV.items[+$("preview-item").value || 0];
-  const [W, H] = $("preview-res").value.split("x").map(Number);
+  const W = PV.W, H = PV.H;
   const canvas = $("preview-canvas");
   canvas.style.width = W + "px";
   canvas.style.height = H + "px";
@@ -522,8 +603,8 @@ function renderPreview() {
   canvas.style.transform = "scale(" + scale + ")";
   wrap.style.height = Math.ceil(H * scale + 2) + "px";
   $("preview-info").innerHTML =
-    '<p class="dim small">' + count + " boxes · " + esc(PV.path) +
-    " · click a box for details</p>";
+    '<p class="dim small">' + count + " boxes · authored at " + W + "×" + H +
+    " (" + esc(PV.res) + ") · " + esc(PV.path) + " · click a box for details</p>";
 }
 
 function previewSelect(cid) {
@@ -581,8 +662,16 @@ document.addEventListener("DOMContentLoaded", () => {
     pvTimer = setTimeout(() => previewSuggest(e.target.value), 300);
   });
   $("preview-item").addEventListener("change", renderPreview);
-  $("preview-res").addEventListener("change", renderPreview);
   window.addEventListener("resize", () => { if (PV) renderPreview(); });
+
+  initPresets();
+  $("preset-select").addEventListener("change", presetChanged);
+  $("preset-run").addEventListener("click", runPreset);
+  for (const i of [0, 1]) {
+    $("preset-p" + i).addEventListener("keydown", (e) => {
+      if (e.key === "Enter") runPreset();
+    });
+  }
 
   document.body.addEventListener("click", (e) => {
     const ref = e.target.closest(".j-ref");

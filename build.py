@@ -38,6 +38,7 @@ CREATE TABLE files (
     kind        TEXT NOT NULL,
     source      TEXT NOT NULL,
     class       TEXT,
+    root_resolution TEXT,
     chunk_count INTEGER NOT NULL,
     data        TEXT NOT NULL
 );
@@ -116,8 +117,12 @@ CREATE TABLE classes (
 """
 
 INDEXES = """
--- Covering index so kind listings and path browsing never read the wide data column.
+-- Covering indexes: the website reads the database over HTTP range requests, so a
+-- query that can answer from an index alone costs kilobytes where a table scan costs
+-- the table. files(kind,...) serves kind listings and path browsing; widgets(anchor,...)
+-- serves sweeps over layout values by anchor and size.
 CREATE INDEX idx_files_kind       ON files(kind, path, source, chunk_count);
+CREATE INDEX idx_w_scan           ON widgets(anchor, fit, size_x, size_y, name, fid);
 CREATE INDEX idx_chunks_class     ON chunks(class);
 CREATE INDEX idx_chunks_fid       ON chunks(fid);
 CREATE INDEX idx_chunks_name      ON chunks(name);
@@ -475,9 +480,10 @@ def build(db_path, stripped=False, verbose=True):
                                      inst_cid, root_widget_cid, ctrl_cid, ctrl_class))
                         n_items += 1
 
-                con.execute("INSERT INTO files VALUES (?,?,?,?,?,?,?)", (
+                con.execute("INSERT INTO files VALUES (?,?,?,?,?,?,?,?)", (
                     fid, path, kind, source,
                     root.get("$type") if isinstance(root, dict) else None,
+                    root.get("rootResolution") if isinstance(root, dict) else None,
                     len(chunk_rows),
                     json.dumps(rec.get("root") if stripped else root,
                                separators=(",", ":"))))
