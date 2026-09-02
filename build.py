@@ -59,11 +59,12 @@ CREATE TABLE refs (
 );
 
 CREATE TABLE items (
-    fid            INTEGER NOT NULL,
-    name           TEXT NOT NULL,
-    instance_cid   INTEGER,
-    controller_cid INTEGER,
-    controller     TEXT,
+    fid             INTEGER NOT NULL,
+    name            TEXT NOT NULL,
+    instance_cid    INTEGER,   -- NULL when the instance sits inline in files.data
+    root_widget_cid INTEGER,   -- the chunk holding the item's widget tree
+    controller_cid  INTEGER,
+    controller      TEXT,
     PRIMARY KEY (fid, name)
 );
 
@@ -80,8 +81,9 @@ CREATE TABLE widgets (
     size_x      REAL, size_y REAL,
     fit         INTEGER, visible INTEGER, interactive INTEGER, opacity REAL,
     tr_x        REAL, tr_y REAL, scale_x REAL, scale_y REAL, rotation REAL,
-    text        TEXT, lockey TEXT, font_size INTEGER, font_family TEXT,
-    atlas       TEXT, part TEXT, style TEXT, style_name TEXT
+    text        TEXT, loc_text TEXT, lockey TEXT, text_id TEXT,
+    font_size   INTEGER, font_family TEXT,
+    atlas       TEXT, part TEXT, style TEXT, state TEXT
 );
 
 CREATE TABLE widget_tree (
@@ -139,7 +141,7 @@ WIDGET_COLS = (
     "cid fid class name anchor anchor_x anchor_y halign valign "
     "margin_l margin_t margin_r margin_b pad_l pad_t pad_r pad_b size_rule size_coef "
     "size_x size_y fit visible interactive opacity tr_x tr_y scale_x scale_y rotation "
-    "text lockey font_size font_family atlas part style style_name"
+    "text loc_text lockey text_id font_size font_family atlas part style state"
 ).split()
 INSERT_WIDGET = "INSERT INTO widgets ({}) VALUES ({})".format(
     ", ".join(WIDGET_COLS), ", ".join("?" * len(WIDGET_COLS)))
@@ -217,7 +219,7 @@ def scalar(v):
     return v
 
 
-def widget_row(cid, chunk, fid):
+def widget_row(cid, chunk, fid, resolve):
     layout = chunk.get("layout") or {}
     ax, ay = xy(layout.get("anchorPoint"))
     ml, mt, mr, mb = lrtb(layout.get("margin"))
@@ -227,6 +229,24 @@ def widget_row(cid, chunk, fid):
     tx, ty = xy(rt.get("translation"))
     kx, ky = xy(rt.get("scale"))
     name = chunk.get("name")
+    # A text widget's authored string is `text`, kept verbatim - the literal string
+    # "None" is real on-screen text on two widgets. Its localization binding is
+    # `localizationString.value`, which is either "LocKey#<n>" or inline prose, and
+    # `textIdKey` names the key as a CName.
+    text = chunk.get("text")
+    if not isinstance(text, str):
+        text = None
+    loc = chunk.get("localizationString")
+    loc_text = loc.get("value") if isinstance(loc, dict) else None
+    if not isinstance(loc_text, str) or loc_text == "":
+        loc_text = None
+    lockey = loc_text if loc_text and loc_text.startswith("LocKey#") else None
+    text_id = scalar(chunk.get("textIdKey"))
+    # `style` is a handle to an inkStyleResourceWrapper chunk carrying the depot path.
+    style = None
+    wrapper = resolve(chunk.get("style"))
+    if isinstance(wrapper, dict):
+        style = depot(wrapper.get("styleResource"))
     return (
         cid, fid, chunk.get("$type", ""),
         name if isinstance(name, str) else "",
@@ -238,16 +258,49 @@ def widget_row(cid, chunk, fid):
         1 if chunk.get("isInteractive") else 0,
         chunk.get("opacity"),
         tx, ty, kx, ky, rt.get("rotation"),
-        scalar(chunk.get("text")), scalar(chunk.get("localizationKey")),
+        text, loc_text, lockey, text_id,
         chunk.get("fontSize"), depot(chunk.get("fontFamily")),
         depot(chunk.get("textureAtlas")), scalar(chunk.get("texturePart")),
-        depot(chunk.get("style")), scalar(chunk.get("styleName")),
+        style, scalar(chunk.get("state")),
     )
 
 
+NAME_KEYS = {"partName", "name", "propertyPath", "styleName", "fontStyle", "state"}
+
+
+def harvest_names(node, out=None, depth=0):
+    """The name-like strings of a root record, for the per-file search row."""
+    if out is None:
+        out = []
+        _harvest(node, out, NAME_KEYS)
+        seen = set()
+        uniq = []
+        for v in out:
+            if v not in seen:
+                seen.add(v)
+                uniq.append(v)
+        return " ".join(uniq)[:50000]
+    return ""
+
+
+def _harvest(node, out, keys):
+    if isinstance(node, list):
+        for v in node:
+            _harvest(v, out, keys)
+    elif isinstance(node, dict):
+        for k, v in node.items():
+            if k in keys and isinstance(v, str) and v and v != "None":
+                out.append(v)
+            else:
+                _harvest(v, out, keys)
+
+
 def jsonl_files():
+    # Shards are named ink_<extension>_<nn>.jsonl and the extension does not always
+    # start with "ink" - credits, ccstate and charcustpreset are ink-family classes
+    # behind other extensions.
     return sorted(f for f in os.listdir(RAW)
-                  if f.startswith("ink_ink") and f.endswith(".jsonl"))
+                  if f.startswith("ink_") and f.endswith(".jsonl"))
 
 
 def build(db_path, stripped=False, verbose=True):
@@ -318,7 +371,10 @@ def build(db_path, stripped=False, verbose=True):
                         if target in local:
                             ref_rows.append((my, fid, local[target], field, ord_))
                     if isinstance(chunk, dict) and isinstance(chunk.get("layout"), dict):
-                        widget_rows.append(widget_row(my, chunk, fid))
+                        widget_rows.append(widget_row(
+                            my, chunk, fid,
+                            lambda v: restored.get(ref_of(v)) if ref_of(v) else
+                                      (v if isinstance(v, dict) and "$ref" not in v else None)))
                         # children -> inkMultiChildren -> children
                         container = local.get(ref_of(chunk.get("children")))
                         if container:
@@ -343,6 +399,7 @@ def build(db_path, stripped=False, verbose=True):
                         pd = it.get("packageData") or {}
                         chunks_arr = (pd.get("Data") or {}).get("Chunks") if isinstance(pd.get("Data"), dict) else None
                         inst_cid = None
+                        root_widget_cid = None
                         ctrl_cid = None
                         ctrl_class = None
                         if isinstance(chunks_arr, list) and chunks_arr:
@@ -355,6 +412,7 @@ def build(db_path, stripped=False, verbose=True):
                             else:
                                 inst = chunks_arr[0]
                             if isinstance(inst, dict):
+                                root_widget_cid = local.get(ref_of(inst.get("rootWidget")))
                                 gc = inst.get("gameController")
                                 cr = ref_of(gc)
                                 if cr is not None:
@@ -365,9 +423,9 @@ def build(db_path, stripped=False, verbose=True):
                                 if isinstance(ctrl, dict):
                                     ctrl_class = ctrl.get("$type")
                         nm = it.get("name")
-                        con.execute("INSERT OR REPLACE INTO items VALUES (?,?,?,?,?)",
+                        con.execute("INSERT OR REPLACE INTO items VALUES (?,?,?,?,?,?)",
                                     (fid, nm if isinstance(nm, str) else "",
-                                     inst_cid, ctrl_cid, ctrl_class))
+                                     inst_cid, root_widget_cid, ctrl_cid, ctrl_class))
                         n_items += 1
 
                 con.execute("INSERT INTO files VALUES (?,?,?,?,?,?,?)", (
@@ -386,16 +444,26 @@ def build(db_path, stripped=False, verbose=True):
 
     con.executescript(INDEXES)
 
-    # Index what a person searches by; the structured fields are already columns.
+    # Index what a person searches by; the structured fields are already columns. Two
+    # kinds of rows: one per chunk (cid > 0) and one per file (cid = -fid), because a
+    # resource whose whole content is the root record - every atlas and style sheet -
+    # has no chunk rows and would otherwise be unfindable even by path.
     con.executescript("""
         CREATE VIRTUAL TABLE search USING fts5(
             cid UNINDEXED, name, class, path, text, tokenize="unicode61"
         );
         INSERT INTO search(cid, name, class, path, text)
-            SELECT c.cid, coalesce(c.name,''), c.class, f.path, coalesce(w.text,'')
+            SELECT c.cid, coalesce(c.name,''), c.class, f.path,
+                   trim(coalesce(w.text,'') || ' ' || coalesce(w.loc_text,'') || ' ' ||
+                        coalesce(w.text_id,''))
             FROM chunks c JOIN files f USING (fid) LEFT JOIN widgets w ON w.cid = c.cid;
-        INSERT INTO search(search) VALUES('optimize');
     """)
+    for fid_, path_, class_, data_ in con.execute(
+            "SELECT fid, path, class, data FROM files").fetchall():
+        con.execute("INSERT INTO search(cid, name, class, path, text) VALUES (?,?,?,?,?)",
+                    (-fid_, os.path.basename(path_), class_ or "", path_,
+                     harvest_names(json.loads(data_))))
+    con.execute("INSERT INTO search(search) VALUES('optimize')")
     con.commit()
     con.execute("VACUUM")
     con.close()

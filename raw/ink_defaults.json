@@ -7563,5 +7563,20 @@
   "inputContext": "None",
   "isAffectedByFadeout": 1,
   "spawnMode": "SingleAndMultiplayer"
+ },
+ "inkCreditsSectionEntry": {
+  "displayMode": "Basic"
+ },
+ "gameuiCustomizationAppearance": {
+  "censorFlag": "0",
+  "censorFlagAction": "Activate"
+ },
+ "gameuiCustomizationMorph": {
+  "censorFlag": "0",
+  "censorFlagAction": "Activate"
+ },
+ "gameuiCharacterCustomizationUiPresetValue": {
+  "isActive": 0,
+  "value": 4294967295
  }
 }

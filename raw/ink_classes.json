@@ -1096,5 +1096,8 @@
  "inkFullscreenCompositionResource": 2,
  "inkMenuResource": 2,
  "inkEngineSettingsResource": 1,
- "inkGameSettingsResource": 1
+ "inkGameSettingsResource": 1,
+ "inkCreditsResource": 4,
+ "gameuiCharacterCustomizationPreset": 2,
+ "gameuiCharacterCustomizationUiPreset": 6
 }

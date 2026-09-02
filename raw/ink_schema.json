@@ -13558,5 +13558,41 @@
    "type": "CName",
    "storage": "string"
   }
+ },
+ "gameuiCustomizationAppearance": {
+  "definition": {
+   "type": "CName",
+   "storage": "string"
+  },
+  "name": {
+   "type": "CName",
+   "storage": "string"
+  },
+  "DepotPath": {
+   "type": "ResourcePath",
+   "storage": "string"
+  }
+ },
+ "gameuiCustomizationGroup": {
+  "name": {
+   "type": "CName",
+   "storage": "string"
+  }
+ },
+ "gameuiCustomizationMorph": {
+  "regionName": {
+   "type": "CName",
+   "storage": "string"
+  },
+  "targetName": {
+   "type": "CName",
+   "storage": "string"
+  }
+ },
+ "gameuiCharacterCustomizationUiPresetValue": {
+  "optionName": {
+   "type": "CName",
+   "storage": "string"
+  }
  }
 }
