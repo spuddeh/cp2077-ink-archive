@@ -16,10 +16,13 @@ let currentNav = "search";
 
 async function boot() {
   try {
+    // The config and wasm URLs are fetched from inside the worker, which resolves
+    // relative URLs against its own script location, not this page - so absolute URLs.
+    const abs = (p) => new URL(p, location.href).toString();
     const w = await createDbWorker(
-      [{ from: "jsonconfig", configUrl: "data/config.json" }],
-      "vendor/sqljs-httpvfs/sqlite.worker.js",
-      "vendor/sqljs-httpvfs/sql-wasm.wasm"
+      [{ from: "jsonconfig", configUrl: abs("data/config.json") }],
+      abs("vendor/sqljs-httpvfs/sqlite.worker.js"),
+      abs("vendor/sqljs-httpvfs/sql-wasm.wasm")
     );
     DB = w.db;
     WORKER = w.worker;
