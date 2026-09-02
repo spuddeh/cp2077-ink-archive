@@ -18,22 +18,6 @@
   "gameController": null,
   "rootResolution": "UltraHD_3840_2160"
  },
- "inkanimPlaybackOptions": {
-  "applyCustomTimeDilation": 0,
-  "customTimeDilation": 1,
-  "dependsOnTimeDilation": 0,
-  "executionDelay": 0,
-  "fromMarker": "None",
-  "loopCounter": 0,
-  "loopInfinite": 0,
-  "loopType": "None",
-  "oneSegment": 0,
-  "playReversed": 0,
-  "toMarker": "None"
- },
- "entEntityID": {
-  "hash": "0"
- },
  "inkCanvasWidget": {
   "affectsLayoutWhenHidden": 0,
   "canSupportFocus": 0,
@@ -145,6 +129,106 @@
   "verticalTileCrop": 0,
   "visible": 1
  },
+ "inkPropertyBinding": {
+  "propertyName": "tintColor"
+ },
+ "inkMaskEffect": {
+  "angle": 0,
+  "effectName": "Mask_0",
+  "invert": 0,
+  "isEnabled": 1,
+  "opacity": 1
+ },
+ "inkTextWidget": {
+  "affectsLayoutWhenHidden": 0,
+  "aligmentConverted": 0,
+  "canSupportFocus": 0,
+  "contentHAlign": "Fill",
+  "contentVAlign": "Fill",
+  "effects": [],
+  "fitToContent": 1,
+  "font": null,
+  "isInteractive": 0,
+  "justification": "Left",
+  "letterCase": "OriginalCase",
+  "lineHeightPercentage": 1,
+  "lockFontInGame": 0,
+  "opacity": 1,
+  "renderTransform": {
+   "$type": "inkUITransform",
+   "rotation": 0,
+   "scale": {
+    "$type": "Vector2",
+    "X": 1,
+    "Y": 1
+   },
+   "shear": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   },
+   "translation": {
+    "$type": "Vector2",
+    "X": 0,
+    "Y": 0
+   }
+  },
+  "renderTransformPivot": {
+   "$type": "Vector2",
+   "X": 0.5,
+   "Y": 0.5
+  },
+  "scrollDelay": 30,
+  "scrollTextSpeed": 0.200000003,
+  "secondaryControllers": [],
+  "size": {
+   "$type": "Vector2",
+   "X": 100,
+   "Y": 32
+  },
+  "state": "Default",
+  "style": null,
+  "textHorizontalAlignment": "Left",
+  "textIdKey": "None",
+  "textOverflowPolicy": "None",
+  "textVerticalAlignment": "Top",
+  "tracking": 0,
+  "visible": 1,
+  "wrappingInfo": {
+   "$type": "textWrappingInfo",
+   "autoWrappingEnabled": 0,
+   "forceMinimumWidthToWrappingAtPosition": 0,
+   "wrappingAtPosition": 0,
+   "wrappingPolicy": "Default"
+  }
+ },
+ "textWrappingInfo": {
+  "autoWrappingEnabled": 0,
+  "forceMinimumWidthToWrappingAtPosition": 0,
+  "wrappingAtPosition": 0,
+  "wrappingPolicy": "Default"
+ },
+ "inkWidgetBackendData": {
+  "boundLibraryItemName": "None",
+  "isHiddenInEditor": 0,
+  "isLocked": 0
+ },
+ "inkanimPlaybackOptions": {
+  "applyCustomTimeDilation": 0,
+  "customTimeDilation": 1,
+  "dependsOnTimeDilation": 0,
+  "executionDelay": 0,
+  "fromMarker": "None",
+  "loopCounter": 0,
+  "loopInfinite": 0,
+  "loopType": "None",
+  "oneSegment": 0,
+  "playReversed": 0,
+  "toMarker": "None"
+ },
+ "entEntityID": {
+  "hash": "0"
+ },
  "inkColorCorrectionEffect": {
   "contrast": 1,
   "effectName": "ColorCorrection_0",
@@ -232,78 +316,6 @@
    "Red": 1
   },
   "visible": 1
- },
- "inkTextWidget": {
-  "affectsLayoutWhenHidden": 0,
-  "aligmentConverted": 0,
-  "canSupportFocus": 0,
-  "contentHAlign": "Fill",
-  "contentVAlign": "Fill",
-  "effects": [],
-  "fitToContent": 1,
-  "font": null,
-  "isInteractive": 0,
-  "justification": "Left",
-  "letterCase": "OriginalCase",
-  "lineHeightPercentage": 1,
-  "lockFontInGame": 0,
-  "opacity": 1,
-  "renderTransform": {
-   "$type": "inkUITransform",
-   "rotation": 0,
-   "scale": {
-    "$type": "Vector2",
-    "X": 1,
-    "Y": 1
-   },
-   "shear": {
-    "$type": "Vector2",
-    "X": 0,
-    "Y": 0
-   },
-   "translation": {
-    "$type": "Vector2",
-    "X": 0,
-    "Y": 0
-   }
-  },
-  "renderTransformPivot": {
-   "$type": "Vector2",
-   "X": 0.5,
-   "Y": 0.5
-  },
-  "scrollDelay": 30,
-  "scrollTextSpeed": 0.200000003,
-  "secondaryControllers": [],
-  "size": {
-   "$type": "Vector2",
-   "X": 100,
-   "Y": 32
-  },
-  "state": "Default",
-  "style": null,
-  "textHorizontalAlignment": "Left",
-  "textIdKey": "None",
-  "textOverflowPolicy": "None",
-  "textVerticalAlignment": "Top",
-  "tracking": 0,
-  "visible": 1,
-  "wrappingInfo": {
-   "$type": "textWrappingInfo",
-   "autoWrappingEnabled": 0,
-   "forceMinimumWidthToWrappingAtPosition": 0,
-   "wrappingAtPosition": 0,
-   "wrappingPolicy": "Default"
-  }
- },
- "textWrappingInfo": {
-  "autoWrappingEnabled": 0,
-  "forceMinimumWidthToWrappingAtPosition": 0,
-  "wrappingAtPosition": 0,
-  "wrappingPolicy": "Default"
- },
- "inkPropertyBinding": {
-  "propertyName": "tintColor"
  },
  "inkRichTextBoxWidget": {
   "affectsLayoutWhenHidden": 0,
@@ -452,11 +464,6 @@
    "playReversed": 0,
    "toMarker": "None"
   }
- },
- "inkWidgetBackendData": {
-  "boundLibraryItemName": "None",
-  "isHiddenInEditor": 0,
-  "isLocked": 0
  },
  "inkFlexWidget": {
   "affectsLayoutWhenHidden": 0,
@@ -1997,13 +2004,6 @@
  "inkLinearWipeEffect": {
   "effectName": "LinearWipe_0",
   "isEnabled": 1
- },
- "inkMaskEffect": {
-  "angle": 0,
-  "effectName": "Mask_0",
-  "invert": 0,
-  "isEnabled": 1,
-  "opacity": 1
  },
  "NewItemTooltipStatBarController": {
   "audioMetadataName": "None",

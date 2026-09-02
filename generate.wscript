@@ -185,12 +185,14 @@ function leavesOriginal(doc) {
         if (Array.isArray(o)) { for (const v of o) walk(v); return; }
         const keys = Object.keys(o);
         if (isScalarWrapper(o, keys)) {
+            // typeof is part of the label: String() collapses 5 and "5", so without it a
+            // type flip between the sides would compare equal.
             add('S:' + (o['$type'] || '') + '|' + (o['$storage'] === undefined ? '' : o['$storage'])
-                + '|' + String(o['$value']));
+                + '|' + typeof o['$value'] + '|' + String(o['$value']));
             return;
         }
         if (isWrapper(o, keys)) {
-            add('W:' + (o['$type'] || ''));
+            add('W:' + (o['$type'] || '') + '|' + (o['$storage'] === undefined ? '' : o['$storage']));
             walk(o['$value']);
             return;
         }
@@ -212,7 +214,7 @@ function leavesEncoded(enc, schema) {
             const forms = schema.get((owner || '') + ' ' + (field || ''));
             if (forms && forms.size === 1) {
                 const only = forms.values().next().value;
-                add('S:' + only + '|' + String(o));
+                add('S:' + only + '|' + typeof o + '|' + String(o));
             } else {
                 add(typeof o + ':' + String(o));
             }
@@ -223,10 +225,10 @@ function leavesEncoded(enc, schema) {
         if ('$v' in o) {
             const t = (o.$t === null || o.$t === undefined) ? '' : o.$t;
             if (o.$v !== null && typeof o.$v === 'object') {
-                add('W:' + t);
+                add('W:' + t + '|' + (o.$s === undefined ? '' : o.$s));
                 walk(o.$v, owner, field);
             } else {
-                add('S:' + t + '|' + (o.$s === undefined ? '' : o.$s) + '|' + String(o.$v));
+                add('S:' + t + '|' + (o.$s === undefined ? '' : o.$s) + '|' + typeof o.$v + '|' + String(o.$v));
             }
             return;
         }
@@ -270,25 +272,43 @@ function Hasher() {
     };
 }
 
+// One pre-walk assigns every embedded buffer its scope label, keyed by object identity.
+// Every later walk - collection, hashing, graph comparison - reads the label from here,
+// so no walk's traversal order can renumber a buffer, and the labels are the ones the
+// encoder assigns (it meets buffers in the same insertion order this walk uses).
+function mapBufferScopes(root) {
+    const map = new Map();
+    let seq = 0;
+    (function walk(o, scope) {
+        if (!o || typeof o !== 'object') return;
+        if (Array.isArray(o)) { for (const v of o) walk(v, scope); return; }
+        let s = scope;
+        if (isBuffer(o)) { s = 'b' + (++seq); map.set(o, s); }
+        for (const k of Object.keys(o)) walk(o[k], s);
+    })(root, 'r');
+    return map;
+}
+
+function collectDefs(root, scopes) {
+    const defs = new Map();
+    (function walk(o, scope) {
+        if (!o || typeof o !== 'object') return;
+        if (Array.isArray(o)) { for (const v of o) walk(v, scope); return; }
+        if (o.HandleId !== undefined && o.Data !== undefined) defs.set(scope + ':' + o.HandleId, o.Data);
+        const s = scopes.get(o) || scope;
+        for (const k of Object.keys(o)) walk(o[k], s);
+    })(root, 'r');
+    return defs;
+}
+
 // Token stream for the original WolvenKit JSON.
 function hashOriginal(root) {
-    let scopeSeq = 0;
-    const defs = new Map();
-    (function collect(o, scope) {
-        if (!o || typeof o !== 'object') return;
-        if (Array.isArray(o)) { for (const v of o) collect(v, scope); return; }
-        if (o.HandleId !== undefined && o.Data !== undefined) defs.set(scope + ':' + o.HandleId, o.Data);
-        // Sorted, to assign buffer scope numbers in the same order the hashing walk
-        // below visits them - insertion order here with sorted order there could label
-        // sibling buffers differently and resolve back-references against the wrong one.
-        const s = isBuffer(o) ? 'b' + (++scopeSeq) : scope;
-        for (const k of Object.keys(o).slice().sort()) collect(o[k], s);
-    })(root, 'r');
+    const scopes = mapBufferScopes(root);
+    const defs = collectDefs(root, scopes);
 
     const h = Hasher();
     const seen = new Set();
     let over = false;
-    scopeSeq = 0;
     (function walk(o, scope) {
         if (over || h.count > STRUCTURAL_BUDGET) { over = true; return; }
         if (o === null || o === undefined) { h.push('null'); return; }
@@ -306,11 +326,15 @@ function hashOriginal(root) {
         const keys = Object.keys(o);
         if (isScalarWrapper(o, keys)) {
             h.push('S|' + (o['$type'] || '') + '|' + (o['$storage'] === undefined ? '' : o['$storage'])
-                + '|' + String(o['$value']));
+                + '|' + typeof o['$value'] + '|' + String(o['$value']));
             return;
         }
-        if (isWrapper(o, keys)) { h.push('W|' + (o['$type'] || '')); walk(o['$value'], scope); return; }
-        const s = isBuffer(o) ? 'b' + (++scopeSeq) : scope;
+        if (isWrapper(o, keys)) {
+            h.push('W|' + (o['$type'] || '') + '|' + (o['$storage'] === undefined ? '' : o['$storage']));
+            walk(o['$value'], scope);
+            return;
+        }
+        const s = scopes.get(o) || scope;
         const sorted = keys.slice().sort();
         h.push('{' + sorted.length);
         for (const k of sorted) { h.push('k' + k); walk(o[k], s); }
@@ -330,7 +354,7 @@ function hashEncoded(enc, schema) {
         if (typeof o !== 'object') {
             const forms = schema.get((owner || '') + ' ' + (field || ''));
             if (forms && forms.size === 1) {
-                h.push('S|' + forms.values().next().value + '|' + String(o));
+                h.push('S|' + forms.values().next().value + '|' + typeof o + '|' + String(o));
             } else {
                 h.push('p' + typeof o + '=' + o);
             }
@@ -346,8 +370,11 @@ function hashEncoded(enc, schema) {
         }
         if ('$v' in o) {
             const t = (o.$t === null || o.$t === undefined) ? '' : o.$t;
-            if (o.$v !== null && typeof o.$v === 'object') { h.push('W|' + t); walk(o.$v, owner, field); }
-            else h.push('S|' + t + '|' + (o.$s === undefined ? '' : o.$s) + '|' + String(o.$v));
+            if (o.$v !== null && typeof o.$v === 'object') {
+                h.push('W|' + t + '|' + (o.$s === undefined ? '' : o.$s));
+                walk(o.$v, owner, field);
+            }
+            else h.push('S|' + t + '|' + (o.$s === undefined ? '' : o.$s) + '|' + typeof o.$v + '|' + String(o.$v));
             return;
         }
         const nextOwner = typeof o['$type'] === 'string' ? o['$type'] : owner;
@@ -366,14 +393,16 @@ function hashEncoded(enc, schema) {
 // at linear cost. This is what verifies the two perk screens, whose shared subtrees make
 // full expansion explode.
 function graphEquals(original, enc, schema) {
-    const H2 = (str, seed) => {
-        let h = (seed >>> 0) || 2166136261;
-        for (let i = 0; i < str.length; i++) h = ((h ^ str.charCodeAt(i)) >>> 0) * 16777619 >>> 0;
-        return h >>> 0;
-    };
-    function contentOriginal(node, scope) {
+    // Content hashing reuses Hasher (two 32-bit lanes with per-token mixing), and the
+    // original side reads buffer scope labels from the same identity map the other
+    // walkers use, so its node keys are the encoder's chunk keys.
+    function foldTokens(toks) {
+        const h = Hasher();
+        for (const t of toks) h.push(t);
+        return h.value;
+    }
+    function contentOriginal(node, scope, scopes) {
         const toks = [], refs = [];
-        const box = { n: 1000000 };
         (function w(o, scope) {
             if (o === null || o === undefined) { toks.push('null'); return; }
             if (typeof o !== 'object') { toks.push('p' + typeof o + '=' + o); return; }
@@ -381,15 +410,15 @@ function graphEquals(original, enc, schema) {
             if (o.HandleRefId !== undefined && o.Data === undefined) { toks.push('R'); refs.push(scope + ':' + o.HandleRefId); return; }
             if (o.HandleId !== undefined && o.Data !== undefined) { toks.push('R'); refs.push(scope + ':' + o.HandleId); return; }
             const ks = Object.keys(o);
-            if (isScalarWrapper(o, ks)) { toks.push('S|' + (o['$type'] || '') + '|' + (o['$storage'] === undefined ? '' : o['$storage']) + '|' + String(o['$value'])); return; }
-            if (isWrapper(o, ks)) { toks.push('W|' + (o['$type'] || '')); w(o['$value'], scope); return; }
-            const s = isBuffer(o) ? 'b' + (++box.n) : scope;
+            if (isScalarWrapper(o, ks)) { toks.push('S|' + (o['$type'] || '') + '|' + (o['$storage'] === undefined ? '' : o['$storage']) + '|' + typeof o['$value'] + '|' + String(o['$value'])); return; }
+            if (isWrapper(o, ks)) { toks.push('W|' + (o['$type'] || '') + '|' + (o['$storage'] === undefined ? '' : o['$storage'])); w(o['$value'], scope); return; }
+            const s = scopes.get(o) || scope;
             const sorted = ks.slice().sort();
             toks.push('{' + sorted.length);
             for (const k of sorted) { toks.push('k' + k); w(o[k], s); }
             toks.push('}');
         })(node, scope);
-        return { h: H2(toks.join('')), refs: refs };
+        return { h: foldTokens(toks), refs: refs };
     }
     function contentEncoded(node) {
         const toks = [], refs = [];
@@ -397,7 +426,7 @@ function graphEquals(original, enc, schema) {
             if (o === null || o === undefined) { toks.push('null'); return; }
             if (typeof o !== 'object') {
                 const forms = schema.get((owner || '') + ' ' + (field || ''));
-                if (forms && forms.size === 1) toks.push('S|' + forms.values().next().value + '|' + String(o));
+                if (forms && forms.size === 1) toks.push('S|' + forms.values().next().value + '|' + typeof o + '|' + String(o));
                 else toks.push('p' + typeof o + '=' + o);
                 return;
             }
@@ -406,8 +435,8 @@ function graphEquals(original, enc, schema) {
             if (ks.length === 1 && '$ref' in o) { toks.push('R'); refs.push(o.$ref); return; }
             if ('$v' in o) {
                 const t = (o.$t === null || o.$t === undefined) ? '' : o.$t;
-                if (o.$v !== null && typeof o.$v === 'object') { toks.push('W|' + t); w(o.$v, owner, field); }
-                else toks.push('S|' + t + '|' + (o.$s === undefined ? '' : o.$s) + '|' + String(o.$v));
+                if (o.$v !== null && typeof o.$v === 'object') { toks.push('W|' + t + '|' + (o.$s === undefined ? '' : o.$s)); w(o.$v, owner, field); }
+                else toks.push('S|' + t + '|' + (o.$s === undefined ? '' : o.$s) + '|' + typeof o.$v + '|' + String(o.$v));
                 return;
             }
             const no = typeof o['$type'] === 'string' ? o['$type'] : owner;
@@ -416,7 +445,7 @@ function graphEquals(original, enc, schema) {
             for (const k of sorted) { toks.push('k' + k); w(o[k], no, k); }
             toks.push('}');
         })(node, null, null);
-        return { h: H2(toks.join('')), refs: refs };
+        return { h: foldTokens(toks), refs: refs };
     }
     function refine(nodes) {
         let cur = new Map();
@@ -424,33 +453,32 @@ function graphEquals(original, enc, schema) {
         for (let r = 0; r < 64; r++) {
             const next = new Map();
             for (const [k, v] of nodes) {
-                let h = H2('n' + cur.get(k), 7 + r);
-                for (const rk of v.refs) h = H2('r' + (cur.get(rk) === undefined ? '?' : cur.get(rk)), h);
-                next.set(k, h);
+                const h = Hasher();
+                h.push('round' + r);
+                h.push('n' + cur.get(k));
+                for (const rk of v.refs) h.push('r' + (cur.get(rk) === undefined ? '?' : cur.get(rk)));
+                next.set(k, h.value);
             }
             cur = next;
         }
-        const bag = [...cur.values()].sort((a, b) => a - b).join(',');
-        return { rootH: cur.get('__root__'), bagH: H2(bag) };
+        const bag = Hasher();
+        for (const v of [...cur.values()].sort()) bag.push(v);
+        return { rootH: cur.get('__root__'), bagH: bag.value };
     }
 
+    const scopes = mapBufferScopes(original);
     const oNodes = new Map();
     {
-        // Insertion order, NOT sorted: the node keys here are compared against the
-        // ENCODER's chunk keys, and the encoder numbers buffer scopes in the order it
-        // meets them. hashOriginal sorts instead because it only has to agree with its
-        // own walk; this collection has to agree with encodeResource.
-        let scopeSeq = 0;
         const defs = new Map();
         (function collect(o, scope) {
             if (!o || typeof o !== 'object') return;
             if (Array.isArray(o)) { for (const v of o) collect(v, scope); return; }
             if (o.HandleId !== undefined && o.Data !== undefined) defs.set(scope + ':' + o.HandleId, { d: o.Data, s: scope });
-            const s = isBuffer(o) ? 'b' + (++scopeSeq) : scope;
-            for (const k of Object.keys(o)) collect(o[k], s);
+            const sc = scopes.get(o) || scope;
+            for (const k of Object.keys(o)) collect(o[k], sc);
         })(original, 'r');
-        for (const [k, v] of defs) oNodes.set(k, contentOriginal(v.d, v.s));
-        oNodes.set('__root__', contentOriginal(original, 'r'));
+        for (const [k, v] of defs) oNodes.set(k, contentOriginal(v.d, v.s, scopes));
+        oNodes.set('__root__', contentOriginal(original, 'r', scopes));
     }
     const eNodes = new Map();
     for (const k of Object.keys(enc.chunks)) eNodes.set(k, contentEncoded(enc.chunks[k]));
@@ -503,6 +531,61 @@ for (const f of wkit.GetArchiveFiles()) {
     buckets[ext].push(lp);
 }
 for (const k of Object.keys(buckets)) buckets[k].sort();
+
+// An entry whose path hash never resolved against the community hash list is named
+// "<hash>.bin" and no extension filter can see it. Open each one by its bare hash, read
+// the root chunk class, and take every ink-family resource found. Two exist in 2.31:
+// an inkanim and an inkwidget, both in basegame_4_gamedata, referenced by nothing.
+const ROOT_CLASS_TO_EXT = {
+    inkWidgetLibraryResource: 'inkwidget',
+    inkanimAnimationLibraryResource: 'inkanim',
+    inkTextureAtlas: 'inkatlas',
+    inkStyleResource: 'inkstyle',
+    inkLayersResource: 'inklayers',
+    inkFontFamilyResource: 'inkfontfamily',
+    inkShapeCollectionResource: 'inkshapecollection',
+    inkTypographyResource: 'inktypography',
+    gameuiCharacterCustomizationInfoResource: 'inkcharcustomization',
+    inkHudEntriesResource: 'inkhud',
+    inkFullscreenCompositionResource: 'inkfullscreencomposition',
+    inkMenuResource: 'inkmenu',
+    inkEngineSettingsResource: 'inkenginesettings',
+    inkGameSettingsResource: 'inkgamesettings',
+    inkCreditsResource: 'credits',
+    gameuiCharacterCustomizationPreset: 'ccstate',
+    gameuiCharacterCustomizationUiPreset: 'charcustpreset',
+};
+// retrieval key -> how the record is labelled. A normal path is its own label.
+const resourceMeta = new Map();
+let unresolvedScanned = 0, unresolvedInk = 0, unresolvedUnreadable = 0;
+{
+    const hashes = new Set();
+    for (const f of wkit.GetArchiveFiles()) {
+        const n = (f.FileName ?? f.Name ?? '').toString();
+        const m = /(?:^|\\)([0-9]+)\.bin$/i.exec(n);
+        if (m) hashes.add(m[1]);
+    }
+    for (const h of hashes) {
+        unresolvedScanned++;
+        let text = null;
+        // A hash entry that is not a CR2W file (one exists: a raw buffer) makes the
+        // host log an ERROR line of its own before the throw lands here. That line is
+        // expected; the summary counts the entry as unreadable and the sweep goes on.
+        try { text = wkit.GameFileToJson(wkit.GetFileFromArchive(h, OpenAs.GameFile)); } catch (e) {}
+        if (!text) { unresolvedUnreadable++; continue; }
+        const m = /"RootChunk"\s*:\s*\{\s*"\$type"\s*:\s*"([^"]+)"/.exec(text.substring(0, 5000));
+        const cls = m ? m[1] : null;
+        const ext = cls && ROOT_CLASS_TO_EXT[cls];
+        if (!ext) continue;
+        unresolvedInk++;
+        buckets[ext].push(h);
+        resourceMeta.set(h, { display: h + '.' + ext, source: 'unknown', unresolved: true });
+        logger.Info('  unresolved-hash ink resource: ' + h + ' (' + cls + ')');
+    }
+    for (const k of Object.keys(buckets)) buckets[k].sort();
+}
+logger.Info('unresolved-hash entries: ' + unresolvedScanned + ' scanned, ' + unresolvedInk +
+    ' are ink resources (taken), ' + unresolvedUnreadable + ' unreadable (not CR2W)');
 
 let totalFiles = 0;
 logger.Info('shadowed paths skipped: ' + shadowed);
@@ -638,6 +721,29 @@ let grandFiles = 0, grandChunks = 0, grandErrs = 0, grandLeafDiffs = 0, grandDef
 let structuralOk = 0, structDiffs = 0;
 let structuralGraphOk = 0;
 let grandBytes = 0;
+let rootShapeFails = 0, danglingRefs = 0;
+
+// Every $ref must land on a chunk, except the engine's null handle (HandleRefId -1),
+// which is kept as a dangling <scope>:-1 on purpose. Anything else dangling means the
+// scope labelling broke, which '~cycle' handling would otherwise mask on both sides of
+// the structural check at once.
+function countDanglingRefs(enc) {
+    let bad = 0;
+    function w(o) {
+        if (!o || typeof o !== 'object') return;
+        if (Array.isArray(o)) { for (const v of o) w(v); return; }
+        const ks = Object.keys(o);
+        if (ks.length === 1 && '$ref' in o) {
+            const id = String(o.$ref);
+            if (!(id in enc.chunks) && id.slice(-3) !== ':-1') bad++;
+            return;
+        }
+        for (const k of ks) w(o[k]);
+    }
+    w(enc.root);
+    for (const id of Object.keys(enc.chunks)) w(enc.chunks[id]);
+    return bad;
+}
 
 for (const ext of EXTENSIONS) {
     const list = buckets[ext];
@@ -657,8 +763,14 @@ for (const ext of EXTENSIONS) {
     for (const p of list) {
         try {
             const original = readRoot(p);
+            if (!original || typeof original !== 'object' || typeof original['$type'] !== 'string') {
+                rootShapeFails++;
+                logger.Warning('ROOT SHAPE unexpected (missing object/$type): ' + p);
+            }
             const enc = encodeResource(original, schema);
             countClasses(enc);
+            const dr = countDanglingRefs(enc);
+            if (dr) { danglingRefs += dr; logger.Warning('DANGLING non-null $refs: ' + dr + ' in ' + p); }
 
             // Verify 1: no leaf value lost by the graph or scalar encoding.
             const d = bagDiff(leavesOriginal(original), leavesEncoded(enc, schema));
@@ -686,10 +798,15 @@ for (const ext of EXTENSIONS) {
                 if (defaultFails <= 5) logger.Warning('default round trip differs in ' + p);
             }
 
-            const line = JSON.stringify({
-                path: p, kind: ext, source: sourceOf(p),
+            const meta = resourceMeta.get(p);
+            const rec = {
+                path: meta ? meta.display : p,
+                kind: ext,
+                source: meta ? meta.source : sourceOf(p),
                 root: stripped.root, chunks: stripped.chunks
-            });
+            };
+            if (meta && meta.unresolved) rec.unresolvedPath = true;
+            const line = JSON.stringify(rec);
             shard.push(line);
             shardBytes += line.length + 1;
             chunks += Object.keys(enc.chunks).length;
@@ -715,6 +832,8 @@ logger.Info('VERIFY leaf differences      : ' + grandLeafDiffs);
 logger.Info('VERIFY structural identical  : ' + structuralOk + ' by expansion + ' + structuralGraphOk + ' by graph hash  mismatches ' + structDiffs);
 logger.Info('VERIFY default round trip    : ' + grandDefaultFails + ' failures');
 logger.Info('document shape warnings      : ' + docShapeWarnings);
+logger.Info('root shape failures          : ' + rootShapeFails);
+logger.Info('dangling non-null $refs      : ' + danglingRefs);
 logger.Info('negative-zero floats seen    : ' + negativeZeros + ' (JSON round-trips them as 0 - the one value class the encoding flattens)');
 logger.Info('distinct chunk classes       : ' + Object.keys(classCount).length);
 logger.Info('==================================================');

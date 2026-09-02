@@ -11,8 +11,8 @@ in the archives, not a curated view of it.
 
 | Kind | Files | Chunks | What it is |
 | --- | --- | --- | --- |
-| `inkwidget` | 1,669 | 780,589 | Widget libraries: every widget tree, controller binding and property manager |
-| `inkanim` | 719 | 297,803 | Animation libraries: every sequence, interpolator and event |
+| `inkwidget` | 1,670 | 781,136 | Widget libraries: every widget tree, controller binding and property manager |
+| `inkanim` | 720 | 297,909 | Animation libraries: every sequence, interpolator and event |
 | `inkatlas` | 1,253 | - | Texture atlases: named parts and their rectangles |
 | `inkstyle` | 203 | - | Style sheets: theme properties and their values |
 | `inkcharcustomization` | 4 | 2,136 | Character creator option sets |
@@ -23,15 +23,22 @@ in the archives, not a curated view of it.
 | `charcustpreset`, `ccstate` | 8 | - | Character creator presets (`gameuiCharacterCustomization*Preset`) |
 | `inklayers`, `inktypography`, `inkmenu`, `inkfullscreencomposition`, `inkenginesettings`, `inkgamesettings` | 8 | - | Layer definitions, type scale, menu and settings resources |
 
-3,913 resources, 1,080,531 chunks, 1,101 distinct classes. Base game and Phantom
-Liberty, tagged per file by `source`. Game version 2.31.
+3,915 resources, 1,081,184 chunks, 1,101 distinct classes. Base game and Phantom
+Liberty, game version 2.31. `source` records the path namespace (`base\` or `ep1\`);
+one path (`yaiba_showroom_website.inkwidget`) is provided by both a base and an EP1
+archive with identical sizes, and the dump carries the copy the game resolves to.
 
 **The extension list comes from the engine's class-to-extension registry** (WolvenKit's
 `FileTypeHelper` mirrors it), not from a name pattern: three ink-family classes ship
 behind extensions that do not say "ink" - `credits`, `ccstate` and `charcustpreset` -
-and a substring filter misses all three. Every one of the game's 583,798 archive
-entries carries a resolved path, so nothing can hide from the extension filter behind an
-unresolved hash - that was measured, not assumed.
+and a substring filter misses all three.
+
+**Files whose path hash never resolved are swept too.** 174 of the game's 583,798
+archive entries have no known path and no usable extension; the generator opens each by
+its bare hash and reads the root class. Two are ink resources - an animation library
+(`840968453105948297.inkanim`) and a widget library (`10823073814826382310.inkwidget`),
+both in `basegame_4_gamedata`, referenced by nothing - and both are in the dump, named
+by their hash and marked `unresolvedPath`.
 
 ## Complete means complete
 
@@ -55,14 +62,20 @@ transformations, not because anything was left out:
 
 Every transformation is verified during generation, per resource, not assumed:
 
-- **Leaf check** - every typed leaf value of the original survives, as a multiset
-  comparison. 3,913 of 3,913 pass.
+- **Leaf check** - every typed leaf value of the original survives, with its type,
+  storage and JSON type, as a multiset comparison. 3,915 of 3,915 pass.
 - **Structural check** - the original and the encoding are compared position by
-  position: 3,911 by full expansion, and the two perk screens - whose shared subtrees
-  make expansion explode past 300 million tokens - by an iterative graph hash (64
-  rounds of folding each node's referenced hashes in, in reference order). 0 mismatches.
+  position: 3,913 by full expansion, and the two perk screens - whose shared subtrees
+  make expansion explode past 300 million tokens - by an iterative graph hash (node
+  content hashed with references as placeholders, then 64 rounds of folding each node's
+  referenced hashes in, in reference order, on the same scope labels the encoder
+  assigns). 0 mismatches.
 - **Default round trip** - stripping then restoring defaults reproduces the encoding
-  byte for byte on all 3,913.
+  byte for byte on all 3,915, and `build.py` re-proves its own independent restore
+  against the shipped records on every build.
+- **Standing asserts** - every reference resolves to a chunk (the engine's null handle
+  `-1` is the counted exception), every root record is a typed object, and the parts of
+  the document outside `RootChunk` still match the constants they are elided as.
 
 Two facts the verification surfaced are kept deliberately rather than "fixed":
 
@@ -76,7 +89,7 @@ Two facts the verification surfaced are kept deliberately rather than "fixed":
 
 ## The fidelity boundary
 
-The dump equals WolvenKit 8.20's parse of the archives, verified exactly. What that
+The dump equals WolvenKit 8.20's parse of the archives, verified exactly against that parse. What that
 parse itself does not surface, no downstream check can recover, so the boundary is
 stated rather than glossed:
 
@@ -90,7 +103,7 @@ stated rather than glossed:
   part of WolvenKit's JSON, and chunks unreachable from the root graph or buffers
   referenced by no chunk are dropped by its reader. None of that is widget data, but it
   is in the bytes and not here.
-- The parts of the document outside `RootChunk` are constant across all 3,913 resources
+- The parts of the document outside `RootChunk` are constant across all 3,915 resources
   (`Version` 195, `BuildVersion` 0, `EmbeddedFiles` empty) and are therefore not
   stored; the generator warns if a future game patch changes that.
 

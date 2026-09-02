@@ -147,6 +147,22 @@ INSERT_WIDGET = "INSERT INTO widgets ({}) VALUES ({})".format(
     ", ".join(WIDGET_COLS), ", ".join("?" * len(WIDGET_COLS)))
 
 
+def strip(node, defaults):
+    """The inverse of restore(), used to prove restore() against the shipped bytes."""
+    if isinstance(node, list):
+        return [strip(v, defaults) for v in node]
+    if not isinstance(node, dict):
+        return node
+    cls = node.get("$type")
+    d = defaults.get(cls, {}) if isinstance(cls, str) else {}
+    out = {}
+    for k, v in node.items():
+        if k != "$type" and k in d and v == d[k]:
+            continue
+        out[k] = strip(v, defaults)
+    return out
+
+
 def restore(node, defaults):
     """Put back the fields generate.wscript omitted because they equalled the default."""
     if isinstance(node, list):
@@ -337,6 +353,7 @@ def build(db_path, stripped=False, verbose=True):
     cid = 0
     fid = 0
     n_files = n_chunks = n_widgets = n_items = 0
+    roundtrip_fails = 0
 
     for shard in shards:
         with open(os.path.join(RAW, shard), encoding="utf-8") as fh:
@@ -355,6 +372,10 @@ def build(db_path, stripped=False, verbose=True):
                     cid += 1
                     local[chunk_id] = cid
                     restored[chunk_id] = restore(raw, defaults)
+                    if strip(restored[chunk_id], defaults) != raw:
+                        roundtrip_fails += 1
+                if strip(root, defaults) != rec.get("root"):
+                    roundtrip_fails += 1
 
                 chunk_rows, ref_rows, widget_rows, tree_rows = [], [], [], []
                 for chunk_id, chunk in restored.items():
@@ -398,6 +419,13 @@ def build(db_path, stripped=False, verbose=True):
                             continue
                         pd = it.get("packageData") or {}
                         chunks_arr = (pd.get("Data") or {}).get("Chunks") if isinstance(pd.get("Data"), dict) else None
+                        if not chunks_arr:
+                            # No RedPackage view: the instance sits in the CR2W view at
+                            # package.Data.File.RootChunk instead.
+                            pk = it.get("package") or {}
+                            f_ = (pk.get("Data") or {}).get("File") if isinstance(pk.get("Data"), dict) else None
+                            if isinstance(f_, dict) and f_.get("RootChunk") is not None:
+                                chunks_arr = [f_["RootChunk"]]
                         inst_cid = None
                         root_widget_cid = None
                         ctrl_cid = None
@@ -474,6 +502,7 @@ def build(db_path, stripped=False, verbose=True):
         print("chunks   {:>10,}".format(n_chunks))
         print("widgets  {:>10,}".format(n_widgets))
         print("db       {:>10.1f} MB  {}".format(os.path.getsize(db_path) / 1048576, db_path))
+        print("restore round trip against shipped records: {} failures".format(roundtrip_fails))
 
 
 def main():

@@ -19,6 +19,104 @@
    "storage": "string"
   }
  },
+ "inkImageWidget": {
+  "externalDynamicTexture": {
+   "type": "CName",
+   "storage": "string"
+  },
+  "name": {
+   "type": "CName",
+   "storage": "string"
+  },
+  "state": {
+   "type": "CName",
+   "storage": "string"
+  },
+  "DepotPath": {
+   "varies": [
+    {
+     "type": "ResourcePath",
+     "storage": "string"
+    },
+    {
+     "type": "ResourcePath",
+     "storage": "uint64"
+    }
+   ]
+  },
+  "texturePart": {
+   "type": "CName",
+   "storage": "string"
+  }
+ },
+ "inkPropertyBinding": {
+  "propertyName": {
+   "type": "CName",
+   "storage": "string"
+  },
+  "stylePath": {
+   "type": "CName",
+   "storage": "string"
+  }
+ },
+ "inkCanvasWidget": {
+  "name": {
+   "type": "CName",
+   "storage": "string"
+  },
+  "state": {
+   "type": "CName",
+   "storage": "string"
+  }
+ },
+ "inkMaskEffect": {
+  "effectName": {
+   "type": "CName",
+   "storage": "string"
+  }
+ },
+ "inkTextWidget": {
+  "DepotPath": {
+   "type": "ResourcePath",
+   "storage": "string"
+  },
+  "fontStyle": {
+   "type": "CName",
+   "storage": "string"
+  },
+  "name": {
+   "type": "CName",
+   "storage": "string"
+  },
+  "state": {
+   "type": "CName",
+   "storage": "string"
+  },
+  "textIdKey": {
+   "type": "CName",
+   "storage": "string"
+  }
+ },
+ "inkStyleResourceWrapper": {
+  "DepotPath": {
+   "varies": [
+    {
+     "type": "ResourcePath",
+     "storage": "string"
+    },
+    {
+     "type": "ResourcePath",
+     "storage": "uint64"
+    }
+   ]
+  }
+ },
+ "inkWidgetBackendData": {
+  "boundLibraryItemName": {
+   "type": "CName",
+   "storage": "string"
+  }
+ },
  "inkanimPlaybackOptions": {
   "fromMarker": {
    "type": "CName",
@@ -61,46 +159,6 @@
    "storage": "string"
   }
  },
- "inkImageWidget": {
-  "externalDynamicTexture": {
-   "type": "CName",
-   "storage": "string"
-  },
-  "name": {
-   "type": "CName",
-   "storage": "string"
-  },
-  "state": {
-   "type": "CName",
-   "storage": "string"
-  },
-  "DepotPath": {
-   "varies": [
-    {
-     "type": "ResourcePath",
-     "storage": "string"
-    },
-    {
-     "type": "ResourcePath",
-     "storage": "uint64"
-    }
-   ]
-  },
-  "texturePart": {
-   "type": "CName",
-   "storage": "string"
-  }
- },
- "inkCanvasWidget": {
-  "name": {
-   "type": "CName",
-   "storage": "string"
-  },
-  "state": {
-   "type": "CName",
-   "storage": "string"
-  }
- },
  "inkBlackwallEffect": {
   "effectName": {
    "type": "CName",
@@ -113,38 +171,6 @@
    "storage": "string"
   },
   "state": {
-   "type": "CName",
-   "storage": "string"
-  }
- },
- "inkTextWidget": {
-  "DepotPath": {
-   "type": "ResourcePath",
-   "storage": "string"
-  },
-  "fontStyle": {
-   "type": "CName",
-   "storage": "string"
-  },
-  "name": {
-   "type": "CName",
-   "storage": "string"
-  },
-  "state": {
-   "type": "CName",
-   "storage": "string"
-  },
-  "textIdKey": {
-   "type": "CName",
-   "storage": "string"
-  }
- },
- "inkPropertyBinding": {
-  "propertyName": {
-   "type": "CName",
-   "storage": "string"
-  },
-  "stylePath": {
    "type": "CName",
    "storage": "string"
   }
@@ -179,20 +205,6 @@
   "state": {
    "type": "CName",
    "storage": "string"
-  }
- },
- "inkStyleResourceWrapper": {
-  "DepotPath": {
-   "varies": [
-    {
-     "type": "ResourcePath",
-     "storage": "string"
-    },
-    {
-     "type": "ResourcePath",
-     "storage": "uint64"
-    }
-   ]
   }
  },
  "animationPlayer": {
@@ -261,12 +273,6 @@
    "storage": "string"
   },
   "onStartLoop": {
-   "type": "CName",
-   "storage": "string"
-  }
- },
- "inkWidgetBackendData": {
-  "boundLibraryItemName": {
    "type": "CName",
    "storage": "string"
   }
@@ -1016,12 +1022,6 @@
   }
  },
  "inkLinearWipeEffect": {
-  "effectName": {
-   "type": "CName",
-   "storage": "string"
-  }
- },
- "inkMaskEffect": {
   "effectName": {
    "type": "CName",
    "storage": "string"
