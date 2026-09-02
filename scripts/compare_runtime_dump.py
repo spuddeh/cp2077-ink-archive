@@ -21,6 +21,7 @@ matched field must come out equal, which proves the matcher without running the 
 import argparse
 import json
 import os
+import re
 import sqlite3
 import sys
 
@@ -50,9 +51,11 @@ FIELDS = {
 
 
 def enum_name(value):
-    """Runtime enums stringify with a variable prefix; the archive stores the name."""
+    """CET stringifies an enum as 'inkEAnchor : Centered (4)'; the archive stores the
+    bare name. The identifier before an optional numeric suffix is the value."""
     s = str(value)
-    return s.rsplit(".", 1)[-1].rsplit(":", 1)[-1].strip()
+    m = re.search(r"([A-Za-z_][A-Za-z0-9_]*)\s*(?:\(\d+\))?\s*$", s)
+    return m.group(1) if m else s.strip()
 
 
 def numeq(a, b, tol=1e-3):
@@ -93,6 +96,17 @@ class Archive:
         return self.con.execute(
             "SELECT i.fid, i.name, i.root_widget_cid, f.path FROM items i "
             "JOIN files f USING (fid) WHERE i.controller = ?", (controller,)).fetchall()
+
+    def widgets_with_logic_controller(self, controller, name, cls):
+        """Authored widgets carrying this logic controller: refs.field
+        'logicController' or 'secondaryControllers' links the widget chunk to a
+        controller chunk whose class is what the runtime's GetControllers reports."""
+        return self.con.execute(
+            "SELECT DISTINCT w.* FROM widgets w "
+            "JOIN refs r ON r.from_cid = w.cid AND r.field IN ('logicController','secondaryControllers') "
+            "JOIN chunks t ON t.cid = r.to_cid "
+            "WHERE t.class = ? AND w.name = ? AND w.class = ?",
+            (controller, name, cls)).fetchall()
 
     def widget(self, cid):
         return self.con.execute("SELECT * FROM widgets WHERE cid = ?", (cid,)).fetchone()
@@ -136,7 +150,9 @@ def build_runtime_tree(nodes):
     return roots
 
 
-def walk_match(archive, runtime_node, authored_row, stats, diffs, depth=0):
+def walk_match(archive, runtime_node, authored_row, stats, diffs, depth=0, visited=None):
+    if visited is not None:
+        visited.add(id(runtime_node))
     stats["matched"] += 1
     for key, (cols, kind) in FIELDS.items():
         authored = ([authored_row[c] for c in cols] if isinstance(cols, tuple)
@@ -171,34 +187,61 @@ def walk_match(archive, runtime_node, authored_row, stats, diffs, depth=0):
         if pick is None and candidates:
             pick = candidates.pop(0)
         if pick is not None:
-            walk_match(archive, child, pick, stats, diffs, depth + 1)
+            walk_match(archive, child, pick, stats, diffs, depth + 1, visited)
         else:
             stats["unmatched"] += 1
 
 
 def find_anchors(nodes):
-    """Runtime nodes that name a controller class - each is a candidate item root."""
-    for n in nodes:
+    """Runtime nodes that name a controller class, shallowest first, so a parent
+    anchor claims its subtree before any child anchor is tried."""
+    for n in sorted(nodes, key=lambda x: x.get("depth", 0)):
         for controller in n.get("controllers") or []:
             yield n, controller
 
 
+def pick_candidate(archive, node, candidates):
+    """Several authored widgets can share name, class and controller (one per file that
+    embeds the library); the one whose depth-1 child names line up best wins."""
+    if len(candidates) == 1:
+        return candidates[0]
+    child_names = [c.get("name") or "" for c in node["_children"]]
+    best, best_score = candidates[0], -1
+    for row in candidates:
+        names = [r["name"] for r in archive.children(row["cid"])]
+        score = sum(1 for n in child_names if n in names)
+        if score > best_score:
+            best, best_score = row, score
+    return best
+
+
 def compare(archive, nodes, limit_diffs):
-    roots = build_runtime_tree(nodes)
+    build_runtime_tree(nodes)
     stats = {"matched": 0, "unmatched": 0, "fields": 0, "equal": 0, "differ": 0,
              "anchors": 0, "anchors_missed": 0}
     diffs = []
-    seen = set()
+    visited = set()
     for node, controller in find_anchors(nodes):
-        if id(node) in seen:
+        if id(node) in visited:
             continue
+        # An item's game controller is the strongest anchor; a widget's logic
+        # controller (plus its own name and class) anchors everything below items.
         items = archive.items_for_controller(controller)
-        if not items:
-            stats["anchors_missed"] += 1
+        if items:
+            visited.add(id(node))
+            stats["anchors"] += 1
+            walk_match(archive, node, archive.widget(items[0]["root_widget_cid"]),
+                       stats, diffs, visited=visited)
             continue
-        seen.add(id(node))
-        stats["anchors"] += 1
-        walk_match(archive, node, archive.widget(items[0]["root_widget_cid"]), stats, diffs)
+        candidates = archive.widgets_with_logic_controller(
+            controller, node.get("name") or "", node.get("class") or "")
+        if candidates:
+            visited.add(id(node))
+            stats["anchors"] += 1
+            walk_match(archive, node, pick_candidate(archive, node, candidates),
+                       stats, diffs, visited=visited)
+        else:
+            stats["anchors_missed"] += 1
 
     print("runtime nodes          : {}".format(len(nodes)))
     print("controller anchors     : {} matched to items, {} unknown to the archive".format(
