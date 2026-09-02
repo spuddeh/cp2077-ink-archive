@@ -21,6 +21,8 @@ PORT = 9333
 
 
 def main():
+    # Page text is UTF-8; a Windows console defaults to a code page that cannot print it.
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     url, wait, expr = sys.argv[1], float(sys.argv[2]), sys.argv[3]
     proc = subprocess.Popen([
         CHROME, "--headless=new", "--disable-gpu", "--no-first-run",
