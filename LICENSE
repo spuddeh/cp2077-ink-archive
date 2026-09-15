@@ -19,9 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-The license above covers the scripts, the website and the database schema -
-the parts that are this repository's own work. The extracted game data is
-Cyberpunk 2077's and belongs to CD PROJEKT RED; see the README for the terms
-it is shared under. The vendored sql.js-httpvfs library in
-site/vendor/sqljs-httpvfs/ carries its own Apache-2.0 license.
