@@ -117,6 +117,11 @@ Adjacent systems are not included here:
 
 ## Using it
 
+The complete database is attached to each [release](https://github.com/spuddeh/cp2077-ink-archive/releases)
+as `ink.db.zip`, built from `raw/` at the release's tag, with the unzipped file's SHA-256 in
+`ink.db.sha256`. Pushing a tag `v<game version>.<n>` builds and publishes it. To build it
+yourself:
+
 ```bash
 python build.py                                  # data/ink.db, complete records
 python build.py --db data/ink_web.db --stripped  # website flavour, defaults factored out
